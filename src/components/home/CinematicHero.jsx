@@ -5,17 +5,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@/hooks/useGSAP';
 
 const HEADLINE = 'Bold work for ambitious brands';
-const TILES = 52; // irregular mosaic
 
-/* repeating span pattern → varied collage. '2x..' = wide, '..x2' = tall */
-const SPANS = ['1x1','2x1','1x1','1x2','2x2','1x1','2x1','1x1','1x2','1x1','2x2','1x1','1x1','2x1','1x2','1x1'];
+/* Background video — plays full-bleed behind the headline.
+   Drop another file in /public/videos and swap this path. */
+const HERO_VIDEO = '/videos/video1.mp4';
 
-/* Drop files in /public/images (and /public/videos), then list them here.
-   Fewer than the tile count is fine — the list repeats to fill the grid.
-   Leave empty to keep placeholder tiles. */
+/* ─── Image mosaic (commented out for now) ──────────────────────────
+   Re-enable by uncommenting these + the JSX block below, and removing
+   the <video> render.
+
+const TILES = 36; // 6-column grid
+
 const TILE_MEDIA = [
-  // '/images/work-1.jpg',
-  // '/videos/reel-1.mp4',
   '/images/cine1.png',
   '/images/cine%202.png',
   '/images/cine%203.png',
@@ -54,27 +55,33 @@ const TILE_MEDIA = [
 ];
 
 const isVideo = (s) => /\.(mp4|webm|mov)$/i.test(s);
+─────────────────────────────────────────────────────────────────── */
 
 export default function CinematicHero() {
   const root = useRef(null);
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.from('.cine-word', { yPercent: 120, duration: 1.1, ease: 'expo.out', stagger: 0.08, delay: 0.25 });
-    gsap.from('.cine-tile', { opacity: 0, scale: 0.8, duration: 1, ease: 'power3.out',
-      stagger: { amount: 1, from: 'random' } });
-    gsap.to('.cine-mosaic', { yPercent: 13, ease: 'none',
+    gsap.from('.cine-word', { yPercent: 120, duration: 1.1, ease: 'expo.out', stagger: 0.08, delay: 0.2 });
+    gsap.to('.cine-mosaic', { yPercent: 14, ease: 'none',
       scrollTrigger: { trigger: '.cine-hero', start: 'top top', end: 'bottom top', scrub: true } });
   }, { scope: root });
 
   return (
     <section ref={root} className="cine-hero">
       <div className="cine-mosaic">
+        <video
+          className="cine-bg-video"
+          src={HERO_VIDEO}
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        {/* ─── Image mosaic JSX (commented out) ─────────────────────
         {Array.from({ length: TILES }).map((_, i) => {
-          const sp = SPANS[i % SPANS.length];
-          const cls = `cine-tile${sp.startsWith('2') ? ' w2' : ''}${sp.endsWith('2') ? ' h2' : ''}`;
           const src = TILE_MEDIA.length ? TILE_MEDIA[i % TILE_MEDIA.length] : null;
           return (
-            <div key={i} className={cls}>
+            <div key={i} className="cine-tile">
               {!src ? (
                 <div className="cine-tile-ph" />
               ) : isVideo(src) ? (
@@ -85,12 +92,17 @@ export default function CinematicHero() {
             </div>
           );
         })}
+        ──────────────────────────────────────────────────────────── */}
       </div>
       <div className="cine-veil" />
       <div className="cine-side l">Dubai · Est. 2010</div>
       <div className="cine-side r">Social · Cinematic · Web · Branding</div>
       <div className="cine-inner">
-        <div className="cine-mark"><b>DAO</b><i /><span>Studio</span></div>
+        <img
+          src="/logo/logo.svg"
+          alt="DAO Studio"
+          className="cine-logo"
+        />
         <h1>
           {HEADLINE.split(' ').map((w, i) => (
             <span key={i} className="reveal-line">

@@ -40,7 +40,7 @@ export default function Footer() {
     <footer
       ref={root}
       id="footer"
-      className="relative mt-[90px] overflow-hidden rounded-t-[40px] bg-navy pt-[90px] text-white"
+      className="relative mt-[90px] overflow-hidden rounded-t-[40px] bg-black pt-[90px] text-white"
     >
       <div className="section-wrap relative z-[2] text-left">
         <div className="grid grid-cols-[1.25fr_1fr] gap-[50px] max-lg:grid-cols-1">

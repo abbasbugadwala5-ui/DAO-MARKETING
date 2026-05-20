@@ -32,9 +32,9 @@ export default function VideoChapter() {
       </div>
       <div className="chapter-veil" />
       <div className="chapter-inner">
-        <div className="chapter-num chapter-rise">01</div>
-        <div className="chapter-eyebrow chapter-rise">Inside the studio</div>
-        <h2 className="chapter-rise">Welcome to DAO Studio</h2>
+        {/* <div className="chapter-num chapter-rise">01</div>
+        <div className="chapter-eyebrow chapter-rise">Inside the Agency</div> */}
+        <h2 className="chapter-rise">A Global Digital Marketing Agency</h2>
         <div className="chapter-line chapter-rise" />
       </div>
     </section>
