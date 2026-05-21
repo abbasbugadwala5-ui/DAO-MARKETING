@@ -18,11 +18,9 @@ function Words({ text }) {
 
 const lines = [
   { text: 'Design that', italic: false },
-  { text: 'moves markets —', italic: true },
-  { text: 'built to convert.', italic: false },
+  { text: 'moves markets', italic: true },
+  { text: 'and converts buyers.', italic: false },
 ];
-
-const pillars = ['Strategy', 'Branding', 'Product Design', 'E-commerce', 'CRO Audit'];
 
 export default function Hero() {
   const root = useRef(null);
@@ -41,7 +39,7 @@ export default function Hero() {
 
     // headline parallax on scroll
     gsap.to('.hero-headline', {
-      yPercent: 18, opacity: 0.55, ease: 'none',
+      yPercent: 10, opacity: 0.45, ease: 'none',
       scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: true },
     });
   }, { scope: root });
@@ -49,14 +47,14 @@ export default function Hero() {
   return (
     <header
       ref={root}
-      className="section-wrap flex min-h-[100svh] flex-col justify-center pb-[72px] pt-[130px] text-left"
+      className="section-wrap relative flex min-h-[80svh] flex-col justify-center overflow-hidden pb-[48px] pt-[130px] text-left"
     >
-      <h1 className="hero-headline display-1">
+      <h1 className="hero-headline hero-headline-xl">
         {lines.map((l, i) => (
           <span key={i} className="block">
             {l.text.split(' ').map((w, j) => (
               <span key={j} className="reveal-line">
-                <span className={`hero-word reveal-word ${l.italic ? 'italic' : ''}`}>
+                <span className={`hero-word reveal-word ${l.italic ? 'hero-italic' : ''}`}>
                   {w}&nbsp;
                 </span>
               </span>
@@ -65,34 +63,10 @@ export default function Hero() {
         ))}
       </h1>
 
-      <div className="mt-10 flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
-        <p className="hero-fade body-lg max-w-[420px] text-inksoft">
-          DAO Studio is an independent digital agency crafting brand, product
-          and commerce experiences with measurable impact.
-        </p>
-
-        <motion.div
-          className="hero-fade"
-          whileHover={{ y: -4 }}
-          transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
-        >
-          <Link
-            href="/contact"
-            className="body inline-flex items-center gap-3 rounded-full bg-ink px-6 py-3.5 font-medium text-paper"
-          >
-            Start a project
-            <span className="grid h-[28px] w-[28px] place-items-center rounded-full bg-paper text-ink">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M7 17 17 7M9 7h8v8" />
-              </svg>
-            </span>
-          </Link>
-        </motion.div>
-      </div>
-
-      <div className="hero-fade eyebrow mt-[64px] flex flex-wrap gap-x-10 gap-y-3 border-t border-ink/10 pt-5 text-inksoft">
-        {pillars.map((p) => <span key={p}>{p}</span>)}
+      <div className="hero-fade hero-edge">
+        <span className="hero-edge-mark" aria-hidden>↓</span>
+        <span className="hero-edge-line" aria-hidden />
+        <span className="hero-edge-year">2025</span>
       </div>
     </header>
   );

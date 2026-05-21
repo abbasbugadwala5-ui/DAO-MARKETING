@@ -7,7 +7,7 @@ import { forwardRef } from 'react';
  * it drives the stacked sticky offset via the --i CSS variable.
  */
 const AnimatedCard = forwardRef(function AnimatedCard(
-  { i = 0, tag, index, title, body, bg, light = false, media },
+  { i = 0, tag, index, kicker, title, body, bg, light = false, media },
   ref
 ) {
   return (
@@ -24,6 +24,7 @@ const AnimatedCard = forwardRef(function AnimatedCard(
 
       <div className="svc-body">
         <div className="svc-copy">
+          {kicker && <span className="svc-kicker">{kicker}</span>}
           <h3>{title}</h3>
           <p>{body}</p>
         </div>

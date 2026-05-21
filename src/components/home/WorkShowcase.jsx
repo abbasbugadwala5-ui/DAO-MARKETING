@@ -13,17 +13,18 @@ const PANELS = [
   {
     label: 'Cinematic',
     bg: '',
-    tint: '#0a1322',              /* cool cinematic blue-black */
+    tint: '#A8BCB5',              /* deeper sage — washed Product Design teal #1E3D38 */
     cards: [
-      { src: '/videos/cinematic%201.mp4', w: 280, h: 498, left: '7%',  top: '14%', rot: -2 },
-      { src: '/videos/cinematic%202.mp4', w: 300, h: 533, left: '38%', top:  '8%', rot:  1 },
-      { src: '/videos/cinematic%203.mp4', w: 280, h: 498, left: '68%', top: '14%', rot: -1 },
+      { src: '/videos/cinematic%201.mp4', w: 320, h: 540, left: '3%',  top: '13%', rot: -2 },
+      { src: '/videos/cinematic%202.mp4', w: 320, h: 540, left: '28%', top:  '9%', rot:  1 },
+      { src: '/videos/cinematic%203.mp4', w: 320, h: 540, left: '53%', top: '13%', rot: -1 },
+      { src: '/videos/cinematic%20copy.mp4', w: 320, h: 540, left: '78%', top:  '9%', rot:  2 },
     ],
   },
   {
-    label: 'Interiors',
+    label: 'Social Media',
     bg: '',
-    tint: '#1a120d',              /* warm dark espresso */
+    tint: '#D9A48C',              /* deeper terracotta — washed Branding #B8472B */
     cards: [
       { src: '/images/sama%20linkedin2.png', w: 315, h: 420, left: '2%',  top: '12%', rot: -2 },
       { src: '/images/insta%20sama1.png',    w: 305, h: 402, left: '28%', top: '17%', rot:  1 },
@@ -34,17 +35,24 @@ const PANELS = [
   {
     label: 'Shoots',
     bg: '',
-    tint: '#0d1817',              /* deep production teal */
+    tint: '#E8C887',              /* deeper amber — washed E-commerce #E0A43B */
     cards: [
-      { src: '/images/shooting1.jpg',     w: 340, h: 510, left: '10%', top: '16%', rot: -2 },
-      { src: '/images/shooting%202.jpg',  w: 360, h: 540, left: '50%', top: '11%', rot:  1 },
+      { src: '/videos/shoots3%20copy.mp4',   w: 320, h: 540, left:  '3%', top: '13%', rot: -2 },
+      { src: '/images/shooting1.jpg',        w: 320, h: 540, left: '28%', top:  '9%', rot:  1 },
+      { src: '/videos/shoots%204%20copy.mp4', w: 320, h: 540, left: '53%', top: '13%', rot: -1 },
+      { src: '/images/shooting%202.jpg',     w: 320, h: 540, left: '78%', top:  '9%', rot:  2 },
     ],
   },
   {
-    label: 'Showreel',
-    bg: '/videos/dubai%20aerial.mp4',
-    tint: '#000',                 /* video covers the panel */
-    cards: [],
+    label: 'Edits',
+    bg: '',
+    tint: '#C9A0A8',              /* deeper dusty rose — washed Editorial #7A3A48 */
+    cards: [
+      { src: '/videos/edits1%20copy.mp4', w: 340, h: 575, left:  '3%', top: '11%', rot: -2 },
+      { src: '/videos/edits2%20copy.mp4', w: 340, h: 575, left: '28%', top:  '7%', rot:  1 },
+      { src: '/videos/edits3%20copy.mp4', w: 340, h: 575, left: '53%', top: '11%', rot: -1 },
+      { src: '/videos/edits4%20copy.jpg', w: 340, h: 575, left: '78%', top:  '7%', rot:  2 },
+    ],
   },
 ];
 
@@ -78,12 +86,25 @@ export default function WorkShowcase() {
     <section ref={sectionRef} className="work-show">
       <div ref={trackRef} className="work-track" style={{ width: `${PANELS.length * 100}vw` }}>
         {PANELS.map((p, i) => (
-          <div key={i} className="work-panel" style={{ background: p.tint }}>
+          <div key={i} className={`work-panel ${p.bg ? 'is-dark' : 'is-light'}`} style={{ background: p.tint }}>
             {p.bg && (
               <div className="work-bg">
                 {isVideo(p.bg)
                   ? <video src={p.bg} autoPlay muted loop playsInline />
                   : <img src={p.bg} alt="" />}
+              </div>
+            )}
+
+            {/* Background marquee — runs DAO STUDIO through every panel except Showreel */}
+            {!p.bg && (
+              <div className="work-marquee" aria-hidden>
+                <div className="work-marquee-track">
+                  {Array.from({ length: 12 }).map((_, k) => (
+                    <span key={k} className="m-item">
+                      DAO STUDIO<i className="m-dot"></i>
+                    </span>
+                  ))}
+                </div>
               </div>
             )}
 
@@ -94,11 +115,6 @@ export default function WorkShowcase() {
               <span className="work-eyebrow-total">{String(PANELS.length).padStart(2, '0')}</span>
               <span className="work-eyebrow-line" />
               <span className="work-eyebrow-cat">{p.label}</span>
-            </div>
-
-            {/* Giant panel number watermark — bottom-right */}
-            <div className="work-num" aria-hidden>
-              {String(i + 1).padStart(2, '0')}
             </div>
 
             <div className="work-veil" />

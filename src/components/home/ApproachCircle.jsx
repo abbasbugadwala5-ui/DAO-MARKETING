@@ -24,12 +24,11 @@ export default function ApproachCircle() {
   const nameRef = useRef(null);
   const descRef = useRef(null);
   const tipRef = useRef(null);
-  const spokeRef = useRef(null);
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Draw the progress arc as user scrolls through the section
+    // Draw the progress arc as user scrolls — this is the line that connects dots
     gsap.to('.ring-arc', {
       strokeDashoffset: 0,
       ease: 'none',
@@ -41,15 +40,7 @@ export default function ApproachCircle() {
       },
     });
 
-    // Two counter-rotating decorative rings — ambient depth
-    gsap.to('.ring-outer', {
-      rotate: 360, duration: 140, ease: 'none', repeat: -1, transformOrigin: '50% 50%',
-    });
-    gsap.to('.ring-inner', {
-      rotate: -360, duration: 90, ease: 'none', repeat: -1, transformOrigin: '50% 50%',
-    });
-
-    // Master scroll-driven update: beacon position, active step, spoke target, center text
+    // Master scroll-driven update: beacon position, active step, center text
     let lastIdx = -1;
     ScrollTrigger.create({
       trigger: root.current,
@@ -57,6 +48,7 @@ export default function ApproachCircle() {
       end: 'bottom bottom',
       scrub: 1,
       onUpdate(self) {
+        if (!root.current || !tipRef.current) return;
         const p = self.progress;
 
         // Move the traveling beacon along the arc tip
@@ -75,14 +67,6 @@ export default function ApproachCircle() {
 
         const nodes = root.current.querySelectorAll('.node');
         nodes.forEach((n, i) => n.classList.toggle('active', i === idx));
-
-        // Pivot the radial spoke to point at the new active node
-        gsap.to(spokeRef.current, {
-          rotate: ANGLES[idx] + 90,
-          duration: 0.7,
-          ease: 'power3.out',
-          transformOrigin: '50% 50%',
-        });
 
         // Center text swap with quick fade-up
         gsap.timeline()
@@ -114,28 +98,7 @@ export default function ApproachCircle() {
             {/* Soft central glow for depth */}
             <circle cx="0" cy="0" r="300" fill="url(#approach-glow)" />
 
-            {/* Outer decorative ring — slow clockwise */}
-            <g className="ring-outer">
-              <circle cx="0" cy="0" r={R + 48} />
-            </g>
-
-            {/* Inner decorative ring — counter-clockwise */}
-            <g className="ring-inner">
-              <circle cx="0" cy="0" r={R - 36} />
-            </g>
-
-            {/* Base dashed ring (the path the arc draws over) */}
-            <circle className="ring-base" cx="0" cy="0" r={R} />
-
-            {/* Radial spoke from center → active node */}
-            <line
-              ref={spokeRef}
-              className="ring-spoke"
-              x1="0" y1="0"
-              x2="0" y2={-R}
-            />
-
-            {/* Progress arc (draws as user scrolls) */}
+            {/* Progress arc — connects the dots as user scrolls */}
             <circle
               className="ring-arc"
               cx="0" cy="0" r={R}
