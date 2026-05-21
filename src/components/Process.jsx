@@ -12,8 +12,8 @@ const phases = [
     title: 'Understanding before answering.',
     body: 'Stakeholders, audiences, competitors and analytics — a deep listen that becomes a positioning brief every later decision answers to.',
     tags: ['Audit', 'Workshops', 'Positioning'],
-    /* Sand — paper family */
-    tint: { from: '#EFE8D5', to: '#D8CFB6', glow: 'rgba(192, 112, 63, 0.35)' },
+    /* Soft cream — lightest */
+    tint: { from: '#FBF1D8', to: '#EFDBA8', glow: 'rgba(26, 26, 26, 0.06)' },
   },
   {
     num: '02',
@@ -21,8 +21,8 @@ const phases = [
     title: 'Strategy, brand and product in lockstep.',
     body: 'Identity, narrative and interface designed in parallel — one team, one direction, no handoffs that lose the thread.',
     tags: ['Identity', 'UX / UI', 'Design system'],
-    /* Sage — brand cool */
-    tint: { from: '#DCE2CE', to: '#BEC4A6', glow: 'rgba(190, 193, 166, 0.55)' },
+    /* Champagne */
+    tint: { from: '#F8EAC6', to: '#E5CC92', glow: 'rgba(26, 26, 26, 0.08)' },
   },
   {
     num: '03',
@@ -30,8 +30,8 @@ const phases = [
     title: 'Engineering that holds up at scale.',
     body: 'Next.js, Shopify, headless commerce and bespoke stacks — production-ready code, content models that flex, infrastructure that ships.',
     tags: ['Engineering', 'CMS', 'Performance'],
-    /* Olive — earthier sibling */
-    tint: { from: '#D6D3B6', to: '#B0AD8A', glow: 'rgba(168, 165, 127, 0.55)' },
+    /* Warm dust */
+    tint: { from: '#F5E5BC', to: '#DCC18B', glow: 'rgba(26, 26, 26, 0.08)' },
   },
   {
     num: '04',
@@ -39,8 +39,8 @@ const phases = [
     title: 'Launch, measure, then move the number.',
     body: 'Launch is the start of the work. Conversion testing, paid media, lifecycle and SEO compound the line that matters.',
     tags: ['Launch', 'CRO', 'Growth'],
-    /* Terra washed — brand warm */
-    tint: { from: '#EAD3BE', to: '#D5B193', glow: 'rgba(192, 112, 63, 0.55)' },
+    /* Deepest gold — anchors the row */
+    tint: { from: '#F0DEAA', to: '#D2B47A', glow: 'rgba(26, 26, 26, 0.10)' },
   },
 ];
 

@@ -1,62 +1,41 @@
-'use client';
-import { useRef } from 'react';
 import Link from 'next/link';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@/hooks/useGSAP';
-
-const HEADLINE = ['Now it’s', 'your move!!'];
-
-const socials = [
-  { label: 'Instagram', href: 'https://instagram.com/daostudio' },
-  { label: 'LinkedIn',  href: 'https://linkedin.com/company/daostudio' },
-  { label: 'Behance',   href: 'https://behance.net/daostudio' },
-  { label: 'TikTok',    href: 'https://tiktok.com/@daostudio' },
-];
 
 export default function Footer() {
-  const root = useRef(null);
-
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.from('.foot-word', {
-      yPercent: 120, duration: 1, ease: 'expo.out', stagger: 0.07,
-      scrollTrigger: { trigger: '.foot-heading', start: 'top 92%' },
-    });
-    gsap.from('.foot-fade', {
-      y: 22, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.1,
-      scrollTrigger: { trigger: '.foot-heading', start: 'top 78%' },
-    });
-  }, { scope: root });
-
   return (
-    <footer ref={root} id="footer" className="dao-footer">
-      <h2 className="foot-heading">
-        {HEADLINE.map((line, li) => (
-          <span key={li} className="foot-line">
-            {line.split(' ').map((w, i) => (
-              <span key={i} className="reveal-line">
-                <span className="foot-word reveal-word">{w}&nbsp;</span>
-              </span>
-            ))}
-          </span>
-        ))}
-      </h2>
-
-      <Link href="/contact" className="foot-cta foot-fade">Contact us</Link>
-
-      <div className="foot-socials foot-fade">
-        {socials.map((s) => (
-          <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">
-            {s.label}
-          </a>
-        ))}
+    <footer className="dao-footer">
+      <div className="df-mask-wrap">
+        <div className="df-mask-text">DAO MARKETING</div>
       </div>
 
-      <div className="foot-mark foot-fade"><b>DAO</b> </div>
+      <div className="df-contact-grid">
+        <div className="df-contact-big">
+          <a href="tel:+971504425845">+971 50 442 5845</a>
+          <a href="mailto:fraz@daomarketing.com">fraz@daomarketing.com</a>
+        </div>
+        <div className="df-contact-meta">
+          <div>
+            <div className="df-contact-label">Studio</div>
+            <p>
+              The One Tower<br />
+              Sheikh Zayed Road<br />
+              24th Floor · Office 9<br />
+              Dubai, UAE
+            </p>
+            <p style={{ marginTop: 12, opacity: 0.6 }}>DAO Marketing LLC</p>
+          </div>
+          <div>
+            <div className="df-contact-label">Social</div>
+            <a href="https://instagram.com/daomarketing" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://linkedin.com/company/daomarketing" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://behance.net/daomarketing" target="_blank" rel="noopener noreferrer">Behance</a>
+          </div>
+        </div>
+      </div>
 
-      <p className="foot-addr foot-fade">Design District, Dubai, UAE</p>
-      <p className="foot-copy foot-fade">© 2026 DAO Studio. All rights reserved.</p>
+      <div className="df-base">
+        <span>DAO Marketing LLC</span>
+        <span>© 2026 — All rights reserved</span>
+      </div>
     </footer>
   );
 }

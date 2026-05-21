@@ -4,8 +4,8 @@
    Replaces the static pillars row with a continuous marquee:
    sans display + Playfair italic accents, terra-cotta star separators. */
 const ITEMS = [
-  'Strategy', 'Branding', 'Product Design', 'E-commerce', 'CRO Audit',
-  'SEO', 'Paid Media', 'Social Media', 'Email & CRM',
+  'Strategy', 'Branding', 'Product Design', 'Web Design & Dev', 'E-commerce',
+  'CRO Audit', 'SEO', 'Paid Media', 'Social Media', 'Email & CRM',
 ];
 
 export default function ServicesRibbon() {

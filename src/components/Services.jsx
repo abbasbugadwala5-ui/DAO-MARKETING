@@ -11,7 +11,7 @@ const NAV_OFFSET = 120;
 
 const services = [
   {
-    tag: 'Strategy', index: '01 / 09', bg: '#ECE7DC', light: false,
+    tag: 'Strategy', index: '01 / 10', bg: '#ECE7DC', light: false,
     kicker: 'The Foundation',
     title: 'Positioning that earns attention.',
     body: 'Research, audience mapping and a sharp narrative — the foundation every brand decision answers to.',
@@ -19,7 +19,7 @@ const services = [
     fallback: 'radial-gradient(120% 90% at 20% 10%,#3a4a6e 0,#1a2540 60%)',
   },
   {
-    tag: 'Branding', index: '02 / 09', bg: '#B8472B', light: true,
+    tag: 'Branding', index: '02 / 10', bg: '#B8472B', light: true,
     kicker: 'The Identity',
     title: 'Identity systems with range.',
     body: 'Logo, type, motion and tone — a flexible kit that holds together across every surface and screen.',
@@ -27,7 +27,7 @@ const services = [
     fallback: 'linear-gradient(135deg,#1c1c22,#3b2f24)',
   },
   {
-    tag: 'Product Design', index: '03 / 09', bg: '#1E3D38', light: true,
+    tag: 'Product Design', index: '03 / 10', bg: '#1E3D38', light: true,
     kicker: 'The Experience',
     title: 'Interfaces people actually finish.',
     body: 'End-to-end UX and UI for web and apps — usability tested, design-system backed, dev-ready.',
@@ -35,7 +35,16 @@ const services = [
     fallback: 'linear-gradient(135deg,#23304a,#0e1526)',
   },
   {
-    tag: 'E-commerce', index: '04 / 09', bg: '#E0A43B', light: false,
+    /* Web Design & Development — sites + dev */
+    tag: 'Web Design & Dev', index: '04 / 10', bg: '#3A4A6E', light: true,
+    kicker: 'The Build',
+    title: 'Sites that ship fast and last.',
+    body: 'Next.js, headless CMS, motion-led builds — performance-tuned, animation-rich and SEO-ready websites that scale with the brand.',
+    src: '/images/svc-product.jpg',
+    fallback: 'linear-gradient(135deg,#2c3a5a,#0f1426)',
+  },
+  {
+    tag: 'E-commerce', index: '05 / 10', bg: '#E0A43B', light: false,
     kicker: 'The Storefront',
     title: 'Storefronts engineered to sell.',
     body: 'Shopify and headless commerce builds with speed, merchandising and a checkout that does not leak.',
@@ -43,7 +52,7 @@ const services = [
     fallback: 'linear-gradient(135deg,#13321f,#0c1d12)',
   },
   {
-    tag: 'CRO Audit', index: '05 / 09', bg: '#2E2140', light: true,
+    tag: 'CRO Audit', index: '06 / 10', bg: '#2E2140', light: true,
     kicker: 'The Lift',
     title: 'Find the leaks. Lift the numbers.',
     body: 'Heuristic and data-led conversion audits with a prioritised roadmap of changes worth shipping.',
@@ -52,7 +61,7 @@ const services = [
   },
   {
     /* Sage — sibling of forest, lighter cool */
-    tag: 'SEO', index: '06 / 09', bg: '#BEC1A6', light: false,
+    tag: 'SEO', index: '07 / 10', bg: '#BEC1A6', light: false,
     kicker: 'The Visibility',
     title: 'Rank where the buyers are looking.',
     body: 'Technical, on-page and content SEO built around real intent — compounding traffic that does not need a media buy to show up.',
@@ -61,7 +70,7 @@ const services = [
   },
   {
     /* Deep Rust — sibling of terra, deeper warm */
-    tag: 'Paid Media', index: '07 / 09', bg: '#7A2E1A', light: true,
+    tag: 'Paid Media', index: '08 / 10', bg: '#7A2E1A', light: true,
     kicker: 'The Engine',
     title: 'Performance ads that pay back.',
     body: 'Meta, Google, TikTok and programmatic — full-funnel buying with creative testing, tracking and weekly read-outs that actually mean something.',
@@ -70,7 +79,7 @@ const services = [
   },
   {
     /* Sand — sibling of cream, deeper neutral */
-    tag: 'Social Media', index: '08 / 09', bg: '#DAD5C6', light: false,
+    tag: 'Social Media', index: '09 / 10', bg: '#DAD5C6', light: false,
     kicker: 'The Audience',
     title: 'Channels that earn the follow.',
     body: 'Always-on content, community and short-form video built around the brand voice — calendars you can actually keep, not feeds you have to apologise for.',
@@ -79,7 +88,7 @@ const services = [
   },
   {
     /* Navy — sibling of plum, bluer cool */
-    tag: 'Email & CRM', index: '09 / 09', bg: '#1A2540', light: true,
+    tag: 'Email & CRM', index: '10 / 10', bg: '#1A2540', light: true,
     kicker: 'The Lifecycle',
     title: 'Owned channels that compound.',
     body: 'Welcome, win-back, post-purchase and loyalty flows — email and SMS lifecycle programs that turn a one-time buyer into a returning one.',
@@ -139,12 +148,12 @@ export default function Services() {
         <div className="svc-eyebrow-row">
           <div className="eyebrow text-inksoft">What we do</div>
           <span className="svc-eyebrow-rule" aria-hidden />
-          <div className="eyebrow text-inksoft">09 Disciplines</div>
+          <div className="eyebrow text-inksoft">10 Disciplines</div>
         </div>
 
         <div className="svc-heading-grid">
           <h2 className="svc-heading svc-heading-xl">
-            {'Nine ways we build value.'.split(' ').map((w, i) => (
+            {'Ten ways we build value.'.split(' ').map((w, i) => (
               <span key={i} className="reveal-line">
                 <span className={`svc-word reveal-word${w === 'ways' ? ' svc-italic' : ''}`}>{w}&nbsp;</span>
               </span>
@@ -152,9 +161,9 @@ export default function Services() {
           </h2>
 
           <p className="svc-lead">
-            One studio, nine disciplines — strategy, brand, product, commerce, conversion
-            and the full digital marketing engine. A single team so the thinking never
-            gets lost in the handoff.
+            One studio, ten disciplines — strategy, brand, product, web, commerce,
+            conversion and the full digital marketing engine. A single team so the
+            thinking never gets lost in the handoff.
           </p>
         </div>
       </div>
