@@ -20,39 +20,52 @@ export default function WhatHappensNext() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const stages = gsap.utils.toArray('.proc-stage');
-      if (stages.length && procRef.current) {
-        gsap.set(stages, { autoAlpha: 0 });
-        gsap.set(stages[0], { autoAlpha: 1 });
+      if (!stages.length || !procRef.current) return;
 
-        const tl = gsap.timeline({
-          defaults: { ease: 'power2.inOut' },
-          scrollTrigger: {
-            trigger: procRef.current,
-            start: 'top top',
-            end: '+=180%',
-            pin: true,
-            scrub: 1,
-            anticipatePin: 1,
-          },
-        });
+      const mm = gsap.matchMedia();
 
-        // First stage already visible — reveal its inner content
-        tl.from('.proc-stage-1 .proc-text',  { xPercent: -25, opacity: 0, duration: 0.8 }, 0)
-          .from('.proc-stage-1 .proc-photo', { xPercent: 25,  opacity: 0, duration: 0.8 }, 0.1)
-          .to({}, { duration: 1.0 });
+      /* ─── PINNED 3-STAGE CROSS-FADE — desktop AND mobile ─── */
+      mm.add(
+        {
+          isDesktop: '(min-width: 901px)',
+          isMobile:  '(max-width: 900px)',
+        },
+        (context) => {
+          const { isDesktop } = context.conditions;
 
-        tl.to(stages[0], { autoAlpha: 0, duration: 0.5 })
-          .fromTo(stages[1], { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, '<')
-          .from('.proc-stage-2 .proc-photo', { xPercent: -25, opacity: 0, duration: 0.8 }, '<')
-          .from('.proc-stage-2 .proc-text',  { xPercent: 25,  opacity: 0, duration: 0.8 }, '<+0.1')
-          .to({}, { duration: 1.0 });
+          gsap.set(stages, { autoAlpha: 0 });
+          gsap.set(stages[0], { autoAlpha: 1 });
 
-        tl.to(stages[1], { autoAlpha: 0, duration: 0.5 })
-          .fromTo(stages[2], { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, '<')
-          .from('.proc-stage-3 .proc-text',  { xPercent: -25, opacity: 0, duration: 0.8 }, '<')
-          .from('.proc-stage-3 .proc-photo', { xPercent: 25,  opacity: 0, duration: 0.8 }, '<+0.1')
-          .to({}, { duration: 1.0 });
-      }
+          const tl = gsap.timeline({
+            defaults: { ease: 'power2.inOut' },
+            scrollTrigger: {
+              trigger: procRef.current,
+              start: 'top top',
+              end: isDesktop ? '+=180%' : '+=140%',
+              pin: true,
+              scrub: 1,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+            },
+          });
+
+          tl.from('.proc-stage-1 .proc-text',  { xPercent: -25, opacity: 0, duration: 0.8 }, 0)
+            .from('.proc-stage-1 .proc-photo', { xPercent: 25,  opacity: 0, duration: 0.8 }, 0.1)
+            .to({}, { duration: 1.0 });
+
+          tl.to(stages[0], { autoAlpha: 0, duration: 0.5 })
+            .fromTo(stages[1], { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, '<')
+            .from('.proc-stage-2 .proc-photo', { xPercent: -25, opacity: 0, duration: 0.8 }, '<')
+            .from('.proc-stage-2 .proc-text',  { xPercent: 25,  opacity: 0, duration: 0.8 }, '<+0.1')
+            .to({}, { duration: 1.0 });
+
+          tl.to(stages[1], { autoAlpha: 0, duration: 0.5 })
+            .fromTo(stages[2], { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, '<')
+            .from('.proc-stage-3 .proc-text',  { xPercent: -25, opacity: 0, duration: 0.8 }, '<')
+            .from('.proc-stage-3 .proc-photo', { xPercent: 25,  opacity: 0, duration: 0.8 }, '<+0.1')
+            .to({}, { duration: 1.0 });
+        }
+      );
 
       gsap.from('.whn-cta-inner > *', {
         y: 36, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1,
