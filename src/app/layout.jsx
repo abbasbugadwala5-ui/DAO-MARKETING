@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 import SmoothScroll from '@/components/SmoothScroll';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import ScrollIndicator from '@/components/ScrollIndicator';
 
 export const metadata = {
   title: 'DAO Studio — Luxury Digital Agency',
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           {children}
           <Footer />
+          <ScrollIndicator />
         </SmoothScroll>
       </body>
     </html>

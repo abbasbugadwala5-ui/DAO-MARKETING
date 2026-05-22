@@ -62,8 +62,38 @@ export default function CinematicHero() {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     gsap.from('.cine-word', { yPercent: 120, duration: 1.1, ease: 'expo.out', stagger: 0.08, delay: 0.2 });
-    gsap.to('.cine-mosaic', { yPercent: 14, ease: 'none',
-      scrollTrigger: { trigger: '.cine-hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+    /* Video bg parallax */
+    gsap.to('.cine-mosaic', {
+      yPercent: 16,
+      ease: 'none',
+      scrollTrigger: { trigger: '.cine-hero', start: 'top top', end: 'bottom top', scrub: true },
+    });
+
+    /* Logo scales down + drifts up as user scrolls out of hero */
+    gsap.to('.cine-logo', {
+      yPercent: -40,
+      scale: 0.78,
+      opacity: 0.6,
+      ease: 'none',
+      scrollTrigger: { trigger: '.cine-hero', start: 'top top', end: 'bottom top', scrub: 1 },
+    });
+
+    /* Headline drifts up faster than logo for layered parallax */
+    gsap.to('.cine-hero h1', {
+      yPercent: -28,
+      opacity: 0.35,
+      ease: 'none',
+      scrollTrigger: { trigger: '.cine-hero', start: 'top top', end: 'bottom top', scrub: 1 },
+    });
+
+    /* Scroll cue fades out */
+    gsap.to('.cine-cue', {
+      opacity: 0,
+      y: 30,
+      ease: 'none',
+      scrollTrigger: { trigger: '.cine-hero', start: 'top top', end: 'top 50%', scrub: 1 },
+    });
   }, { scope: root });
 
   return (

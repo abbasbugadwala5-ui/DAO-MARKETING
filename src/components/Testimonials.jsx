@@ -18,12 +18,19 @@ const quotes = [
 
 function Card({ data }) {
   return (
-    <article className="flex w-[430px] flex-none flex-col justify-between rounded-[24px] bg-white p-[34px] text-left shadow-[0_18px_50px_rgba(18,23,42,0.07)] max-sm:w-[300px] max-sm:p-[26px]"
-      style={{ minHeight: 288 }}>
+    <article
+      className="flex w-[430px] flex-none flex-col items-center justify-center gap-6 rounded-[24px] p-[34px] text-center max-sm:w-[300px] max-sm:p-[26px]"
+      style={{
+        minHeight: 288,
+        background: 'rgba(212, 178, 122, 0.05)',
+        border: '1px solid rgba(212, 178, 122, 0.14)',
+        boxShadow: '0 18px 50px -20px rgba(0, 0, 0, 0.45)',
+      }}
+    >
       <q className="body-lg block">{data.q}</q>
-      <div className="mt-7 flex items-center gap-3.5">
-        <div className="h-12 w-12 flex-none rounded-full" style={{ background: data.c }} />
-        <div className="text-left">
+      <div className="flex flex-col items-center gap-3">
+        <div className="h-12 w-12 flex-none rounded-full" style={{ background: data.c, opacity: 0.85 }} />
+        <div className="text-center">
           <div className="heading-sm">{data.name}</div>
           <div className="meta text-inksoft">{data.role}</div>
         </div>

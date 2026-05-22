@@ -11,88 +11,93 @@ const NAV_OFFSET = 120;
 
 const services = [
   {
-    tag: 'Strategy', index: '01 / 10', bg: '#ECE7DC', light: false,
+    /* Deep Walnut — antique foundation */
+    tag: 'Strategy', index: '01 / 10', bg: '#3F3220', light: true,
     kicker: 'The Foundation',
     title: 'Positioning that earns attention.',
     body: 'Research, audience mapping and a sharp narrative — the foundation every brand decision answers to.',
-    src: '/images/svc-strategy.jpg',
+    src: '/images/cine%204.jpg',
     fallback: 'radial-gradient(120% 90% at 20% 10%,#3a4a6e 0,#1a2540 60%)',
   },
   {
-    tag: 'Branding', index: '02 / 10', bg: '#B8472B', light: true,
+    /* Oxblood — rich passionate red */
+    tag: 'Branding', index: '02 / 10', bg: '#4F1818', light: true,
     kicker: 'The Identity',
     title: 'Identity systems with range.',
     body: 'Logo, type, motion and tone — a flexible kit that holds together across every surface and screen.',
-    src: '/images/svc-branding.jpg',
+    src: '/images/cine%205.png',
     fallback: 'linear-gradient(135deg,#1c1c22,#3b2f24)',
   },
   {
-    tag: 'Product Design', index: '03 / 10', bg: '#1E3D38', light: true,
+    /* Midnight Emerald — refined dark green */
+    tag: 'Product Design', index: '03 / 10', bg: '#1A332E', light: true,
     kicker: 'The Experience',
     title: 'Interfaces people actually finish.',
     body: 'End-to-end UX and UI for web and apps — usability tested, design-system backed, dev-ready.',
-    src: '/images/svc-product.jpg',
+    src: '/images/cine%207.png',
     fallback: 'linear-gradient(135deg,#23304a,#0e1526)',
   },
   {
-    /* Web Design & Development — sites + dev */
-    tag: 'Web Design & Dev', index: '04 / 10', bg: '#3A4A6E', light: true,
+    /* Royal Sapphire — deep night blue */
+    tag: 'Web Design & Dev', index: '04 / 10', bg: '#1F2A4A', light: true,
     kicker: 'The Build',
     title: 'Sites that ship fast and last.',
     body: 'Next.js, headless CMS, motion-led builds — performance-tuned, animation-rich and SEO-ready websites that scale with the brand.',
-    src: '/images/svc-product.jpg',
+    src: '/images/cine%2013.jpg',
     fallback: 'linear-gradient(135deg,#2c3a5a,#0f1426)',
   },
   {
-    tag: 'E-commerce', index: '05 / 10', bg: '#E0A43B', light: false,
+    /* Antique Bronze — burnished gold-bronze */
+    tag: 'E-commerce', index: '05 / 10', bg: '#6E5226', light: true,
     kicker: 'The Storefront',
     title: 'Storefronts engineered to sell.',
     body: 'Shopify and headless commerce builds with speed, merchandising and a checkout that does not leak.',
-    src: '/images/svc-ecommerce.jpg',
+    src: '/images/cine%2015.jpg',
     fallback: 'linear-gradient(135deg,#13321f,#0c1d12)',
   },
   {
-    tag: 'CRO Audit', index: '06 / 10', bg: '#2E2140', light: true,
+    /* Royal Aubergine — deep plum */
+    tag: 'CRO Audit', index: '06 / 10', bg: '#2D1C3D', light: true,
     kicker: 'The Lift',
     title: 'Find the leaks. Lift the numbers.',
     body: 'Heuristic and data-led conversion audits with a prioritised roadmap of changes worth shipping.',
-    src: '/images/svc-cro.jpg',
+    src: '/images/cine%2020.jpg',
     fallback: 'linear-gradient(135deg,#3e2417,#1b110a)',
   },
   {
-    /* Sage — sibling of forest, lighter cool */
-    tag: 'SEO', index: '07 / 10', bg: '#BEC1A6', light: false,
+    /* Forest Verde — sophisticated deep green */
+    tag: 'SEO', index: '07 / 10', bg: '#23362B', light: true,
     kicker: 'The Visibility',
     title: 'Rank where the buyers are looking.',
     body: 'Technical, on-page and content SEO built around real intent — compounding traffic that does not need a media buy to show up.',
-    src: '/images/svc-strategy.jpg',
+    src: '/images/cine%2021.jpg',
     fallback: 'linear-gradient(135deg,#a3a78b,#7e8268)',
   },
   {
-    /* Deep Rust — sibling of terra, deeper warm */
-    tag: 'Paid Media', index: '08 / 10', bg: '#7A2E1A', light: true,
+    /* Burgundy — wine red */
+    tag: 'Paid Media', index: '08 / 10', bg: '#5E1B1B', light: true,
     kicker: 'The Engine',
     title: 'Performance ads that pay back.',
     body: 'Meta, Google, TikTok and programmatic — full-funnel buying with creative testing, tracking and weekly read-outs that actually mean something.',
-    src: '/images/svc-ecommerce.jpg',
+    src: '/images/cine%2024.jpg',
     fallback: 'linear-gradient(135deg,#5a200f,#2d0e07)',
   },
   {
-    /* Sand — sibling of cream, deeper neutral */
-    tag: 'Social Media', index: '09 / 10', bg: '#DAD5C6', light: false,
+    /* Smoked Taupe — sophisticated neutral */
+    tag: 'Social Media', index: '09 / 10', bg: '#3A3328', light: true,
     kicker: 'The Audience',
     title: 'Channels that earn the follow.',
     body: 'Always-on content, community and short-form video built around the brand voice — calendars you can actually keep, not feeds you have to apologise for.',
-    src: '/images/svc-branding.jpg',
+    src: '/images/cine%2029.jpg',
     fallback: 'linear-gradient(135deg,#c5bea8,#9a937e)',
   },
   {
-    /* Navy — sibling of plum, bluer cool */
-    tag: 'Email & CRM', index: '10 / 10', bg: '#1A2540', light: true,
+    /* Midnight Ink — deepest blue-black */
+    tag: 'Email & CRM', index: '10 / 10', bg: '#0F1A36', light: true,
     kicker: 'The Lifecycle',
     title: 'Owned channels that compound.',
     body: 'Welcome, win-back, post-purchase and loyalty flows — email and SMS lifecycle programs that turn a one-time buyer into a returning one.',
-    src: '/images/svc-cro.jpg',
+    src: '/images/cine%2030.jpg',
     fallback: 'linear-gradient(135deg,#101a30,#070b18)',
   },
 ];

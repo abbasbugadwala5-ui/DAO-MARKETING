@@ -7,8 +7,8 @@ import FloatingWork from '@/components/home/FloatingWork';
 import Services from '@/components/Services';
 import Cases from '@/components/Cases';
 
-import OurStorySection from '@/components/home/OurStorySection';
-import OurServicesIntro from '@/components/home/OurServicesIntro';
+import CircleSeal from '@/components/CircleSeal';
+import DAOMethod from '@/components/DAOMethod';
 import WhatHappensNext from '@/components/home/WhatHappensNext';
 
 import About from './about/page';
@@ -20,25 +20,27 @@ export default function HomePage() {
       <section id="home">
         <CinematicHero />
         <VideoChapter />
+        <DAOMethod />
         <ApproachCircle />
         <WorkShowcase />
       </section>
 
-      {/* ── OUR STORY → ABOUT ────────────────────────── */}
-      <OurStorySection />
+      {/* ── SEAL → ABOUT ─────────────────────────────── */}
+      <CircleSeal label="A young studio · with senior taste" center="I" />
       <section id="about">
-        <About />
+        <About showDAO={false} />
       </section>
 
-      {/* ── OUR SERVICES → SERVICES ──────────────────── */}
+      {/* ── SEAL → SERVICES ──────────────────────────── */}
       <section id="services">
-        <OurServicesIntro />
+        <CircleSeal label="Brand · Web · Film · Strategy" center="II" />
         <Services />
         <Cases />
       </section>
 
-      {/* ── WHAT HAPPENS NEXT + CTA → /contact ─────── */}
+      {/* ── SEAL → PROCESS + CTA ─────────────────────── */}
       <section id="contact">
+        <CircleSeal label="Reply · Discovery · Proposal" center="III" />
         <WhatHappensNext />
       </section>
 

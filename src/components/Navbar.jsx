@@ -21,11 +21,16 @@ export default function Navbar() {
   const router = useRouter();
   const isHome = pathname === '/';
   const [visible, setVisible] = useState(!isHome);
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (!isHome) { setVisible(true); return; }
-    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.7);
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (isHome) setVisible(y > window.innerHeight * 0.7);
+      else setVisible(true);
+      setScrolled(y > 80);
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -41,7 +46,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`dao-nav ${visible ? '' : 'is-hidden'} ${open ? 'is-open' : ''}`}>
+      <header className={`dao-nav ${visible ? '' : 'is-hidden'} ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
         <button
           type="button"
           onClick={() => setOpen(v => !v)}

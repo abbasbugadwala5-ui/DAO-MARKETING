@@ -6,10 +6,40 @@ const budgets = ['Under $10k', '$10k – $25k', '$25k – $50k', '$50k+'];
 
 export default function ContactFormSection() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(null);
   const [form, setForm] = useState({
     name: '', email: '', company: '', service: '', budget: '', message: '',
   });
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (sending) return;
+    setSending(true);
+    setError(null);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (res.ok && data?.success) {
+        setSent(true);
+      } else {
+        setError(
+          data?.error ||
+          'Could not send. Please email fraz@daomarketing.com directly.'
+        );
+      }
+    } catch (err) {
+      setError('Network issue. Please email fraz@daomarketing.com directly.');
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <section className="cv2-form-section">
@@ -24,7 +54,7 @@ export default function ContactFormSection() {
               </p>
             </div>
           ) : (
-            <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="cv2-form">
+            <form onSubmit={onSubmit} className="cv2-form">
               <div className="cv2-field">
                 <label>Your name</label>
                 <input required value={form.name} onChange={set('name')} placeholder="Jane Doe" />
@@ -59,8 +89,11 @@ export default function ContactFormSection() {
                 <label>Project details</label>
                 <textarea required rows={5} value={form.message} onChange={set('message')} placeholder="A few lines about what you need…" />
               </div>
-              <button type="submit" className="cv2-submit">
-                Send enquiry
+
+              {error && <p className="cv2-error">{error}</p>}
+
+              <button type="submit" className="cv2-submit" disabled={sending}>
+                {sending ? 'Sending…' : 'Send enquiry'}
                 <span aria-hidden className="cv2-submit-arrow">↗</span>
               </button>
             </form>
@@ -77,14 +110,14 @@ export default function ContactFormSection() {
             <a href="tel:+971504425845" className="cv2-aside-value">+971 50 442 5845</a>
           </div>
           <div className="cv2-aside-item">
-            <span className="cv2-aside-label">Studio</span>
+            <span className="cv2-aside-label">Office</span>
             <span className="cv2-aside-value">The One Tower</span>
             <span className="cv2-aside-sub">24th Floor · Office 9<br />Sheikh Zayed Road, Dubai</span>
           </div>
           <div className="cv2-aside-item">
             <span className="cv2-aside-label">Hours</span>
-            <span className="cv2-aside-value">Sun – Thu</span>
-            <span className="cv2-aside-sub">9:00 – 18:00 GST</span>
+            <span className="cv2-aside-value">Mon – Sat</span>
+            <span className="cv2-aside-sub">8:00 – 6:00 GST</span>
           </div>
         </aside>
       </div>

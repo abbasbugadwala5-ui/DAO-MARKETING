@@ -23,40 +23,34 @@ export default function WhatHappensNext() {
       if (stages.length && procRef.current) {
         gsap.set(stages, { autoAlpha: 0 });
         gsap.set(stages[0], { autoAlpha: 1 });
-        gsap.set('.proc-h-word', { yPercent: 110 });
 
         const tl = gsap.timeline({
           defaults: { ease: 'power2.inOut' },
           scrollTrigger: {
             trigger: procRef.current,
             start: 'top top',
-            end: '+=220%',
+            end: '+=180%',
             pin: true,
             scrub: 1,
             anticipatePin: 1,
           },
         });
 
-        tl.to('.proc-h-word:nth-child(1)', { yPercent: 0, duration: 1, ease: 'power3.out' })
-          .to('.proc-h-word:nth-child(2)', { yPercent: 0, duration: 1, ease: 'power3.out' }, '-=0.6')
-          .to({}, { duration: 0.8 });
+        // First stage already visible — reveal its inner content
+        tl.from('.proc-stage-1 .proc-text',  { xPercent: -25, opacity: 0, duration: 0.8 }, 0)
+          .from('.proc-stage-1 .proc-photo', { xPercent: 25,  opacity: 0, duration: 0.8 }, 0.1)
+          .to({}, { duration: 1.0 });
 
-        tl.to(stages[0], { autoAlpha: 0, scale: 1.3, duration: 0.7 }, '+=0.2')
-          .fromTo(stages[1], { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, '<+0.2')
-          .from('.proc-stage-2 .proc-text',  { xPercent: -25, opacity: 0, duration: 0.8 }, '<')
-          .from('.proc-stage-2 .proc-photo', { xPercent: 25,  opacity: 0, duration: 0.8 }, '<+0.1')
+        tl.to(stages[0], { autoAlpha: 0, duration: 0.5 })
+          .fromTo(stages[1], { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, '<')
+          .from('.proc-stage-2 .proc-photo', { xPercent: -25, opacity: 0, duration: 0.8 }, '<')
+          .from('.proc-stage-2 .proc-text',  { xPercent: 25,  opacity: 0, duration: 0.8 }, '<+0.1')
           .to({}, { duration: 1.0 });
 
         tl.to(stages[1], { autoAlpha: 0, duration: 0.5 })
           .fromTo(stages[2], { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, '<')
-          .from('.proc-stage-3 .proc-photo', { xPercent: -25, opacity: 0, duration: 0.8 }, '<')
-          .from('.proc-stage-3 .proc-text',  { xPercent: 25,  opacity: 0, duration: 0.8 }, '<+0.1')
-          .to({}, { duration: 1.0 });
-
-        tl.to(stages[2], { autoAlpha: 0, duration: 0.5 })
-          .fromTo(stages[3], { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, '<')
-          .from('.proc-stage-4 .proc-text',  { xPercent: -25, opacity: 0, duration: 0.8 }, '<')
-          .from('.proc-stage-4 .proc-photo', { xPercent: 25,  opacity: 0, duration: 0.8 }, '<+0.1')
+          .from('.proc-stage-3 .proc-text',  { xPercent: -25, opacity: 0, duration: 0.8 }, '<')
+          .from('.proc-stage-3 .proc-photo', { xPercent: 25,  opacity: 0, duration: 0.8 }, '<+0.1')
           .to({}, { duration: 1.0 });
       }
 
@@ -72,13 +66,6 @@ export default function WhatHappensNext() {
     <>
       <section className="cv2-proc-pin" ref={procRef}>
         <div className="proc-stage proc-stage-1">
-          <h2 className="proc-h">
-            <span className="proc-h-line"><span className="proc-h-word">What</span></span>
-            <span className="proc-h-line"><span className="proc-h-word">Happens Next</span></span>
-          </h2>
-        </div>
-
-        <div className="proc-stage proc-stage-2">
           <div className="proc-text">
             <span className="proc-eyebrow">01 · Reply</span>
             <p>You hear back within <em>24 hours</em>. A real person from the studio reads every enquiry — no auto-responder, no triage.</p>
@@ -88,7 +75,7 @@ export default function WhatHappensNext() {
           </div>
         </div>
 
-        <div className="proc-stage proc-stage-3">
+        <div className="proc-stage proc-stage-2">
           <div className="proc-photo">
             <img src={IMG.process2} alt="" />
           </div>
@@ -98,7 +85,7 @@ export default function WhatHappensNext() {
           </div>
         </div>
 
-        <div className="proc-stage proc-stage-4">
+        <div className="proc-stage proc-stage-3">
           <div className="proc-text">
             <span className="proc-eyebrow">03 · Proposal</span>
             <p>A <em>tailored proposal</em> with scope, milestones and pricing — usually within a week of the discovery call.</p>
