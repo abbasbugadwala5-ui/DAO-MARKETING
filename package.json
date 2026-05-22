@@ -13,7 +13,7 @@
     "framer-motion": "^11.18.0",
     "gsap": "^3.12.5",
     "lenis": "^1.1.18",
-    "next": "15.1.6",
+    "next": "^15.5.18",
     "nodemailer": "^8.0.7",
     "react": "19.0.0",
     "react-dom": "19.0.0",
