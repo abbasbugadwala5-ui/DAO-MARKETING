@@ -2487,8 +2487,8 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 
 @media (max-width: 700px) {
   .dao-nav { top: 12px; left: 12px; right: 12px; gap: 8px; }
-  .nav-menu { padding: 9px 14px; font-size: 10.5px; letter-spacing: 0.1em; }
-  .nav-cta  { padding: 8px 12px; font-size: 10px;   letter-spacing: 0.08em; }
+  .nav-menu { padding: 8px 12px; font-size: 10px;  letter-spacing: 0.08em; }
+  .nav-cta  { padding: 6px 10px; font-size: 9px;   letter-spacing: 0.06em; }
   .nav-menu > span:last-child { display: none; }
   .nav-mark { padding: 4px 8px; }
   .nav-mark-logo { height: 80px; }
@@ -2500,8 +2500,8 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 @media (max-width: 420px) {
   .nav-mark-logo { height: 68px; }
   .dao-nav.is-scrolled .nav-mark-logo { height: 52px; }
-  .nav-cta  { padding: 7px 10px; font-size: 9.5px; letter-spacing: 0.06em; }
-  .nav-menu { padding: 8px 11px; font-size: 10px;  letter-spacing: 0.08em; }
+  .nav-cta  { padding: 5px 8px; font-size: 8.5px; letter-spacing: 0.04em; }
+  .nav-menu { padding: 7px 10px; font-size: 9.5px; letter-spacing: 0.06em; }
 }
 
 /* ============================================================
