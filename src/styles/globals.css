@@ -1171,63 +1171,114 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 .node.active .lbl { color: var(--color-ink); font-weight: 700; }
 .node.active .node-idx { color: var(--color-ink); opacity: 1; }
 
-@media (max-width: 700px) {
-
+@media (max-width: 900px) {
+  /* Reduce sticky scroll distance — 6 steps × ~60vh each = 360vh total.
+     Mobile gets breathing room so each step holds long enough to read
+     before swapping. */
   .approach {
-    height: 420vh;
+    height: 360vh;
   }
 
   .approach-sticky {
+    position: sticky;
+    top: 0;
     height: 100svh;
+    height: 100dvh;
+    overflow: hidden;
   }
 
+  /* Smaller circle that fits a narrow viewport but stays a circle */
   .circle-wrap {
-    width: 92vw;
-    max-width: 380px;
+    width: min(82vw, 380px);
+    aspect-ratio: 1 / 1;
   }
 
+  /* SVG ring container — match circle wrap with a bit of breathing room
+     for the labels around the perimeter */
   .ring-svg {
-    inset: -8%;
-    width: 116%;
-    height: 116%;
+    inset: -14%;
+    width: 128%;
+    height: 128%;
   }
 
+  /* Center stack — bigger step number for legibility on small screen,
+     keep all four center elements visible (eyebrow, number, icon, name, desc) */
+  .circle-center small {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    margin-bottom: 6px;
+  }
   .step-num {
-    font-size: 72px !important;
+    font-size: clamp(72px, 22vw, 120px) !important;
+    line-height: 0.9;
   }
-
+  .center-icon {
+    width: 28px;
+    height: 28px;
+    margin-top: 10px;
+  }
   .circle-center .step-name {
-    font-size: 24px;
+    font-size: clamp(20px, 5.5vw, 28px);
+    padding: 0 18px;
+    margin-top: 10px;
   }
-
+  .circle-center .step-name::before,
+  .circle-center .step-name::after {
+    width: 12px;
+  }
   .step-desc {
-    font-size: 12px;
-    max-width: 18ch;
+    font-size: 11px;
+    max-width: 22ch;
+    line-height: 1.45;
+    margin-top: 8px;
+    padding: 0 8px;
   }
 
+  /* Perimeter nodes — keep all 6 around the circle, but tighten the
+     labels so they don't bleed off the screen */
+  .node {
+    width: 16px;
+    height: 16px;
+  }
+  .node .dot { width: 9px; height: 9px; }
+  .node.active .dot {
+    width: 13px;
+    height: 13px;
+    box-shadow: 0 0 0 5px rgba(212, 178, 122, 0.18);
+  }
   .node .lbl {
-    font-size: 10px;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+  }
+  .node .node-idx {
+    font-size: 9px;
+  }
+  .node .node-icon {
+    width: 14px;
+    height: 14px;
   }
 
-  .node .meta {
-    gap: 4px;
-  }
+  /* Tighter padding from circle edge to label */
+  .node.top .meta    { padding-bottom: 8px; gap: 4px; }
+  .node.bot .meta    { padding-top: 8px;    gap: 4px; }
+  .node.side-r .meta { padding-left: 8px;   gap: 5px; }
+  .node.side-l .meta { padding-right: 8px;  gap: 5px; }
+}
 
-  .node.side-r .meta {
-    padding-left: 10px;
+@media (max-width: 480px) {
+  /* Tiny phones — even more compact, but circle still readable */
+  .circle-wrap {
+    width: min(86vw, 340px);
   }
-
-  .node.side-l .meta {
-    padding-right: 10px;
+  .step-num {
+    font-size: clamp(64px, 20vw, 96px) !important;
   }
-
-  .node.top .meta {
-    padding-bottom: 10px;
+  .node .lbl {
+    font-size: 8.5px;
   }
-
-  .node.bot .meta {
-    padding-top: 10px;
-  }
+  /* On tiny screens, drop the index number and icon — just keep the label
+     so the perimeter doesn't get cluttered */
+  .node .node-idx, .node .node-icon { display: none; }
 }
 
 .chapter { position: relative; height: 100svh; min-height: 560px; overflow: hidden; }
@@ -2435,8 +2486,9 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 }
 
 @media (max-width: 700px) {
-  .dao-nav { top: 12px; left: 12px; right: 12px; gap: 12px; }
-  .nav-menu, .nav-cta { padding: 10px 16px; font-size: 11px; letter-spacing: 0.12em; }
+  .dao-nav { top: 12px; left: 12px; right: 12px; gap: 8px; }
+  .nav-menu { padding: 9px 14px; font-size: 10.5px; letter-spacing: 0.1em; }
+  .nav-cta  { padding: 8px 12px; font-size: 10px;   letter-spacing: 0.08em; }
   .nav-menu > span:last-child { display: none; }
   .nav-mark { padding: 4px 8px; }
   .nav-mark-logo { height: 80px; }
@@ -2448,6 +2500,8 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 @media (max-width: 420px) {
   .nav-mark-logo { height: 68px; }
   .dao-nav.is-scrolled .nav-mark-logo { height: 52px; }
+  .nav-cta  { padding: 7px 10px; font-size: 9.5px; letter-spacing: 0.06em; }
+  .nav-menu { padding: 8px 11px; font-size: 10px;  letter-spacing: 0.08em; }
 }
 
 /* ============================================================
@@ -4593,11 +4647,6 @@ a:hover { color: #D4B27A; }
 
   /* Disable shine sweep (constant repaint) */
   .dao-shine                    { display: none; }
-
-  /* Approach Circle — slightly tighter font sizes for mobile */
-  .step-num { font-size: clamp(56px, 14vw, 96px); }
-  .node .lbl { font-size: 10px; }
-  .step-desc { font-size: 11px; }
 
   /* Form fields prevent iOS zoom-on-focus */
   .cv2-form-card { padding: 22px 18px; }

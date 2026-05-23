@@ -56,6 +56,7 @@ export default function ApproachCircle() {
         start: 'top top',
         end: 'bottom bottom',
         scrub: 2,
+        invalidateOnRefresh: true,
       },
     });
 
@@ -66,6 +67,7 @@ export default function ApproachCircle() {
       start: 'top top',
       end: 'bottom bottom',
       scrub: 2,
+      invalidateOnRefresh: true,
       onUpdate(self) {
         if (!root.current || !tipRef.current) return;
         const p = self.progress;
