@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 const servicesList = ['Strategy', 'Branding', 'Product Design', 'Web Design & Dev', 'E-commerce', 'CRO Audit', 'SEO', 'Paid Media', 'Social Media', 'Email & CRM'];
-const budgets = ['Under $10k', '$10k – $25k', '$25k – $50k', '$50k+'];
+const budgets = ['Under AED 40k', 'AED 40k – 100k', 'AED 100k – 200k', 'AED 200k+'];
 
 export default function ContactFormSection() {
   const [sent, setSent] = useState(false);

@@ -12,8 +12,8 @@ const phases = [
     title: 'Understanding before answering.',
     body: 'Stakeholders, audiences, competitors and analytics — a deep listen that becomes a positioning brief every later decision answers to.',
     tags: ['Audit', 'Workshops', 'Positioning'],
-    /* Soft cream — lightest */
-    tint: { from: '#FBF1D8', to: '#EFDBA8', glow: 'rgba(26, 26, 26, 0.06)' },
+    /* Slightly raised warm dark — lightest of the four */
+    tint: { from: '#1F1A14', to: '#15110D', glow: 'rgba(212, 178, 122, 0.10)' },
   },
   {
     num: '02',
@@ -21,8 +21,7 @@ const phases = [
     title: 'Strategy, brand and product in lockstep.',
     body: 'Identity, narrative and interface designed in parallel — one team, one direction, no handoffs that lose the thread.',
     tags: ['Identity', 'UX / UI', 'Design system'],
-    /* Champagne */
-    tint: { from: '#F8EAC6', to: '#E5CC92', glow: 'rgba(26, 26, 26, 0.08)' },
+    tint: { from: '#221C15', to: '#16110C', glow: 'rgba(212, 178, 122, 0.12)' },
   },
   {
     num: '03',
@@ -30,8 +29,7 @@ const phases = [
     title: 'Engineering that holds up at scale.',
     body: 'Next.js, Shopify, headless commerce and bespoke stacks — production-ready code, content models that flex, infrastructure that ships.',
     tags: ['Engineering', 'CMS', 'Performance'],
-    /* Warm dust */
-    tint: { from: '#F5E5BC', to: '#DCC18B', glow: 'rgba(26, 26, 26, 0.08)' },
+    tint: { from: '#241D14', to: '#17110A', glow: 'rgba(212, 178, 122, 0.14)' },
   },
   {
     num: '04',
@@ -39,8 +37,8 @@ const phases = [
     title: 'Launch, measure, then move the number.',
     body: 'Launch is the start of the work. Conversion testing, paid media, lifecycle and SEO compound the line that matters.',
     tags: ['Launch', 'CRO', 'Growth'],
-    /* Deepest gold — anchors the row */
-    tint: { from: '#F0DEAA', to: '#D2B47A', glow: 'rgba(26, 26, 26, 0.10)' },
+    /* Deepest warm dark — anchors the row */
+    tint: { from: '#271F14', to: '#1A1209', glow: 'rgba(212, 178, 122, 0.16)' },
   },
 ];
 
