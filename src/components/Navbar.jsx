@@ -59,7 +59,7 @@ export default function Navbar() {
         </button>
 
         <Link href="/" onClick={go('/')} className="nav-mark" aria-label="DAO Studio — Home">
-          <img src="/logo/logo.svg" alt="DAO Studio" className="nav-mark-logo" />
+          <img src="/logo/logo-mark.svg" alt="DAO Studio" className="nav-mark-logo" />
         </Link>
 
         <Link href="/contact" onClick={go('/contact')} className="nav-cta">Start a project</Link>

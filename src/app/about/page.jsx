@@ -208,10 +208,13 @@ export default function About({ showDAO = true }) {
       <section className="av2-founder">
         <div className="av2-founder-bg" aria-hidden><img src={IMG.founderBg} alt="" /></div>
         <div className="av2-founder-card a-reveal">
-          <img src={IMG.founder} alt="" />
+          <div className="av2-founder-portrait av2-founder-portrait-placeholder" aria-hidden>
+            <span className="av2-portrait-monogram">DAO</span>
+            <span className="av2-portrait-tag">Portrait · Coming soon</span>
+          </div>
           <div className="av2-founder-meta">
             <div className="av2-founder-name">Fraz Saeed</div>
-            <div className="av2-founder-role">Founder & Creative Director</div>
+            <div className="av2-founder-role">Founder &amp; Creative Director</div>
           </div>
         </div>
         <div className="av2-founder-quote a-reveal">
