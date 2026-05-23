@@ -25,9 +25,8 @@ export default function Footer() {
           </div>
           <div>
             <div className="df-contact-label">Social</div>
-            <a href="https://instagram.com/daomarketing" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://linkedin.com/company/daomarketing" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://behance.net/daomarketing" target="_blank" rel="noopener noreferrer">Behance</a>
+            <a href="https://www.instagram.com/daomarketing" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.linkedin.com/company/dao-marketing-management-llc/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
         </div>
       </div>

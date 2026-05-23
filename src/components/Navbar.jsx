@@ -11,9 +11,8 @@ const LINKS = [
 ];
 
 const SOCIALS = [
-  { label: 'Instagram', href: 'https://instagram.com/daostudio' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/company/daostudio' },
-  { label: 'Behance', href: 'https://behance.net/daostudio' },
+  { label: 'Instagram', href: 'https://www.instagram.com/daomarketing' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/dao-marketing-management-llc/' },
 ];
 
 export default function Navbar() {

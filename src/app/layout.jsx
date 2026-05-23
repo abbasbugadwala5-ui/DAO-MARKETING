@@ -136,7 +136,7 @@ const ORG_JSON_LD = {
       ],
       sameAs: [
         'https://www.instagram.com/daomarketing',
-        'https://www.linkedin.com/company/daomarketing',
+        'https://www.linkedin.com/company/dao-marketing-management-llc/',
       ],
       contactPoint: [
         {
