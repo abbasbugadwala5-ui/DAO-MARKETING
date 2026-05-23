@@ -1980,34 +1980,156 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 }
 
 @media (max-width: 900px) {
-  .work-show { height: auto; }
-  .work-track { display: block !important; width: 100% !important; }
+  /* Container — natural height, no clipping */
+  .work-show {
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Track — abandon horizontal flex, stack vertically */
+  .work-track {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+  }
+
+  /* Each panel — proper section with breathing room */
   .work-panel {
     width: 100%;
-    height: 88vh;
+    height: auto;
+    min-height: auto;
+    padding: 80px 24px 100px;
     perspective: none;
-  }
-  .work-card {
-    max-width: 70vw;
-    transform: none !important;
-    transform-style: flat;
-  }
-  .work-bar {
+    display: flex;
     flex-direction: column;
-    bottom: 32px;
-    padding: 0 24px;
-    gap: 16px;
+    border-bottom: 1px solid rgba(212, 178, 122, 0.10);
   }
-  .work-bar-text { text-align: center; }
+  .work-panel:last-child { border-bottom: none; }
+
+  /* Eyebrow — top of panel, normal block */
   .work-eyebrow {
-    top: 28px;
-    left: 24px;
+    position: static;
+    top: auto;
+    left: auto;
+    margin-bottom: 32px;
     font-size: 10px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
   }
   .work-eyebrow-line { width: 24px; margin: 0 10px; }
-  .work-num { font-size: 220px; right: -2vw; bottom: -4vw; }
+
+  /* Performance — kill heavy overlays on mobile, keep visual essentials */
+  .work-panel .work-orb {
+    filter: blur(40px);
+    width: 100vw;
+    height: 100vw;
+    opacity: 0.6;
+  }
+  .work-panel .work-cinema-veil { display: none; }
+  .work-panel .work-grain { opacity: 0.10; }
+  .work-panel .work-card-glare { display: none; }
   .work-wipe-line { display: none; }
+  .work-num {
+    font-size: clamp(180px, 50vw, 280px);
+    right: -4vw;
+    bottom: -6vw;
+    opacity: 0.06;
+  }
+
+  /* Background marquee — keep but smaller */
+  .work-marquee {
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .work-marquee-track {
+    font-size: clamp(72px, 20vw, 110px);
+    animation-duration: 40s;
+  }
+
+  /* CARDS — convert absolute positioning to a 2-column grid.
+     This keeps ALL 4 cards visible vertically per panel. */
+  .work-cards {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  /* Each card — flatten the absolute positioning + rotation,
+     stretch to grid cell, keep aspect ratio similar to desktop */
+  .work-card {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 9 / 14;
+    transform: rotate(calc(var(--rot, 0deg) * 0.5)) !important;
+    transform-style: flat;
+    box-shadow:
+      0 10px 24px -8px rgba(0, 0, 0, 0.65),
+      0 24px 48px -12px rgba(0, 0, 0, 0.45),
+      0 0 0 1px rgba(229, 198, 133, 0.10),
+      inset 0 1px 0 rgba(229, 198, 133, 0.15);
+  }
+  .work-card:hover {
+    transform: rotate(calc(var(--rot, 0deg) * 0.5)) !important;
+  }
+
+  /* Cards still play videos / show images — content unchanged */
+  .work-card video,
+  .work-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Bottom bar — static, stacks under the cards */
+  .work-bar {
+    position: static;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .work-bar-text {
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+  .work-label {
+    font-size: clamp(32px, 8vw, 44px);
+    text-align: center;
+  }
+  .work-caption {
+    font-size: clamp(13px, 3.5vw, 16px);
+    text-align: center;
+  }
+  .work-btn {
+    position: static;
+    right: auto;
+    align-self: center;
+  }
+}
+
+/* Tiny phones (≤480px) — drop to single column if 2-col feels cramped */
+@media (max-width: 480px) {
+  .work-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .work-card {
+    aspect-ratio: 4 / 5;
+  }
+  .work-panel { padding: 60px 20px 80px; }
 }
 
 /* ============================================================

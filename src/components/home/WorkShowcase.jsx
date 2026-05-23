@@ -199,47 +199,8 @@ export default function WorkShowcase() {
       };
     });
 
-    /* ─── MOBILE (≤900px) — stacked panels, but each panel reveals
-       its cards + caption on scroll for cinematic feel ─── */
-    mm.add('(max-width: 900px)', () => {
-      sectionRef.current.querySelectorAll('.work-panel').forEach((panel) => {
-        const cards   = panel.querySelectorAll('.work-card');
-        const caption = panel.querySelector('.work-caption');
-        const orb     = panel.querySelector('.work-orb');
-        const eyebrow = panel.querySelector('.work-eyebrow');
-
-        if (cards.length) {
-          gsap.from(cards, {
-            y: 60,
-            opacity: 0,
-            stagger: 0.08,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: panel, start: 'top 80%' },
-          });
-        }
-        if (caption) {
-          gsap.from(caption, {
-            y: 30, opacity: 0, duration: 0.8, ease: 'power3.out',
-            scrollTrigger: { trigger: panel, start: 'top 75%' },
-          });
-        }
-        if (eyebrow) {
-          gsap.from(eyebrow, {
-            opacity: 0, x: -20, duration: 0.7, ease: 'power3.out',
-            scrollTrigger: { trigger: panel, start: 'top 85%' },
-          });
-        }
-        if (orb) {
-          gsap.fromTo(orb,
-            { yPercent: -12 },
-            { yPercent: 12, ease: 'none',
-              scrollTrigger: { trigger: panel, start: 'top bottom', end: 'bottom top', scrub: 1 },
-            }
-          );
-        }
-      });
-    });
+    /* ─── MOBILE (≤900px) — no GSAP. Panels stack natively via CSS,
+       videos autoplay in-place, no pin/scrub anything. ─── */
   }, { scope: sectionRef });
 
   return (
@@ -254,7 +215,7 @@ export default function WorkShowcase() {
             {p.bg && (
               <div className="work-bg">
                 {isVideo(p.bg)
-                  ? <video src={p.bg} autoPlay muted loop playsInline />
+                  ? <video src={p.bg} autoPlay muted loop playsInline preload="metadata" />
                   : <img src={p.bg} alt="" />}
               </div>
             )}
@@ -299,7 +260,7 @@ export default function WorkShowcase() {
                   }}
                 >
                   {c.src && (isVideo(c.src)
-                    ? <video src={c.src} autoPlay muted loop playsInline />
+                    ? <video src={c.src} autoPlay muted loop playsInline preload="metadata" />
                     : <img src={c.src} alt="" />)}
                   <div className="work-card-glare" aria-hidden />
                 </div>
