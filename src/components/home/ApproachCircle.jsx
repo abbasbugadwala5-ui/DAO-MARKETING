@@ -55,7 +55,7 @@ export default function ApproachCircle() {
         trigger: root.current,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 1,
+        scrub: 2,
       },
     });
 
@@ -65,7 +65,7 @@ export default function ApproachCircle() {
       trigger: root.current,
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 1,
+      scrub: 2,
       onUpdate(self) {
         if (!root.current || !tipRef.current) return;
         const p = self.progress;
@@ -77,10 +77,10 @@ export default function ApproachCircle() {
         gsap.set(tipRef.current, { attr: { cx: x, cy: y } });
 
         // Detect active step
-        const idx = Math.min(
-          STEPS.length - 1,
-          Math.floor(p * STEPS.length)
-        );
+       const idx = Math.min(
+  STEPS.length - 1,
+  Math.round(p * (STEPS.length - 1))
+);
         if (idx === lastIdx) return;
         lastIdx = idx;
 

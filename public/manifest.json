@@ -1,0 +1,21 @@
+{
+  "name": "DAO Marketing",
+  "short_name": "DAO",
+  "description": "Luxury digital marketing studio in Dubai — Define. Amplify. Own.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0A0908",
+  "theme_color": "#0A0908",
+  "lang": "en-AE",
+  "categories": ["business", "marketing", "design"],
+  "icons": [
+    {
+      "src": "/logo/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

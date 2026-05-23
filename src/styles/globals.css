@@ -1171,11 +1171,62 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 .node.active .node-idx { color: var(--color-ink); opacity: 1; }
 
 @media (max-width: 700px) {
-  .approach { height: 220vh; }
-  .circle-wrap { width: 84vw; }
-  .node .lbl { font-size: 11px; }
-  .step-num { font-size: 100px !important; }
-  .step-desc { font-size: 12px; }
+
+  .approach {
+    height: 420vh;
+  }
+
+  .approach-sticky {
+    height: 100svh;
+  }
+
+  .circle-wrap {
+    width: 92vw;
+    max-width: 380px;
+  }
+
+  .ring-svg {
+    inset: -8%;
+    width: 116%;
+    height: 116%;
+  }
+
+  .step-num {
+    font-size: 72px !important;
+  }
+
+  .circle-center .step-name {
+    font-size: 24px;
+  }
+
+  .step-desc {
+    font-size: 12px;
+    max-width: 18ch;
+  }
+
+  .node .lbl {
+    font-size: 10px;
+  }
+
+  .node .meta {
+    gap: 4px;
+  }
+
+  .node.side-r .meta {
+    padding-left: 10px;
+  }
+
+  .node.side-l .meta {
+    padding-right: 10px;
+  }
+
+  .node.top .meta {
+    padding-bottom: 10px;
+  }
+
+  .node.bot .meta {
+    padding-top: 10px;
+  }
 }
 
 .chapter { position: relative; height: 100svh; min-height: 560px; overflow: hidden; }
