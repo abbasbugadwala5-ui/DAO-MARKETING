@@ -44,7 +44,7 @@ export default function BentoGrid() {
       <div className="section-wrap text-left">
         <div className="eyebrow eyebrow-gap text-inksoft">Selected clients</div>
         <h2 className="bento-heading section-title title-gap">
-          {'Crafting collabs since 2010'.split(' ').map((w, i) => (
+          {'Crafting collabs that compound'.split(' ').map((w, i) => (
             <span key={i} className="reveal-line">
               <span className="bento-word reveal-word">{w}&nbsp;</span>
             </span>

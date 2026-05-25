@@ -5,16 +5,6 @@ export const metadata = {
   title: 'About — The Studio Behind DAO',
   description:
     'DAO Marketing is a Dubai studio of strategists, designers, developers and storytellers. We define brands, amplify their reach and help them own their category — built around a clear, repeatable method.',
-  keywords: [
-    'about DAO Marketing',
-    'Dubai marketing studio',
-    'luxury digital agency team',
-    'creative agency Dubai',
-    'brand strategy team Dubai',
-    'cinematic content studio Dubai',
-    'DAO method Define Amplify Own',
-    'Fraz Saeed founder DAO Marketing',
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: 'About — DAO Marketing',

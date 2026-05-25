@@ -24,6 +24,20 @@ export default function Footer() {
             <p style={{ marginTop: 12, opacity: 0.6 }}>DAO Marketing LLC</p>
           </div>
           <div>
+            <div className="df-contact-label">Pages</div>
+            <Link href="/">Home</Link>
+            <Link href="/about">About</Link>
+            <Link href="/work">Work</Link>
+            <Link href="/services">Services</Link>
+            <Link href="/contact">Contact</Link>
+          </div>
+          <div>
+            <div className="df-contact-label">Legal</div>
+            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/terms">Terms of Service</Link>
+            <Link href="/cookies">Cookie Policy</Link>
+          </div>
+          <div>
             <div className="df-contact-label">Social</div>
             <a href="https://www.instagram.com/daomarketing" target="_blank" rel="noopener noreferrer">Instagram</a>
             <a href="https://www.linkedin.com/company/dao-marketing-management-llc/" target="_blank" rel="noopener noreferrer">LinkedIn</a>

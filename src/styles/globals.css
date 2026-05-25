@@ -963,7 +963,32 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 @media (prefers-reduced-motion: reduce) {
   .cine-logo { animation: none; }
 }
-.cine-hero h1 { font-size: clamp(24px,4.2vw,64px); font-weight: 600; line-height: 1.05; letter-spacing: -.025em; color: #fff; max-width: 20ch; text-transform: uppercase; }
+.cine-hero h1,
+.cine-h1 {
+  font-family: var(--font-display); /* Schibsted Grotesk */
+  font-size: clamp(36px, 6vw, 96px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: #fff;
+  max-width: 18ch;
+  text-transform: none;
+  margin: 0;
+}
+.cine-sub {
+  font-family: var(--font-serif); /* Playfair Display */
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(18px, 2.2vw, 30px);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  color: rgba(245, 233, 209, 0.88);
+  max-width: 26ch;
+  margin: 18px 0 0;
+}
+@media (max-width: 700px) {
+  .cine-sub { font-size: clamp(15px, 4vw, 20px); margin-top: 14px; }
+}
 .cine-word { display: inline-block; }
 .cine-cue { position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.6); }
 .cine-cue span { display: block; width: 1px; height: 46px; background: rgba(255,255,255,.4); }
@@ -2261,8 +2286,9 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 
 .df-contact-meta {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 28px;
+  align-items: start;
 }
 .df-contact-meta > div { display: flex; flex-direction: column; gap: 3px; }
 .df-contact-label {
@@ -2301,8 +2327,12 @@ a.contact-aside-v:hover { color: var(--color-terra); }
   .dao-footer { padding: 36px 20px 20px; }
   .df-mask-wrap { margin-bottom: 24px; }
   .df-contact-grid { grid-template-columns: 1fr; gap: 24px; padding-top: 20px; }
-  .df-contact-meta { grid-template-columns: 1fr 1fr; }
+  .df-contact-meta { grid-template-columns: 1fr 1fr; gap: 24px 20px; }
   .df-base { flex-direction: column; gap: 10px; margin-top: 24px; }
+}
+
+@media (max-width: 480px) {
+  .df-contact-meta { grid-template-columns: 1fr; gap: 22px; }
 }
 
 /* ============================================================
@@ -3487,6 +3517,14 @@ a.contact-aside-v:hover { color: var(--color-terra); }
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-inksoft);
+}
+.cv2-optional {
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  font-style: italic;
+  opacity: 0.65;
+  margin-left: 4px;
 }
 .cv2-field input,
 .cv2-field select,

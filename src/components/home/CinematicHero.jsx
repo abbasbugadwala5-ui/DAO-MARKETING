@@ -4,7 +4,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@/hooks/useGSAP';
 
-const HEADLINE = 'Bold work for ambitious brands';
+const HEADLINE = 'Cinematic social and websites';
+const SUBHEAD  = 'for Dubai property and lifestyle brands';
 
 /* Background video — plays full-bleed behind the headline.
    Drop another file in /public/videos and swap this path. */
@@ -62,6 +63,7 @@ export default function CinematicHero() {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     gsap.from('.cine-word', { yPercent: 120, duration: 1.1, ease: 'expo.out', stagger: 0.08, delay: 0.2 });
+    gsap.from('.cine-sub', { y: 24, opacity: 0, duration: 1.0, ease: 'power3.out', delay: 0.9 });
 
     /* Video bg parallax */
     gsap.to('.cine-mosaic', {
@@ -102,10 +104,13 @@ export default function CinematicHero() {
         <video
           className="cine-bg-video"
           src={HERO_VIDEO}
+          poster="/videos/posters/hero-poster.jpg"
+          aria-hidden="true"
           autoPlay
           muted
           loop
           playsInline
+          preload="metadata"
         />
         {/* ─── Image mosaic JSX (commented out) ─────────────────────
         {Array.from({ length: TILES }).map((_, i) => {
@@ -115,7 +120,11 @@ export default function CinematicHero() {
               {!src ? (
                 <div className="cine-tile-ph" />
               ) : isVideo(src) ? (
-                <video src={src} autoPlay muted loop playsInline />
+                <video
+                  src={src}
+                  poster="/images/cine1.png"
+                  autoPlay muted loop playsInline preload="metadata"
+                />
               ) : (
                 <img src={src} alt="" />
               )}
@@ -125,7 +134,7 @@ export default function CinematicHero() {
         ──────────────────────────────────────────────────────────── */}
       </div>
       <div className="cine-veil" />
-      <div className="cine-side l">Dubai · Est. 2010</div>
+      <div className="cine-side l">Dubai · Social · Cinematic · Web · Branding</div>
       <div className="cine-side r">Social · Cinematic · Web · Branding</div>
       <div className="cine-inner">
         <img
@@ -133,13 +142,14 @@ export default function CinematicHero() {
           alt="DAO Studio"
           className="cine-logo"
         />
-        <h1>
+        <h1 className="cine-h1">
           {HEADLINE.split(' ').map((w, i) => (
             <span key={i} className="reveal-line">
               <span className="cine-word reveal-word">{w}&nbsp;</span>
             </span>
           ))}
         </h1>
+        <p className="cine-sub">{SUBHEAD}</p>
       </div>
       <div className="cine-cue">Explore our approach<span /></div>
     </section>

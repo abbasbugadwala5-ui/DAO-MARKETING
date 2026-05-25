@@ -1,9 +1,67 @@
 'use client';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@/hooks/useGSAP';
+
+/* Map a video src to its poster file in /public/videos/posters/.
+   Falls back to a generic hero poster so the card has SOMETHING
+   visible while the user hasn't generated per-video posters yet. */
+function posterFor(videoSrc) {
+  const base = videoSrc.split('/').pop().replace(/\.(mp4|webm|mov)$/i, '');
+  return `/videos/posters/${base}.jpg`;
+}
+
+/* Lazy video card — only sets `src` once the element scrolls into
+   viewport (with a 200px head-start). Poster + preload="none" keep
+   bandwidth low until needed. */
+function LazyVideo({ src, poster, className, ariaLabel }) {
+  const videoRef = useRef(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || shouldLoad) return;
+    if (typeof IntersectionObserver === 'undefined') {
+      setShouldLoad(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setShouldLoad(true);
+            io.disconnect();
+            return;
+          }
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [shouldLoad]);
+
+  const a11y = ariaLabel
+    ? { 'aria-label': ariaLabel }
+    : { 'aria-hidden': 'true' };
+
+  return (
+    <video
+      ref={videoRef}
+      className={className}
+      src={shouldLoad ? src : undefined}
+      poster={poster}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="none"
+      {...a11y}
+    />
+  );
+}
 
 /* Each panel = one category.
    To add Sama Al Tariq content: set `bg` to a path like '/images/sat-bg-1.jpg'
@@ -16,10 +74,10 @@ const PANELS = [
     bg: '',
     tint: '#0A0908',              /* Unified cinematic black */
     cards: [
-      { src: '/videos/cinematic%201.mp4', w: 320, h: 540, left: '3%',  top: '13%', rot: -2 },
-      { src: '/videos/cinematic%202.mp4', w: 320, h: 540, left: '28%', top:  '9%', rot:  1 },
-      { src: '/videos/cinematic%203.mp4', w: 320, h: 540, left: '53%', top: '13%', rot: -1 },
-      { src: '/videos/cinematic%20copy.mp4', w: 320, h: 540, left: '78%', top:  '9%', rot:  2 },
+      { src: '/videos/cinematic-1.mp4',   w: 320, h: 540, left:  '3%', top: '13%', rot: -2 },
+      { src: '/videos/cinematic-2.mp4',   w: 320, h: 540, left: '28%', top:  '9%', rot:  1 },
+      { src: '/videos/cinematic-3.mp4',   w: 320, h: 540, left: '53%', top: '13%', rot: -1 },
+      { src: '/videos/cinematic-copy.mp4', w: 320, h: 540, left: '78%', top:  '9%', rot:  2 },
     ],
   },
   {
@@ -28,10 +86,10 @@ const PANELS = [
     bg: '',
     tint: '#0A0908',              /* Unified cinematic black */
     cards: [
-      { src: '/images/sama%20linkedin2.png', w: 315, h: 420, left: '2%',  top: '12%', rot: -2 },
-      { src: '/images/insta%20sama1.png',    w: 305, h: 402, left: '28%', top: '17%', rot:  1 },
-      { src: '/images/sama%20facebook3.png', w: 310, h: 393, left: '53%', top: '13%', rot: -1 },
-      { src: '/images/sama%20tiktok4.png',   w: 255, h: 453, left: '78%', top:  '9%', rot:  2 },
+      { src: '/images/sama%20linkedin2.png', alt: 'Sama Al Tariq LinkedIn campaign post',     w: 315, h: 420, left: '2%',  top: '12%', rot: -2 },
+      { src: '/images/insta%20sama1.png',    alt: 'Sama Al Tariq Instagram post creative',    w: 305, h: 402, left: '28%', top: '17%', rot:  1 },
+      { src: '/images/sama%20facebook3.png', alt: 'Sama Al Tariq Facebook campaign creative', w: 310, h: 393, left: '53%', top: '13%', rot: -1 },
+      { src: '/images/sama%20tiktok4.png',   alt: 'Sama Al Tariq TikTok short-form creative', w: 255, h: 453, left: '78%', top:  '9%', rot:  2 },
     ],
   },
   {
@@ -40,10 +98,10 @@ const PANELS = [
     bg: '',
     tint: '#0A0908',              /* Unified cinematic black */
     cards: [
-      { src: '/videos/shoots3%20copy.mp4',   w: 320, h: 540, left:  '3%', top: '13%', rot: -2 },
-      { src: '/images/shooting1.jpg',        w: 320, h: 540, left: '28%', top:  '9%', rot:  1 },
-      { src: '/videos/shoots%204%20copy.mp4', w: 320, h: 540, left: '53%', top: '13%', rot: -1 },
-      { src: '/images/shooting%202.jpg',     w: 320, h: 540, left: '78%', top:  '9%', rot:  2 },
+      { src: '/videos/shoots3-copy.mp4',  alt: 'Behind-the-scenes from a Dubai brand shoot', w: 320, h: 540, left:  '3%', top: '13%', rot: -2 },
+      { src: '/images/shooting1.jpg',     alt: 'On-set photo from a cinematic brand shoot',  w: 320, h: 540, left: '28%', top:  '9%', rot:  1 },
+      { src: '/videos/shoots-4-copy.mp4', alt: 'Production reel for a Dubai property brand', w: 320, h: 540, left: '53%', top: '13%', rot: -1 },
+      { src: '/images/shooting%202.jpg',  alt: 'Behind-the-scenes lighting setup on location', w: 320, h: 540, left: '78%', top:  '9%', rot:  2 },
     ],
   },
   {
@@ -52,10 +110,10 @@ const PANELS = [
     bg: '',
     tint: '#0A0908',              /* Unified cinematic black */
     cards: [
-      { src: '/videos/edits1%20copy.mp4', w: 340, h: 575, left:  '3%', top: '11%', rot: -2 },
-      { src: '/videos/edits2%20copy.mp4', w: 340, h: 575, left: '28%', top:  '7%', rot:  1 },
-      { src: '/videos/edits3%20copy.mp4', w: 340, h: 575, left: '53%', top: '11%', rot: -1 },
-      { src: '/videos/edits4%20copy.jpg', w: 340, h: 575, left: '78%', top:  '7%', rot:  2 },
+      { src: '/videos/edits1-copy.mp4', alt: 'Cinematic edit sample for a lifestyle brand',     w: 340, h: 575, left:  '3%', top: '11%', rot: -2 },
+      { src: '/videos/edits2-copy.mp4', alt: 'Short-form social edit graded for cinematic feel', w: 340, h: 575, left: '28%', top:  '7%', rot:  1 },
+      { src: '/videos/edits3-copy.mp4', alt: 'Reel edit for a Dubai property launch',           w: 340, h: 575, left: '53%', top: '11%', rot: -1 },
+      { src: '/videos/edits4-copy.jpg', alt: 'Cinematic still from a graded brand edit',         w: 340, h: 575, left: '78%', top:  '7%', rot:  2 },
     ],
   },
 ];
@@ -215,7 +273,7 @@ export default function WorkShowcase() {
             {p.bg && (
               <div className="work-bg">
                 {isVideo(p.bg)
-                  ? <video src={p.bg} autoPlay muted loop playsInline preload="metadata" />
+                  ? <LazyVideo src={p.bg} poster={posterFor(p.bg)} />
                   : <img src={p.bg} alt="" />}
               </div>
             )}
@@ -260,8 +318,8 @@ export default function WorkShowcase() {
                   }}
                 >
                   {c.src && (isVideo(c.src)
-                    ? <video src={c.src} autoPlay muted loop playsInline preload="metadata" />
-                    : <img src={c.src} alt="" />)}
+                    ? <LazyVideo src={c.src} poster={posterFor(c.src)} ariaLabel={c.alt} />
+                    : <img src={c.src} alt={c.alt || ''} />)}
                   <div className="work-card-glare" aria-hidden />
                 </div>
               ))}

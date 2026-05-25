@@ -16,6 +16,22 @@ export default function ContactFormSection() {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (sending) return;
+
+    // Required fields: Name, Email, Service, Project details.
+    // Company and Budget are optional.
+    const name    = form.name.trim();
+    const email   = form.email.trim();
+    const service = form.service.trim();
+    const message = form.message.trim();
+    if (!name || !email || !service || !message) {
+      setError('Please fill in your name, email, service and project details.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError('That email doesn’t look right — please check and try again.');
+      return;
+    }
+
     setSending(true);
     setError(null);
 
@@ -65,7 +81,7 @@ export default function ContactFormSection() {
                   <input required type="email" value={form.email} onChange={set('email')} placeholder="jane@company.com" />
                 </div>
                 <div className="cv2-field">
-                  <label>Company</label>
+                  <label>Company <span className="cv2-optional">— optional</span></label>
                   <input value={form.company} onChange={set('company')} placeholder="Company name" />
                 </div>
               </div>
@@ -78,9 +94,9 @@ export default function ContactFormSection() {
                   </select>
                 </div>
                 <div className="cv2-field">
-                  <label>Budget</label>
-                  <select required value={form.budget} onChange={set('budget')}>
-                    <option value="" disabled>Select range</option>
+                  <label>Budget <span className="cv2-optional">— optional</span></label>
+                  <select value={form.budget} onChange={set('budget')}>
+                    <option value="">Select range</option>
                     {budgets.map((b) => <option key={b}>{b}</option>)}
                   </select>
                 </div>

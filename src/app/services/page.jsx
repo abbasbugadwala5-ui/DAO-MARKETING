@@ -13,20 +13,6 @@ export const metadata = {
   title: 'Services — Brand, Web, Performance & Content',
   description:
     'Ten capabilities under one roof — brand strategy, identity, product design, web development, e-commerce, CRO, SEO, paid media, social and email/CRM. Built for ambitious brands in Dubai and the wider GCC.',
-  keywords: [
-    'digital marketing services Dubai',
-    'branding agency services',
-    'web development services Dubai',
-    'SEO services Dubai',
-    'paid media management UAE',
-    'CRO audit services',
-    'Shopify development Dubai',
-    'social media management Dubai',
-    'email marketing CRM Dubai',
-    'UX UI design Dubai',
-    'creative agency services UAE',
-    'performance marketing Dubai',
-  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: 'Services — DAO Marketing',

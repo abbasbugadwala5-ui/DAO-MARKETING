@@ -11,93 +11,103 @@ const NAV_OFFSET = 120;
 
 const services = [
   {
-    /* Maroon */
-    tag: 'Strategy', index: '01 / 10', bg: '#5C1F1F', light: true,
+    /* Walnut Brown */
+    tag: 'Strategy', index: '01 / 10', bg: '#3F2A1B', light: true,
     kicker: 'The Foundation',
     title: 'Positioning that earns attention.',
     body: 'Research, audience mapping and a sharp narrative — the foundation every brand decision answers to.',
     src: '/images/cine%204.jpg',
-    fallback: 'linear-gradient(135deg,#5C1F1F,#2A0E0E)',
+    alt: 'Brand strategy session in a Dubai creative studio',
+    fallback: 'linear-gradient(135deg,#3F2A1B,#1C120A)',
   },
   {
-    /* Brown */
-    tag: 'Branding', index: '02 / 10', bg: '#3F2A1B', light: true,
+    /* Deep Maroon */
+    tag: 'Branding', index: '02 / 10', bg: '#3A1818', light: true,
     kicker: 'The Identity',
     title: 'Identity systems with range.',
     body: 'Logo, type, motion and tone — a flexible kit that holds together across every surface and screen.',
     src: '/images/cine%205.png',
-    fallback: 'linear-gradient(135deg,#3F2A1B,#1C120A)',
+    alt: 'Identity system layouts spread across a studio table',
+    fallback: 'linear-gradient(135deg,#3A1818,#1A0A0A)',
   },
   {
-    /* Green */
-    tag: 'Product Design', index: '03 / 10', bg: '#1F3A2C', light: true,
+    /* Cream Bronze */
+    tag: 'Product Design', index: '03 / 10', bg: '#3D3220', light: true,
     kicker: 'The Experience',
     title: 'Interfaces people actually finish.',
     body: 'End-to-end UX and UI for web and apps — usability tested, design-system backed, dev-ready.',
     src: '/images/cine%207.png',
-    fallback: 'linear-gradient(135deg,#1F3A2C,#0E1C15)',
+    alt: 'UX and UI wireframes on a tablet during a product design review',
+    fallback: 'linear-gradient(135deg,#3D3220,#1F1810)',
   },
   {
-    /* Midnight Navy */
-    tag: 'Web Design & Dev', index: '04 / 10', bg: '#1A2845', light: true,
+    /* Walnut Brown */
+    tag: 'Web Design & Dev', index: '04 / 10', bg: '#3F2A1B', light: true,
     kicker: 'The Build',
     title: 'Sites that ship fast and last.',
     body: 'Next.js, headless CMS, motion-led builds — performance-tuned, animation-rich and SEO-ready websites that scale with the brand.',
     src: '/images/cine%2013.jpg',
-    fallback: 'linear-gradient(135deg,#1A2845,#0C1325)',
+    alt: 'Custom Next.js website design on a studio monitor',
+    fallback: 'linear-gradient(135deg,#3F2A1B,#1C120A)',
   },
   {
-    /* Maroon */
-    tag: 'E-commerce', index: '05 / 10', bg: '#5C1F1F', light: true,
+    /* Deep Maroon */
+    tag: 'E-commerce', index: '05 / 10', bg: '#3A1818', light: true,
     kicker: 'The Storefront',
     title: 'Storefronts engineered to sell.',
     body: 'Shopify and headless commerce builds with speed, merchandising and a checkout that does not leak.',
     src: '/images/cine%2015.jpg',
-    fallback: 'linear-gradient(135deg,#5C1F1F,#2A0E0E)',
+    alt: 'Shopify storefront mockup on a laptop and phone',
+    fallback: 'linear-gradient(135deg,#3A1818,#1A0A0A)',
   },
   {
-    /* Brown */
-    tag: 'CRO Audit', index: '06 / 10', bg: '#3F2A1B', light: true,
+    /* Cream Bronze */
+    tag: 'CRO Audit', index: '06 / 10', bg: '#3D3220', light: true,
     kicker: 'The Lift',
     title: 'Find the leaks. Lift the numbers.',
     body: 'Heuristic and data-led conversion audits with a prioritised roadmap of changes worth shipping.',
     src: '/images/cine%2020.jpg',
-    fallback: 'linear-gradient(135deg,#3F2A1B,#1C120A)',
+    alt: 'Conversion analytics and heatmap dashboard on a monitor',
+    fallback: 'linear-gradient(135deg,#3D3220,#1F1810)',
   },
   {
-    /* Green */
-    tag: 'SEO', index: '07 / 10', bg: '#1F3A2C', light: true,
+    /* Walnut Brown */
+    tag: 'SEO', index: '07 / 10', bg: '#3F2A1B', light: true,
     kicker: 'The Visibility',
     title: 'Rank where the buyers are looking.',
     body: 'Technical, on-page and content SEO built around real intent — compounding traffic that does not need a media buy to show up.',
     src: '/images/cine%2021.jpg',
-    fallback: 'linear-gradient(135deg,#1F3A2C,#0E1C15)',
+    alt: 'Search engine results page open on a laptop screen',
+    fallback: 'linear-gradient(135deg,#3F2A1B,#1C120A)',
   },
   {
-    /* Midnight Navy */
-    tag: 'Paid Media', index: '08 / 10', bg: '#1A2845', light: true,
+    /* Deep Maroon */
+    tag: 'Paid Media', index: '08 / 10', bg: '#3A1818', light: true,
     kicker: 'The Engine',
     title: 'Performance ads that pay back.',
     body: 'Meta, Google, TikTok and programmatic — full-funnel buying with creative testing, tracking and weekly read-outs that actually mean something.',
     src: '/images/cine%2024.jpg',
-    fallback: 'linear-gradient(135deg,#1A2845,#0C1325)',
+    alt: 'Performance ad creatives previewed across multiple devices',
+    fallback: 'linear-gradient(135deg,#3A1818,#1A0A0A)',
   },
   {
-    /* Maroon */
-    tag: 'Social Media', index: '09 / 10', bg: '#5C1F1F', light: true,
+    /* Cream Bronze */
+    tag: 'Social Media', index: '09 / 10', bg: '#3D3220', light: true,
     kicker: 'The Audience',
     title: 'Channels that earn the follow.',
     body: 'Always-on content, community and short-form video built around the brand voice — calendars you can actually keep, not feeds you have to apologise for.',
     src: '/images/cine%2029.jpg',
-    fallback: 'linear-gradient(135deg,#5C1F1F,#2A0E0E)',
+    alt: 'Cinematic short-form reel storyboard for a social campaign',
+    fallback: 'linear-gradient(135deg,#3D3220,#1F1810)',
   },
   {
-    /* Brown */
+    /* Walnut Brown */
     tag: 'Email & CRM', index: '10 / 10', bg: '#3F2A1B', light: true,
     kicker: 'The Lifecycle',
     title: 'Owned channels that compound.',
     body: 'Welcome, win-back, post-purchase and loyalty flows — email and SMS lifecycle programs that turn a one-time buyer into a returning one.',
     src: '/images/cine%2030.jpg',
+    alt: 'Email lifecycle flow diagram on a designer’s screen',
     fallback: 'linear-gradient(135deg,#3F2A1B,#1C120A)',
   },
 ];
@@ -185,7 +195,7 @@ export default function Services() {
               body={s.body}
               bg={s.bg}
               light={s.light}
-              media={<ServiceMedia src={s.src} fallback={s.fallback} alt={s.title} />}
+              media={<ServiceMedia src={s.src} fallback={s.fallback} alt={s.alt} />}
             />
           ))}
         </div>
