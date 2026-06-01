@@ -18,8 +18,8 @@ const IMG = {
   story1:    '/images/cine%2014.png',
   story2:    '/images/cine%2019.png',
   story3:    '/images/cine%2025.png',
-  founderBg: '/images/cine%2026.jpg',
-  founder:   '/images/cine%2012.png',
+  founderBg: '/images/founder-bg.jpg',
+  founder:   '/images/founder-fraz.jpg',
   mask:      '/images/cine%2030.jpg',
 };
 
@@ -208,11 +208,7 @@ export default function About({ showDAO = true }) {
       <section className="av2-founder">
         <div className="av2-founder-bg" aria-hidden><img src={IMG.founderBg} alt="" /></div>
         <div className="av2-founder-card a-reveal">
-          {/* When the real portrait lands, replace this placeholder with:
-             <img src={IMG.founder} alt="Fraz Saeed, Founder of DAO Marketing" /> */}
-          <div className="av2-founder-portrait av2-founder-portrait-placeholder" aria-hidden>
-            <span className="av2-portrait-monogram">DAO</span>
-          </div>
+          <img src={IMG.founder} alt="Fraz Saeed, Founder of DAO Marketing" />
           <div className="av2-founder-meta">
             <div className="av2-founder-name">Fraz Saeed</div>
             <div className="av2-founder-role">Founder &amp; Creative Director</div>
