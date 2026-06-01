@@ -1,4 +1,5 @@
 import '@/styles/globals.css';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import SmoothScroll from '@/components/SmoothScroll';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -316,6 +317,9 @@ export default function RootLayout({ children }) {
           <Footer />
           <ScrollIndicator />
         </SmoothScroll>
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );
