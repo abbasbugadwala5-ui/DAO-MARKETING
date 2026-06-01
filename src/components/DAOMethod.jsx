@@ -101,17 +101,7 @@ export default function DAOMethod() {
             gsap.to(letter, { x: x * 14, y: y * 10, ease: 'power2.out', duration: 0.6, overwrite: 'auto' });
           };
           const onEnter = () => {
-            gsap.fromTo(letter,
-              { rotationY: 0 },
-              {
-                rotationY: 360,
-                duration: 1.2,
-                ease: 'power3.inOut',
-                overwrite: 'auto',
-                onComplete: () => gsap.set(letter, { rotationY: 0 }),
-              }
-            );
-            gsap.to(letter, { scale: 1.06, duration: 0.5, ease: 'power3.out' });
+            gsap.to(letter, { scale: 1.06, duration: 0.5, ease: 'power3.out', overwrite: 'auto' });
           };
           const onLeave = () => {
             gsap.to(pillar, { rotationX: 0, ease: 'power3.out', duration: 0.9 });

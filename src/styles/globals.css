@@ -2274,19 +2274,117 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 .df-contact-big a {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(16px, 1.8vw, 24px);
+  font-size: clamp(13px, 1vw, 15px);
   font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.25;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
   color: var(--color-paper);
   text-decoration: none;
   transition: color 0.4s var(--ease);
 }
 .df-contact-big a:hover { color: #C9A96E; }
 
+/* Phone / email / WhatsApp rows — icon + text, consistent baseline */
+.df-contact-line {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  line-height: 1.2;
+  width: fit-content;
+}
+.df-contact-line:last-of-type { 
+  margin-bottom: 0; 
+}
+.df-contact-line:last-of-type { margin-bottom: 20px; }
+
+/* Left-column-scoped spacing — matches the rhythm of the right column
+   labels (Studio / Pages / Legal) without affecting them */
+.df-contact-big .df-contact-label {
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+.df-contact-big .df-contact-line {
+  margin-bottom: clamp(0.5rem, 1vw, 0.875rem);
+}
+.df-contact-big .df-social-row {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+.df-contact-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: rgba(212, 178, 122, 0.85);
+  transition: color 0.4s var(--ease);
+  display: block;
+}
+.df-contact-line:hover .df-contact-icon { color: #FFF5D0; }
+.df-contact-line span { line-height: 1; }
+
+/* Social row layout */
+.df-social-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 0;
+  align-items: center;
+}
+
+/* Social block + label (wraps the row) */
+.df-social-block {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+.df-social-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(244, 237, 216, 0.45);
+  margin-bottom: 14px;
+}
+.df-social-block .df-social-row { margin-top: 0; }
+
+/* Each social icon — guaranteed-equal circle, force every dimension */
+.df-social-icon-link {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 178, 122, 0.30);
+  background: transparent;
+  color: rgba(212, 178, 122, 0.85);
+  padding: 0;
+  box-sizing: border-box;
+  transition:
+    color 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    background 0.35s var(--ease),
+    transform 0.35s var(--ease);
+}
+.df-social-icon-link svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  flex-shrink: 0;
+}
+.df-social-icon-link:hover {
+  color: #FFF5D0;
+  border-color: rgba(212, 178, 122, 0.65);
+  background: rgba(212, 178, 122, 0.10);
+  transform: translateY(-2px);
+}
+/* Defensive — neutralise any inherited link styles from generic <a> rules */
+.df-social-row a.df-social-icon-link {
+  text-decoration: none;
+  line-height: 1;
+}
+
 .df-contact-meta {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr 1fr;
   gap: 28px;
   align-items: start;
 }
@@ -2300,13 +2398,32 @@ a.contact-aside-v:hover { color: var(--color-terra); }
   margin-bottom: 6px;
 }
 .df-contact-meta a, .df-contact-meta p {
-  font-size: 12px;
+  font-size: clamp(13px, 1vw, 15px);
   color: var(--color-paper);
-  line-height: 1.5;
+  line-height: 1.55;
   text-decoration: none;
   transition: color 0.3s;
 }
+.df-contact-meta > div { gap: 6px; }
 .df-contact-meta a:hover { color: #C9A96E; }
+
+/* Social row — icon + label, icon brightens on hover with the label */
+.df-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 2px 0;
+}
+.df-social-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: currentColor;
+  transition: transform 0.3s var(--ease);
+}
+.df-social-link:hover .df-social-icon {
+  transform: translateY(-1px) scale(1.08);
+}
 
 .df-base {
   max-width: 1280px;
@@ -2920,7 +3037,7 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 .av2-founder-card {
   position: relative;
   z-index: 2;
-  width: min(620px, 92vw);
+  width: min(500px, 90vw);
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 40px 90px rgba(0,0,0,0.45);
@@ -2929,9 +3046,9 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 }
 .av2-founder-card img {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/4;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center 25%;
   display: block;
 }
 
