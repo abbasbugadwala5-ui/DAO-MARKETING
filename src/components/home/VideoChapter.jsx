@@ -19,7 +19,7 @@ export default function VideoChapter() {
       yPercent: 18,
       scale: 1.08,
       ease: 'none',
-      scrollTrigger: { trigger: '.chapter', start: 'top bottom', end: 'bottom top', scrub: 1 },
+      scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'bottom top', scrub: 1 },
     });
 
     /* Headline rises into place as user scrolls in */
@@ -31,7 +31,7 @@ export default function VideoChapter() {
         ease: 'power3.out',
         stagger: 0.1,
         scrollTrigger: {
-          trigger: '.chapter',
+          trigger: root.current,
           start: 'top 80%',
           end: 'top 30%',
           scrub: 1,
@@ -45,7 +45,7 @@ export default function VideoChapter() {
       opacity: 0.45,
       ease: 'none',
       scrollTrigger: {
-        trigger: '.chapter',
+        trigger: root.current,
         start: 'center top',
         end: 'bottom top',
         scrub: 1,

@@ -106,7 +106,7 @@ const services = [
     kicker: 'The Lifecycle',
     title: 'Owned channels that compound.',
     body: 'Welcome, win-back, post-purchase and loyalty flows — email and SMS lifecycle programs that turn a one-time buyer into a returning one.',
-    src: '/images/cine%2030.jpg',
+    src: '/images/cine%2023.jpg',
     alt: 'Email lifecycle flow diagram on a designer’s screen',
     fallback: 'linear-gradient(135deg,#3F2A1B,#1C120A)',
   },

@@ -70,7 +70,7 @@ export default function CinematicHero() {
     gsap.to('.cine-mosaic', {
       yPercent: 16,
       ease: 'none',
-      scrollTrigger: { trigger: '.cine-hero', start: 'top top', end: 'bottom top', scrub: true },
+      scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: true },
     });
 
     /* Logo scales down + drifts up as user scrolls out of hero */
@@ -79,15 +79,15 @@ export default function CinematicHero() {
       scale: 0.78,
       opacity: 0.6,
       ease: 'none',
-      scrollTrigger: { trigger: '.cine-hero', start: 'top top', end: 'bottom top', scrub: 1 },
+      scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: 1 },
     });
 
     /* Headline drifts up faster than logo for layered parallax */
-    gsap.to('.cine-hero h1', {
+    gsap.to('.cine-h1', {
       yPercent: -28,
       opacity: 0.35,
       ease: 'none',
-      scrollTrigger: { trigger: '.cine-hero', start: 'top top', end: 'bottom top', scrub: 1 },
+      scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: 1 },
     });
 
     /* Scroll cue fades out */
@@ -95,7 +95,7 @@ export default function CinematicHero() {
       opacity: 0,
       y: 30,
       ease: 'none',
-      scrollTrigger: { trigger: '.cine-hero', start: 'top top', end: 'top 50%', scrub: 1 },
+      scrollTrigger: { trigger: root.current, start: 'top top', end: 'top 50%', scrub: 1 },
     });
   }, { scope: root });
 
@@ -105,7 +105,7 @@ export default function CinematicHero() {
         <video
           className="cine-bg-video"
           src={HERO_VIDEO}
-          poster="/videos/posters/hero-poster.jpg"
+          poster="/images/cine1.webp"
           aria-hidden="true"
           autoPlay
           muted

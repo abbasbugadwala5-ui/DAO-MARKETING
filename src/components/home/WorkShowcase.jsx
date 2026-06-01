@@ -5,12 +5,15 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@/hooks/useGSAP';
 
-/* Map a video src to its poster file in /public/videos/posters/.
-   Falls back to a generic hero poster so the card has SOMETHING
-   visible while the user hasn't generated per-video posters yet. */
+/* Map a video src to a poster image. Per-panel mapping uses existing
+   images in /public/images/ so nothing 404s while real frame-extracted
+   posters haven't been generated (ffmpeg pipeline pending). */
 function posterFor(videoSrc) {
-  const base = videoSrc.split('/').pop().replace(/\.(mp4|webm|mov)$/i, '');
-  return `/videos/posters/${base}.jpg`;
+  const name = videoSrc.split('/').pop().toLowerCase();
+  if (name.startsWith('shoots')) return '/images/shooting1.jpg';
+  if (name.startsWith('edits'))  return '/images/edits4.jpg';
+  // cinematic + everything else → the hero LCP image (already cached)
+  return '/images/cine1.webp';
 }
 
 /* Lazy video card — only sets `src` once the element scrolls into
