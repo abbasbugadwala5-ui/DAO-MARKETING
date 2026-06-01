@@ -5,15 +5,28 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@/hooks/useGSAP';
 
-/* Map a video src to a poster image. Per-panel mapping uses existing
-   images in /public/images/ so nothing 404s while real frame-extracted
-   posters haven't been generated (ffmpeg pipeline pending). */
+/* Per-video poster map — each card gets a UNIQUE still drawn from existing
+   /public/images/ files. No repeats within a panel, no overlap with the
+   hero poster or VideoChapter image. URL-encoded spaces where filenames
+   actually contain spaces on disk. */
+const VIDEO_POSTERS = {
+  // Cinematic panel — 4 distinct cinematic stills
+  'cinematic-1.mp4':     '/images/cine%202.webp',
+  'cinematic-2.mp4':     '/images/cine%2011.jpg',
+  'cinematic-3.mp4':     '/images/cine%2017.webp',
+  'cinematic-copy.mp4':  '/images/cine%2022.jpg',
+  // Shoots panel — real BTS stills
+  'shoots3-copy.mp4':    '/images/shooting1.jpg',
+  'shoots-4-copy.mp4':   '/images/shooting%202.jpg',
+  // Edits panel — graded cinematic frames
+  'edits1-copy.mp4':     '/images/cine%2014.webp',
+  'edits2-copy.mp4':     '/images/cine%2019.webp',
+  'edits3-copy.mp4':     '/images/cine%2027.webp',
+};
+
 function posterFor(videoSrc) {
-  const name = videoSrc.split('/').pop().toLowerCase();
-  if (name.startsWith('shoots')) return '/images/shooting1.jpg';
-  if (name.startsWith('edits'))  return '/images/edits4.jpg';
-  // cinematic + everything else → the hero LCP image (already cached)
-  return '/images/cine1.webp';
+  const name = videoSrc.split('/').pop();
+  return VIDEO_POSTERS[name] || '/images/cine%2013.jpg';
 }
 
 /* Lazy video card — only sets `src` once the element scrolls into
