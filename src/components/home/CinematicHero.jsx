@@ -1,5 +1,6 @@
 'use client';
 import { useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@/hooks/useGSAP';
@@ -137,9 +138,13 @@ export default function CinematicHero() {
       <div className="cine-side l">Dubai · Social · Cinematic · Web · Branding</div>
       <div className="cine-side r">Social · Cinematic · Web · Branding</div>
       <div className="cine-inner">
-        <img
+        <Image
           src="/logo/logo.svg"
           alt="DAO Studio"
+          width={1080}
+          height={1080}
+          priority
+          fetchPriority="high"
           className="cine-logo"
         />
         <h1 className="cine-h1">
