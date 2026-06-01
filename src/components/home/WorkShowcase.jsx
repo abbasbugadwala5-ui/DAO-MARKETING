@@ -86,10 +86,10 @@ const PANELS = [
     bg: '',
     tint: '#0A0908',              /* Unified cinematic black */
     cards: [
-      { src: '/images/sama%20linkedin2.png', alt: 'Sama Al Tariq LinkedIn campaign post',     w: 315, h: 420, left: '2%',  top: '12%', rot: -2 },
-      { src: '/images/insta%20sama1.png',    alt: 'Sama Al Tariq Instagram post creative',    w: 305, h: 402, left: '28%', top: '17%', rot:  1 },
-      { src: '/images/sama%20facebook3.png', alt: 'Sama Al Tariq Facebook campaign creative', w: 310, h: 393, left: '53%', top: '13%', rot: -1 },
-      { src: '/images/sama%20tiktok4.png',   alt: 'Sama Al Tariq TikTok short-form creative', w: 255, h: 453, left: '78%', top:  '9%', rot:  2 },
+      { src: '/images/sama%20linkedin2.webp', alt: 'Sama Al Tariq LinkedIn campaign post',     w: 315, h: 420, left: '2%',  top: '12%', rot: -2 },
+      { src: '/images/insta%20sama1.webp',    alt: 'Sama Al Tariq Instagram post creative',    w: 305, h: 402, left: '28%', top: '17%', rot:  1 },
+      { src: '/images/sama%20facebook3.webp', alt: 'Sama Al Tariq Facebook campaign creative', w: 310, h: 393, left: '53%', top: '13%', rot: -1 },
+      { src: '/images/sama%20tiktok4.webp',   alt: 'Sama Al Tariq TikTok short-form creative', w: 255, h: 453, left: '78%', top:  '9%', rot:  2 },
     ],
   },
   {

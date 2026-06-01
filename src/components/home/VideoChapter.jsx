@@ -6,7 +6,7 @@ import { useGSAP } from '@/hooks/useGSAP';
 
 /* Set to a file in /public — e.g. '/videos/studio.mp4' or '/images/studio.jpg'.
    Leave as '' to keep the placeholder. */
-const CHAPTER_MEDIA = '/images/cine1.png';
+const CHAPTER_MEDIA = '/images/cine1.webp';
 const isVideo = (s) => /\.(mp4|webm|mov)$/i.test(s);
 
 export default function VideoChapter() {

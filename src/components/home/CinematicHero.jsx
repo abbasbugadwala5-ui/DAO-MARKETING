@@ -18,40 +18,40 @@ const HERO_VIDEO = '/videos/video1.mp4';
 const TILES = 36; // 6-column grid
 
 const TILE_MEDIA = [
-  '/images/cine1.png',
-  '/images/cine%202.png',
-  '/images/cine%203.png',
+  '/images/cine1.webp',
+  '/images/cine%202.webp',
+  '/images/cine%203.webp',
   '/images/cine%204.jpg',
-  '/images/cine%205.png',
-  '/images/cine%206.png',
-  '/images/cine%207.png',
+  '/images/cine%205.webp',
+  '/images/cine%206.webp',
+  '/images/cine%207.webp',
   '/images/cine%208.jpg',
   '/images/cine%209.jpg',
   '/images/cine%2010.jpg',
   '/images/cine%2011.jpg',
-  '/images/cine%2012.png',
+  '/images/cine%2012.webp',
   '/images/cine%2013.jpg',
-  '/images/cine%2014.png',
+  '/images/cine%2014.webp',
   '/images/cine%2015.jpg',
   '/images/cine%2016.jpg',
-  '/images/cine%2017.png',
+  '/images/cine%2017.webp',
   '/images/cine%2018.jpg',
-  '/images/cine%2019.png',
+  '/images/cine%2019.webp',
   '/images/cine%2020.jpg',
   '/images/cine%2021.jpg',
   '/images/cine%2022.jpg',
   '/images/cine%2023.jpg',
   '/images/cine%2024.jpg',
-  '/images/cine%2024.png',
-  '/images/cine%2025.png',
+  '/images/cine%2024.webp',
+  '/images/cine%2025.webp',
   '/images/cine%2026.jpg',
-  '/images/cine%2027.png',
-  '/images/cine%2028.png',
+  '/images/cine%2027.webp',
+  '/images/cine%2028.webp',
   '/images/cine%2029.jpg',
   '/images/cine%2030.jpg',
   '/images/cine%2031.jpg',
   '/images/cine%2032.jpg',
-  '/images/cine%2033.png',
+  '/images/cine%2033.webp',
   '/images/cine%2034.jpg',
 ];
 
@@ -122,7 +122,7 @@ export default function CinematicHero() {
               ) : isVideo(src) ? (
                 <video
                   src={src}
-                  poster="/images/cine1.png"
+                  poster="/images/cine1.webp"
                   autoPlay muted loop playsInline preload="metadata"
                 />
               ) : (

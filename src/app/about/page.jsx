@@ -10,14 +10,14 @@ if (typeof window !== 'undefined') {
 
 /* Real assets — spaces URL-encoded as %20 to match filenames in /public/images */
 const IMG = {
-  heroA:     '/images/cine%202.png',
-  heroB:     '/images/cine%203.png',
+  heroA:     '/images/cine%202.webp',
+  heroB:     '/images/cine%203.webp',
   studio1:   '/images/cine%2011.jpg',
-  studio2:   '/images/cine%2017.png',
+  studio2:   '/images/cine%2017.webp',
   studio3:   '/images/cine%2022.jpg',
-  story1:    '/images/cine%2014.png',
-  story2:    '/images/cine%2019.png',
-  story3:    '/images/cine%2025.png',
+  story1:    '/images/cine%2014.webp',
+  story2:    '/images/cine%2019.webp',
+  story3:    '/images/cine%2025.webp',
   founderBg: '/images/founder-bg.jpg',
   founder:   '/images/founder-fraz.jpg',
   mask:      '/images/cine%2030.jpg',
