@@ -105,7 +105,6 @@ export default function CinematicHero() {
         <video
           className="cine-bg-video"
           src={HERO_VIDEO}
-          poster="/images/cine%2028.webp"
           aria-hidden="true"
           autoPlay
           muted
@@ -123,8 +122,7 @@ export default function CinematicHero() {
               ) : isVideo(src) ? (
                 <video
                   src={src}
-                  poster="/images/cine%2028.webp"
-                  autoPlay muted loop playsInline preload="metadata"
+                          autoPlay muted loop playsInline preload="metadata"
                 />
               ) : (
                 <img src={src} alt="" />
