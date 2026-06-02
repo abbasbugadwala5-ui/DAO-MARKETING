@@ -2,14 +2,14 @@ const SITE_URL = 'https://daomarketing.com';
 const PAGE_URL = `${SITE_URL}/about`;
 
 export const metadata = {
-  title: 'About — The Studio Behind DAO',
+  title: 'About — The Agency Behind DAO',
   description:
-    'DAO Marketing is a Dubai studio of strategists, designers, developers and storytellers. We define brands, amplify their reach and help them own their category — built around a clear, repeatable method.',
+    'DAO Marketing is a Dubai agency of strategists, designers, developers and storytellers. We define brands, amplify their reach and help them own their category — built around a clear, repeatable method.',
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: 'About — DAO Marketing',
     description:
-      'A Dubai studio of strategists, designers, developers and storytellers. Define. Amplify. Own.',
+      'A Dubai agency of strategists, designers, developers and storytellers. Define. Amplify. Own.',
     url: PAGE_URL,
     siteName: 'DAO Marketing',
     type: 'website',
@@ -19,7 +19,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'About — DAO Marketing',
-    description: 'A Dubai studio of strategists, designers, developers and storytellers.',
+    description: 'A Dubai agency of strategists, designers, developers and storytellers.',
     images: [`${SITE_URL}/og-image.jpg`],
   },
   robots: { index: true, follow: true },
@@ -33,7 +33,7 @@ const ABOUT_JSON_LD = {
       '@id': `${PAGE_URL}#webpage`,
       url: PAGE_URL,
       name: 'About — DAO Marketing',
-      description: 'About the Dubai-based luxury digital marketing studio behind DAO.',
+      description: 'About the Dubai-based luxury digital marketing agency behind DAO.',
       isPartOf: { '@id': `${SITE_URL}/#website` },
       about: { '@id': `${SITE_URL}/#organization` },
       inLanguage: 'en-AE',

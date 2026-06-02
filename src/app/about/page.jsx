@@ -167,13 +167,13 @@ export default function About({ showDAO = true }) {
       <section className="av2-hero">
         <div className="av2-hero-grid">
           <div className="av2-hero-text">
-            <div className="av2-eyebrow a-reveal">DAO Studio · Recently opened · Dubai</div>
+            <div className="av2-eyebrow a-reveal">DAO Marketing Management · Recently opened · Dubai</div>
             <h1 className="av2-hero-title a-reveal">
               We build <em>cinematic</em> brands<br />
               for Dubai&rsquo;s most ambitious developers.
             </h1>
             <p className="av2-hero-lede a-reveal">
-              A small, independent studio with senior taste. Social, film, web,
+              A small, independent agency with senior taste. Social, film, web,
               and brand work — produced with the discipline of a print magazine
               and the pace of a production house.
             </p>

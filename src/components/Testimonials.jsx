@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@/hooks/useGSAP';
 
 const quotes = [
-  { q: 'DAO Studio understands our brand DNA and turns it into authentic, premium storytelling.', name: 'Leontine', role: 'Marketing Manager, Northwind' },
+  { q: 'DAO Marketing Management understands our brand DNA and turns it into authentic, premium storytelling.', name: 'Leontine', role: 'Marketing Manager, Northwind' },
   { q: 'The team turns complex briefings into creative, customer-focused solutions every time.', name: 'Jurgen', role: 'Head of Product, Atoll' },
   { q: 'Thanks to their work we have a site that reflects exactly where our company is headed.', name: 'Robbert', role: 'Co-founder, Pallas' },
   { q: 'Solution-oriented, exactly what you want as a client — a genuinely great collaboration.', name: 'Bert', role: 'Marketeer, Paragon' },

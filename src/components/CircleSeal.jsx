@@ -133,7 +133,7 @@ export default function CircleSeal({ label, center }) {
             <span className="cb-meta-dot" />
             Chapter
           </span>
-          <span className="cb-meta cb-meta-r">DAO Studio · Dubai</span>
+          <span className="cb-meta cb-meta-r">DAO Marketing Management · Dubai</span>
         </div>
 
         <div className="cb-numeral" aria-hidden>{center}</div>

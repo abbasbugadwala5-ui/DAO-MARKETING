@@ -25,7 +25,7 @@ export default function HomePage() {
       </section>
 
       {/* ── SEAL → ABOUT ─────────────────────────────── */}
-      <CircleSeal label="A young studio · with senior taste" center="I" />
+      <CircleSeal label="A young agency · with senior taste" center="I" />
       <section id="about">
         <About showDAO={false} />
       </section>

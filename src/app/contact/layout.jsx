@@ -32,7 +32,7 @@ const CONTACT_JSON_LD = {
       '@id': `${PAGE_URL}#webpage`,
       url: PAGE_URL,
       name: 'Contact — DAO Marketing',
-      description: 'Get in touch with DAO Marketing — Dubai studio.',
+      description: 'Get in touch with DAO Marketing — Dubai agency.',
       isPartOf: { '@id': `${SITE_URL}/#website` },
       about: { '@id': `${SITE_URL}/#organization` },
       inLanguage: 'en-AE',

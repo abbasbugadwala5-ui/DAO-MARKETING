@@ -138,7 +138,7 @@ export default function CinematicHero() {
       <div className="cine-inner">
         <Image
           src="/logo/logo.svg"
-          alt="DAO Studio"
+          alt="DAO Marketing Management"
           width={1080}
           height={1080}
           priority

@@ -43,7 +43,7 @@ export default function OurStorySection() {
       </h2>
       <div className="os-tagline">
         <span aria-hidden className="os-tagline-rule" />
-        <span>A young studio, with senior taste.</span>
+        <span>A young agency, with senior taste.</span>
         <span aria-hidden className="os-tagline-rule" />
       </div>
     </section>

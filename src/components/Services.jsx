@@ -176,7 +176,7 @@ export default function Services() {
           </h2>
 
           <p className="svc-lead">
-            One studio, ten disciplines — strategy, brand, product, web, commerce,
+            One agency, ten disciplines — strategy, brand, product, web, commerce,
             conversion and the full digital marketing engine. A single team so the
             thinking never gets lost in the handoff.
           </p>

@@ -19,7 +19,7 @@ export default function EditorialCTA() {
     <section ref={root} className="editorial">
       <div className="section-wrap">
         <h2>
-          {['One studio.', 'Every craft.'].map((line, li) => (
+          {['One agency.', 'Every craft.'].map((line, li) => (
             <span key={li} style={{ display: 'block' }}>
               {line.split(' ').map((w, i) => (
                 <span key={i} className="reveal-line">

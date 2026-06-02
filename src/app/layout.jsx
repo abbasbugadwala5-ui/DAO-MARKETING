@@ -15,7 +15,7 @@ export const metadata = {
     template: '%s · DAO Marketing',
   },
   description:
-    'DAO Marketing is a Dubai-based luxury digital marketing studio crafting brand strategy, identity, web, performance media and cinematic content for ambitious brands.',
+    'DAO Marketing is a Dubai-based luxury digital marketing agency crafting brand strategy, identity, web, performance media and cinematic content for ambitious brands.',
   applicationName: 'DAO Marketing',
   authors: [{ name: 'DAO Marketing', url: SITE_URL }],
   creator: 'DAO Marketing',
@@ -93,7 +93,7 @@ const ORG_JSON_LD = {
       '@id': `${SITE_URL}/#organization`,
       name: 'DAO Marketing',
       legalName: 'DAO Marketing Management LLC',
-      alternateName: ['DAO Studio', 'DAO Marketing Management', 'DAO Marketing LLC'],
+      alternateName: ['DAO Marketing', 'DAO Marketing Management', 'DAO Marketing LLC'],
       url: SITE_URL,
       logo: {
         '@type': 'ImageObject',
@@ -103,7 +103,7 @@ const ORG_JSON_LD = {
       },
       image: [`${SITE_URL}/og-image.jpg`, `${SITE_URL}/logo/logo.svg`],
       description:
-        'Dubai-based luxury digital marketing studio. We build brand strategy, identity systems, web platforms, cinematic content and performance media for ambitious brands across the UAE and the wider GCC.',
+        'Dubai-based luxury digital marketing agency. We build brand strategy, identity systems, web platforms, cinematic content and performance media for ambitious brands across the UAE and the wider GCC.',
       slogan: 'Define. Amplify. Own.',
       foundingDate: '2026',
       foundingLocation: { '@type': 'Place', name: 'Dubai, United Arab Emirates' },
@@ -131,7 +131,7 @@ const ORG_JSON_LD = {
         'Brand Strategy Consultancy',
         'Web Design and Development Agency',
         'Performance Marketing Agency',
-        'Creative Content Studio',
+        'Creative Content Agency',
       ],
       address: {
         '@type': 'PostalAddress',
@@ -210,7 +210,7 @@ const ORG_JSON_LD = {
       '@id': `${SITE_URL}/#website`,
       url: SITE_URL,
       name: 'DAO Marketing',
-      description: 'Luxury digital marketing studio in Dubai — Define. Amplify. Own.',
+      description: 'Luxury digital marketing agency in Dubai — Define. Amplify. Own.',
       publisher: { '@id': `${SITE_URL}/#organization` },
       inLanguage: 'en-AE',
       potentialAction: {
@@ -248,7 +248,7 @@ const ORG_JSON_LD = {
           name: 'Where is DAO Marketing based?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'DAO Marketing is a luxury digital marketing studio based in The One Tower, Dubai, United Arab Emirates. We work with brands across the UAE, Saudi Arabia, the wider GCC and MENA region.',
+            text: 'DAO Marketing is a luxury digital marketing agency based in The One Tower, Dubai, United Arab Emirates. We work with brands across the UAE, Saudi Arabia, the wider GCC and MENA region.',
           },
         },
         {

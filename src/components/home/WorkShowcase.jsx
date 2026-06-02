@@ -299,7 +299,7 @@ export default function WorkShowcase() {
                 <div className="work-marquee-track">
                   {Array.from({ length: 12 }).map((_, k) => (
                     <span key={k} className="m-item">
-                      DAO STUDIO<i className="m-dot">✦</i>
+                      DAO MARKETING<i className="m-dot">✦</i>
                     </span>
                   ))}
                 </div>

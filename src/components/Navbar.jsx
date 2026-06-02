@@ -97,8 +97,8 @@ export default function Navbar() {
           <span>{open ? 'Close' : 'Menu'}</span>
         </button>
 
-        <Link href="/" onClick={go('/')} className="nav-mark" aria-label="DAO Studio — Home">
-          <img src="/logo/logo-mark.svg" alt="DAO Studio" className="nav-mark-logo" />
+        <Link href="/" onClick={go('/')} className="nav-mark" aria-label="DAO Marketing Management — Home">
+          <img src="/logo/logo-mark.svg" alt="DAO Marketing Management" className="nav-mark-logo" />
         </Link>
 
         <Link href="/contact" onClick={go('/contact')} className="nav-cta">Start a project</Link>
