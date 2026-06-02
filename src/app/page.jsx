@@ -2,7 +2,6 @@ import CinematicHero from '@/components/home/CinematicHero';
 import ApproachCircle from '@/components/home/ApproachCircle';
 import WorkShowcase from '@/components/home/WorkShowcase';
 import VideoChapter from '@/components/home/VideoChapter';
-import FloatingWork from '@/components/home/FloatingWork';
 
 import Services from '@/components/Services';
 import Cases from '@/components/Cases';
@@ -44,7 +43,6 @@ export default function HomePage() {
         <WhatHappensNext />
       </section>
 
-      <FloatingWork />
     </>
   );
 }

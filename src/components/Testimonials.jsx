@@ -5,15 +5,13 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@/hooks/useGSAP';
 
-/* Avatar colors locked to the studio brand palette
-   (terra, forest, plum, amber, olive, sand) — no off-palette hues. */
 const quotes = [
-  { q: 'DAO Studio understands our brand DNA and turns it into authentic, premium storytelling.', name: 'Leontine', role: 'Marketing Manager, Northwind', c: '#1E3D38' },
-  { q: 'The team turns complex briefings into creative, customer-focused solutions every time.', name: 'Jurgen', role: 'Head of Product, Atoll', c: '#B8472B' },
-  { q: 'Thanks to their work we have a site that reflects exactly where our company is headed.', name: 'Robbert', role: 'Co-founder, Pallas', c: '#A8A57F' },
-  { q: 'Solution-oriented, exactly what you want as a client — a genuinely great collaboration.', name: 'Bert', role: 'Marketeer, Paragon', c: '#C0703F' },
-  { q: 'Compliments on the redesign — only positive feedback, and it converts far better.', name: 'Rick', role: 'Partner, Crava', c: '#2E2140' },
-  { q: 'Creative, energetic and bold. They connected our goals to the right audiences.', name: 'Jenno', role: 'Coordinator, Bloomr', c: '#E0A43B' },
+  { q: 'DAO Studio understands our brand DNA and turns it into authentic, premium storytelling.', name: 'Leontine', role: 'Marketing Manager, Northwind' },
+  { q: 'The team turns complex briefings into creative, customer-focused solutions every time.', name: 'Jurgen', role: 'Head of Product, Atoll' },
+  { q: 'Thanks to their work we have a site that reflects exactly where our company is headed.', name: 'Robbert', role: 'Co-founder, Pallas' },
+  { q: 'Solution-oriented, exactly what you want as a client — a genuinely great collaboration.', name: 'Bert', role: 'Marketeer, Paragon' },
+  { q: 'Compliments on the redesign — only positive feedback, and it converts far better.', name: 'Rick', role: 'Partner, Crava' },
+  { q: 'Creative, energetic and bold. They connected our goals to the right audiences.', name: 'Jenno', role: 'Coordinator, Bloomr' },
 ];
 
 function Card({ data }) {
@@ -28,12 +26,9 @@ function Card({ data }) {
       }}
     >
       <q className="body-lg block">{data.q}</q>
-      <div className="flex flex-col items-center gap-3">
-        <div className="h-12 w-12 flex-none rounded-full" style={{ background: data.c, opacity: 0.85 }} />
-        <div className="text-center">
-          <div className="heading-sm">{data.name}</div>
-          <div className="meta text-inksoft">{data.role}</div>
-        </div>
+      <div className="text-center">
+        <div className="heading-sm">{data.name}</div>
+        <div className="meta text-inksoft">{data.role}</div>
       </div>
     </article>
   );

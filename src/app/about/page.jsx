@@ -135,17 +135,14 @@ export default function About({ showDAO = true }) {
           },
         }
       );
-      /* Founder bg image — parallax scrub */
-      gsap.to('.av2-founder-bg img', {
-        yPercent: 18,
-        scale: 1.12,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.av2-founder',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1,
-        },
+      /* Founder bg orbs — slow parallax drift on gold-on-black layer */
+      gsap.to('.av2-founder-bg-orb-l', {
+        yPercent: 18, xPercent: -6, ease: 'none',
+        scrollTrigger: { trigger: '.av2-founder', start: 'top bottom', end: 'bottom top', scrub: 1 },
+      });
+      gsap.to('.av2-founder-bg-orb-r', {
+        yPercent: -14, xPercent: 5, ease: 'none',
+        scrollTrigger: { trigger: '.av2-founder', start: 'top bottom', end: 'bottom top', scrub: 1 },
       });
       /* Founder quote rises into place */
       gsap.fromTo(
@@ -206,7 +203,11 @@ export default function About({ showDAO = true }) {
 
       {/* FOUNDER PORTRAIT */}
       <section className="av2-founder">
-        <div className="av2-founder-bg" aria-hidden><img src={IMG.founderBg} alt="" /></div>
+        <div className="av2-founder-bg av2-founder-bg-luxe" aria-hidden>
+          <div className="av2-founder-bg-grain" />
+          <div className="av2-founder-bg-orb av2-founder-bg-orb-l" />
+          <div className="av2-founder-bg-orb av2-founder-bg-orb-r" />
+        </div>
         <div className="av2-founder-card a-reveal">
           <img src={IMG.founder} alt="Fraz Saeed, Founder of DAO Marketing" />
           <div className="av2-founder-meta">

@@ -4,6 +4,7 @@ import SmoothScroll from '@/components/SmoothScroll';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollIndicator from '@/components/ScrollIndicator';
+import WhatsAppFloat from '@/components/WhatsAppFloat';
 
 const SITE_URL = 'https://daomarketing.com';
 
@@ -316,6 +317,7 @@ export default function RootLayout({ children }) {
           {children}
           <Footer />
           <ScrollIndicator />
+          <WhatsAppFloat />
         </SmoothScroll>
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />

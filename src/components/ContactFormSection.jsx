@@ -2,14 +2,13 @@
 import { useState } from 'react';
 
 const servicesList = ['Strategy', 'Branding', 'Product Design', 'Web Design & Dev', 'E-commerce', 'CRO Audit', 'SEO', 'Paid Media', 'Social Media', 'Email & CRM'];
-const budgets = ['Under AED 40k', 'AED 40k – 100k', 'AED 100k – 200k', 'AED 200k+'];
 
 export default function ContactFormSection() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(null);
   const [form, setForm] = useState({
-    name: '', email: '', company: '', service: '', budget: '', message: '',
+    name: '', email: '', company: '', service: '', message: '',
   });
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
@@ -85,21 +84,12 @@ export default function ContactFormSection() {
                   <input value={form.company} onChange={set('company')} placeholder="Company name" />
                 </div>
               </div>
-              <div className="cv2-field-row">
-                <div className="cv2-field">
-                  <label>Service</label>
-                  <select required value={form.service} onChange={set('service')}>
-                    <option value="" disabled>Select one</option>
-                    {servicesList.map((s) => <option key={s}>{s}</option>)}
-                  </select>
-                </div>
-                <div className="cv2-field">
-                  <label>Budget <span className="cv2-optional">— optional</span></label>
-                  <select value={form.budget} onChange={set('budget')}>
-                    <option value="">Select range</option>
-                    {budgets.map((b) => <option key={b}>{b}</option>)}
-                  </select>
-                </div>
+              <div className="cv2-field">
+                <label>Service</label>
+                <select required value={form.service} onChange={set('service')}>
+                  <option value="" disabled>Select one</option>
+                  {servicesList.map((s) => <option key={s}>{s}</option>)}
+                </select>
               </div>
               <div className="cv2-field">
                 <label>Project details</label>
@@ -117,24 +107,72 @@ export default function ContactFormSection() {
         </div>
 
         <aside className="cv2-aside">
+          {/* OFFICE */}
           <div className="cv2-aside-item">
-            <span className="cv2-aside-label">Email</span>
-            <a href="mailto:fraz@daomarketing.com" className="cv2-aside-value">fraz@daomarketing.com</a>
+            <svg className="cv2-aside-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <p className="cv2-aside-value">
+              The One Tower<br />
+              24th Floor · Office 9<br />
+              Sheikh Zayed Road, Dubai
+            </p>
           </div>
+
+          {/* HOURS */}
           <div className="cv2-aside-item">
-            <span className="cv2-aside-label">Phone</span>
-            <a href="tel:+971504425845" className="cv2-aside-value">+971 50 442 5845</a>
-          </div>
-          <div className="cv2-aside-item">
-            <span className="cv2-aside-label">Office</span>
-            <span className="cv2-aside-value">The One Tower</span>
-            <span className="cv2-aside-sub">24th Floor · Office 9<br />Sheikh Zayed Road, Dubai</span>
-          </div>
-          <div className="cv2-aside-item">
-            <span className="cv2-aside-label">Hours</span>
-            <span className="cv2-aside-value">Mon – Sat</span>
+            <svg className="cv2-aside-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <p className="cv2-aside-value">Mon – Sat</p>
             <span className="cv2-aside-sub">8:00 – 6:00 GST</span>
           </div>
+
+          {/* EMAIL */}
+          <div className="cv2-aside-item">
+            <svg className="cv2-aside-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <rect x="2.5" y="4.5" width="19" height="15" rx="2" />
+              <path d="m3 6 9 7 9-7" />
+            </svg>
+            <a
+              href="mailto:fraz@daomarketing.com"
+              className="cv2-aside-value"
+              onClick={() => {
+                if (typeof window !== 'undefined' && window.gtag) {
+                  window.gtag('event', 'email_click', {
+                    email: 'fraz@daomarketing.com',
+                    location: 'contact_aside',
+                  });
+                }
+              }}
+            >
+              fraz@daomarketing.com
+            </a>
+          </div>
+
+          {/* PHONE */}
+          <div className="cv2-aside-item">
+            <svg className="cv2-aside-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            <a
+              href="tel:+971504425845"
+              className="cv2-aside-value"
+              onClick={() => {
+                if (typeof window !== 'undefined' && window.gtag) {
+                  window.gtag('event', 'phone_click', {
+                    phone: '+971504425845',
+                    location: 'contact_aside',
+                  });
+                }
+              }}
+            >
+              +971 50 442 5845
+            </a>
+          </div>
+
         </aside>
       </div>
     </section>
