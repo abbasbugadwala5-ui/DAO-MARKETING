@@ -3101,18 +3101,20 @@ a.contact-aside-v:hover { color: var(--color-terra); }
   overflow: hidden;
   text-align: center;
 }
-.av2-founder-bg { position: absolute; inset: 0; z-index: 0; }
+.av2-founder-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .av2-founder-bg img {
-  width: 100%; height: 100%;
+  width: 112%; height: 112%;
+  margin: -6%;
   object-fit: cover;
-  filter: brightness(0.92) contrast(1.02) saturate(0.95);
+  filter: brightness(0.42) contrast(1.08) saturate(0.85) blur(32px);
+  transform: scale(1.06);
 }
 .av2-founder-bg::after {
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(10,9,8,0.35) 100%),
-    linear-gradient(to bottom, rgba(10,9,8,0.10), rgba(10,9,8,0), rgba(10,9,8,0.35));
+    radial-gradient(120% 90% at 50% 50%, transparent 40%, rgba(0,0,0,0.6) 100%),
+    linear-gradient(to bottom, rgba(10,9,8,0.45), rgba(10,9,8,0.15), rgba(10,9,8,0.65));
 }
 
 /* ── Founder bg: GOLD-on-BLACK luxe composition (no photo) ──────── */
@@ -3157,7 +3159,7 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 .av2-founder-card {
   position: relative;
   z-index: 2;
-  width: min(640px, 92vw);
+  width: min(520px, 88vw);
   justify-self: center;
   border-radius: 18px;
   overflow: hidden;
@@ -3170,7 +3172,7 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 }
 .av2-founder-card img {
   width: 100%;
-  aspect-ratio: 3/2;
+  aspect-ratio: 1/1;
   object-fit: cover;
   object-position: center center;
   display: block;
@@ -3890,26 +3892,82 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 
 /* ============================================================
    FLOATING WHATSAPP BUTTON — bottom-right, brand luxury palette
+   Label + circle layout; label auto-peeks on mount, brightens on hover.
    ============================================================ */
 .wa-float {
   position: fixed;
   right: clamp(18px, 2vw, 28px);
   bottom: clamp(18px, 2vw, 28px);
   z-index: 95;
-  width: 60px;
-  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  isolation: isolate;
+}
+
+/* Marketing tagline pill to the LEFT of the circle */
+.wa-float-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 18px;
+  border-radius: 999px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.005em;
+  line-height: 1;
+  white-space: nowrap;
+  color: #F5E9D1;
+  background: linear-gradient(135deg, rgba(15, 13, 11, 0.92) 0%, rgba(26, 20, 12, 0.92) 100%);
+  border: 1px solid rgba(212, 178, 122, 0.32);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  overflow: hidden;
+  animation: wa-label-peek 9s ease-in-out infinite;
+  transform-origin: right center;
+}
+.wa-float-label em {
+  font-style: italic;
+  background: linear-gradient(
+    100deg,
+    #8B6F3F 0%, #C9A96E 30%, #FFF5D0 50%, #C9A96E 70%, #8B6F3F 100%
+  );
+  background-size: 220% 100%;
+  background-position: 200% center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: wa-label-shine 3.6s linear infinite;
+}
+@keyframes wa-label-shine {
+  0%   { background-position: 200% center; }
+  100% { background-position: -60% center; }
+}
+@keyframes wa-label-peek {
+  0%, 90%, 100% { opacity: 1; transform: translateX(0) scaleX(1); }
+  /* Brief collapse mid-cycle so the pill draws the eye back */
+  45%           { opacity: 0.0; transform: translateX(14px) scaleX(0.6); }
+  60%           { opacity: 1; transform: translateX(0) scaleX(1); }
+}
+
+/* Circle (icon + pulse + ring) */
+.wa-float-circle {
+  position: relative;
   display: inline-grid;
   place-items: center;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: linear-gradient(135deg, #0F0D0B 0%, #1A140C 100%);
   color: #F5E9D1;
   border: 1px solid rgba(212, 178, 122, 0.5);
   box-shadow:
     0 14px 30px rgba(0, 0, 0, 0.45),
-    0 0 0 0 rgba(212, 178, 122, 0.0),
     inset 0 1px 0 rgba(245, 233, 209, 0.08);
-  text-decoration: none;
-  isolation: isolate;
   transition:
     transform 0.35s var(--ease),
     color 0.35s var(--ease),
@@ -3945,7 +4003,9 @@ a.contact-aside-v:hover { color: var(--color-terra); }
   70%  { transform: scale(1.55); opacity: 0; }
   100% { transform: scale(1.55); opacity: 0; }
 }
-.wa-float:hover {
+
+/* Hover state — affects whole group */
+.wa-float:hover .wa-float-circle {
   color: #FFF5D0;
   border-color: rgba(212, 178, 122, 0.85);
   transform: translateY(-3px) scale(1.05);
@@ -3954,12 +4014,21 @@ a.contact-aside-v:hover { color: var(--color-terra); }
     0 0 24px rgba(212, 178, 122, 0.30),
     inset 0 1px 0 rgba(245, 233, 209, 0.12);
 }
+.wa-float:hover .wa-float-label {
+  animation-play-state: paused;
+  border-color: rgba(212, 178, 122, 0.7);
+}
+
+/* Mobile — hide label, keep circle (less screen real estate) */
 @media (max-width: 700px) {
-  .wa-float { width: 54px; height: 54px; }
+  .wa-float-label { display: none; }
+  .wa-float-circle { width: 54px; height: 54px; }
   .wa-float-icon { width: 24px; height: 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .wa-float-pulse { animation: none; }
+  .wa-float-pulse,
+  .wa-float-label,
+  .wa-float-label em { animation: none !important; }
 }
 
 /* Standalone icon at the top of each aside item (no label needed) */
