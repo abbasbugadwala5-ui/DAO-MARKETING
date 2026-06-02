@@ -138,7 +138,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://www.facebook.com/daomarketing"
+                href="https://www.facebook.com/daomarketingmanagement"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="df-social-icon-link"

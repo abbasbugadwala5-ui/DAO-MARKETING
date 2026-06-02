@@ -45,7 +45,7 @@ const SOCIALS = [
   },
   {
     label: 'Facebook',
-    href: 'https://www.facebook.com/daomarketing',
+    href: 'https://www.facebook.com/daomarketingmanagement',
     network: 'facebook',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden>
