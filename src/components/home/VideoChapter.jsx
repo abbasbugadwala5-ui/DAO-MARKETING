@@ -68,7 +68,10 @@ export default function VideoChapter() {
       <div className="chapter-inner">
         {/* <div className="chapter-num chapter-rise">01</div>
         <div className="chapter-eyebrow chapter-rise">Inside the Agency</div> */}
-        <h2 className="chapter-rise">A Global Digital Marketing Agency</h2>
+        <h2 className="chapter-rise">Every Touchpoint Has to Feel Right</h2>
+        <p className="chapter-body chapter-rise">
+          We connect your content, social media, and website into one clean brand experience that feels polished from start to finish.
+        </p>
         <div className="chapter-line chapter-rise" />
       </div>
     </section>

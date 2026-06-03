@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -77,6 +77,16 @@ export default function Navbar() {
 
   useEffect(() => { setOpen(false); }, [pathname]);
 
+  const closeTimer = useRef(null);
+  const handleEnter = () => {
+    if (closeTimer.current) { clearTimeout(closeTimer.current); closeTimer.current = null; }
+    setOpen(true);
+  };
+  const handleLeave = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpen(false), 180);
+  };
+
   const go = (href) => (e) => {
     e.preventDefault();
     setOpen(false);
@@ -88,7 +98,9 @@ export default function Navbar() {
       <header className={`dao-nav ${visible ? '' : 'is-hidden'} ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
         <button
           type="button"
-          onClick={() => setOpen(v => !v)}
+          onMouseEnter={handleEnter}
+          onMouseLeave={handleLeave}
+          onFocus={handleEnter}
           className="nav-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
@@ -104,9 +116,16 @@ export default function Navbar() {
         <Link href="/contact" onClick={go('/contact')} className="nav-cta">Start a project</Link>
       </header>
 
-      <aside className={`nav-overlay ${open ? 'is-open' : ''}`} aria-hidden={!open}>
+      <aside
+        className={`nav-overlay ${open ? 'is-open' : ''}`}
+        aria-hidden={!open}
+      >
         <button type="button" className="nav-overlay-bg" onClick={() => setOpen(false)} aria-label="Close menu" />
-        <div className="nav-panel">
+        <div
+          className="nav-panel"
+          onMouseEnter={handleEnter}
+          onMouseLeave={handleLeave}
+        >
           <nav className="nav-panel-links">
             {LINKS.map((l) => {
               const active = pathname === l.href;

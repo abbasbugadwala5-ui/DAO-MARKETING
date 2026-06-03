@@ -5,8 +5,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@/hooks/useGSAP';
 
-const HEADLINE = 'Cinematic social and websites';
-const SUBHEAD  = 'for Dubai property and lifestyle brands';
+const HEADLINE = 'Be the Brand They Choose First';
+const SUBHEAD  = 'A premium digital presence for Dubai brands that want to look polished and attract better clients.';
 
 /* Background video — plays full-bleed behind the headline.
    Drop another file in /public/videos and swap this path. */

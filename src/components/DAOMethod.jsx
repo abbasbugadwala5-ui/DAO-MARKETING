@@ -56,9 +56,9 @@ export default function DAOMethod() {
             scrollTrigger: {
               trigger: root.current,
               start: 'top top',
-              end: isDesktop ? '+=320%' : '+=220%',
+              end: isDesktop ? '+=35%' : '+=25%',
               pin: true,
-              scrub: 1,
+              scrub: 0.5,
               anticipatePin: 1,
               invalidateOnRefresh: true,
             },
@@ -67,23 +67,16 @@ export default function DAOMethod() {
           tl.to('.dao-eyebrow', { y: 0, opacity: 1, duration: 0.5 })
             .to('.dao-title-word', { yPercent: 0, duration: 0.7, stagger: 0.1 }, '-=0.2')
             .to('.dao-lede', { y: 0, opacity: 1, duration: 0.55 }, '-=0.2')
-            .to({}, { duration: 0.6 });
+            .to({}, { duration: 0.3 });
 
-          pillars.forEach((p, i) => {
-            const letter = p.querySelector('.dao-letter');
-            const name   = p.querySelector('.dao-name');
-            const desc   = p.querySelector('.dao-desc');
-            const rule   = p.querySelector('.dao-pillar-rule');
-            const label  = `card${i}`;
-            tl.addLabel(label, '+=0.4')
-              .to(p,      { y: 0, opacity: 1, duration: 0.7 }, label)
-              .to(letter, { y: 0, scale: 1, opacity: 1, duration: 0.7 },     `${label}+=0.1`)
-              .to(name,   { y: 0, opacity: 1, duration: 0.45 },              `${label}+=0.4`)
-              .to(desc,   { y: 0, opacity: 1, duration: 0.5 },               `${label}+=0.5`)
-              .to(rule,   { scaleX: 1, duration: 0.55 },                     `${label}+=0.6`);
-          });
-
-          tl.to({}, { duration: 0.6 });
+          /* All three pillars reveal TOGETHER — no card-by-card stagger */
+          tl.addLabel('cards', '+=0.2')
+            .to('.dao-pillar',      { y: 0, opacity: 1, duration: 0.7 }, 'cards')
+            .to('.dao-letter',      { y: 0, scale: 1, opacity: 1, duration: 0.7 }, 'cards+=0.1')
+            .to('.dao-name',        { y: 0, opacity: 1, duration: 0.45 }, 'cards+=0.25')
+            .to('.dao-desc',        { y: 0, opacity: 1, duration: 0.5 }, 'cards+=0.35')
+            .to('.dao-pillar-rule', { scaleX: 1, duration: 0.55 }, 'cards+=0.45')
+            .to({}, { duration: 0.4 });
         }
       );
 

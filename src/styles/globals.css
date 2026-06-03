@@ -27,6 +27,8 @@
 html, body {
   background: var(--color-paper);
   color: var(--color-ink);
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* Global cinematic film grain — applies across every page */
@@ -1327,6 +1329,15 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 .chapter-num { width: 58px; height: 58px; border-radius: 50%; border: 1px solid rgba(255,255,255,.45); display: grid; place-items: center; font-size: 18px; font-weight: 600; }
 .chapter-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: rgba(255,255,255,.7); }
 .chapter-inner h2 { font-size: clamp(34px,5.6vw,90px); font-weight: 700; line-height: 1; letter-spacing: -.03em; text-transform: uppercase; }
+.chapter-body {
+  max-width: 640px;
+  margin-top: 6px;
+  font-size: clamp(15px, 1.15vw, 19px);
+  line-height: 1.6;
+  letter-spacing: -.005em;
+  color: rgba(255,255,255,.78);
+  font-weight: 400;
+}
 .chapter-line { width: 1px; height: 70px; background: rgba(255,255,255,.4); margin-top: 10px; }
 
 .editorial { background: var(--color-paper); padding: 200px 0; text-align: center; }
@@ -2496,27 +2507,27 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 .dao-nav.is-hidden { opacity: 0; transform: translateY(-8px); }
 .dao-nav.is-hidden > * { pointer-events: none; }
 
-/* LEFT pill — MENU */
+/* LEFT — MENU (no pill background, just text + hamburger) */
 .nav-menu {
   justify-self: start;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 22px;
-  background: var(--color-paper);
-  border: 1px solid rgba(18, 23, 42, 0.08);
-  border-radius: 999px;
+  gap: 10px;
+  padding: 10px 4px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
   color: var(--color-ink);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   cursor: pointer;
   font-family: inherit;
-  box-shadow: 0 4px 16px rgba(18, 23, 42, 0.05);
-  transition: background 0.3s, transform 0.3s var(--ease);
+  box-shadow: none;
+  transition: color 0.3s var(--ease), transform 0.3s var(--ease);
 }
-.nav-menu:hover { background: #fff; transform: translateY(-1px); }
+.nav-menu:hover { transform: translateY(-1px); }
 .nav-menu-icon { display: flex; flex-direction: column; gap: 4px; width: 16px; }
 .nav-menu-icon span { display: block; width: 100%; height: 1.5px; background: var(--color-ink); transition: transform 0.3s var(--ease); }
 .dao-nav.is-open .nav-menu-icon span:nth-child(1) { transform: translateY(2.75px) rotate(45deg); }
@@ -2558,7 +2569,11 @@ a.contact-aside-v:hover { color: var(--color-terra); }
   -webkit-backdrop-filter: none;
 }
 .dao-nav.is-scrolled .nav-mark-logo { height: 86px; }
-.dao-nav.is-scrolled .nav-menu,
+.dao-nav.is-scrolled .nav-menu {
+  padding: 8px 4px;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+}
 .dao-nav.is-scrolled .nav-cta {
   padding: 10px 18px;
   font-size: 11px;
@@ -2615,14 +2630,15 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 
 .nav-panel-links { display: flex; flex-direction: column; }
 .nav-panel-link {
-  font-family: var(--font-display);
-  font-size: clamp(34px, 4.4vw, 54px);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(30px, 3.6vw, 46px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.005em;
+  text-transform: none;
   color: var(--color-ink);
-  padding: 8px 0;
+  padding: 6px 0;
   transition: color 0.3s, transform 0.3s var(--ease);
 }
 .nav-panel-link:hover { color: var(--color-terra); transform: translateX(8px); }
@@ -4644,9 +4660,9 @@ a.cv2-aside-value:hover { color: #C9A96E; }
 .df-contact-grid { border-top-color: rgba(212, 178, 122, 0.12); }
 .df-base { color: rgba(212, 178, 122, 0.4); border-top-color: rgba(212, 178, 122, 0.08); }
 
-/* Navbar — pills + slide-in panel */
-.nav-menu { background: #1c1c1c; border-color: rgba(212, 178, 122, 0.18); color: #D4B27A; }
-.nav-menu:hover { background: #262626; }
+/* Navbar — no pill bg on menu; slide-in panel */
+.nav-menu { background: transparent; border-color: transparent; color: #D4B27A; }
+.nav-menu:hover { background: transparent; }
 .nav-menu-icon span { background: #D4B27A; }
 .nav-cta { background: #D4B27A; color: #050505; }
 .nav-cta:hover { background: #E5C685; }
@@ -5463,4 +5479,49 @@ a:hover { color: #D4B27A; }
   .legal-page { padding-top: clamp(100px, 14vh, 140px); }
   .legal-title { font-size: clamp(32px, 9vw, 52px); }
   .legal-body { font-size: 15px; }
+}
+
+/* ============================================================
+   WIDE SCREEN CAPS — 1440px+ (FHD Windows / external monitors)
+   Site was designed for ~1440px MacBook. These caps prevent
+   decorative elements from overflowing or feeling oversized.
+   ============================================================ */
+@media (min-width: 1440px) {
+  /* Hero headline — was hitting 96px max, feels oversized on FHD */
+  .cine-hero h1 { font-size: clamp(36px, 4.4vw, 84px); }
+
+  /* About page giant pillar watermark numbers — were overflowing */
+  .about-pillar-num {
+    font-size: clamp(180px, 14vw, 240px);
+    right: -0.5vw;
+    bottom: -3vw;
+  }
+
+  /* Work showcase watermark numbers — were oversized + overflowing */
+  .work-num {
+    font-size: clamp(220px, 22vw, 420px);
+    right: -1vw;
+    bottom: -4vw;
+  }
+
+  /* Cine mosaic — pull inset closer so tiles don't escape container */
+  .cine-mosaic { inset: -2%; }
+
+  /* Footer wordmark — was scaling too large */
+  .df-mask-text { font-size: clamp(48px, 6.5vw, 96px); }
+
+  /* Navbar logo — keep proportional to viewport, not viewport-relative growth */
+  .nav-mark-logo { height: 116px; }
+  .dao-nav.is-scrolled .nav-mark-logo { height: 76px; }
+
+  /* Section wrap — let content breathe a bit on wider screens */
+  .section-wrap { max-width: 1360px; }
+}
+
+/* Extra-wide screens (1600px+) — additional taming */
+@media (min-width: 1600px) {
+  .cine-hero h1 { font-size: clamp(36px, 4vw, 80px); }
+  .about-pillar-num { font-size: clamp(180px, 12vw, 220px); }
+  .work-num { font-size: clamp(220px, 18vw, 380px); }
+  .section-wrap { max-width: 1440px; }
 }
