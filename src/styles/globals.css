@@ -970,13 +970,14 @@ a.contact-aside-v:hover { color: var(--color-terra); }
   font-family: var(--font-display); /* Schibsted Grotesk */
   font-size: clamp(36px, 6vw, 96px);
   font-weight: 700;
-  line-height: 1.0;
+  line-height: 1.05;
   letter-spacing: -0.03em;
   color: #fff;
   max-width: 18ch;
-  text-transform: none;
+  text-transform: uppercase;
   margin: 0;
 }
+.cine-h1-row { display: block; }
 .cine-sub {
   font-family: var(--font-serif); /* Playfair Display */
   font-style: italic;

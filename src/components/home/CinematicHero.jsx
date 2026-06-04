@@ -5,7 +5,10 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@/hooks/useGSAP';
 
-const HEADLINE = 'Be the Brand They Choose First';
+const HEADLINE = [
+  ['Be', 'the', 'Brand'],
+  ['They', 'Choose', 'First'],
+];
 const SUBHEAD  = 'A premium digital presence for Dubai brands that want to look polished and attract better clients.';
 
 /* Background video — plays full-bleed behind the headline.
@@ -146,9 +149,13 @@ export default function CinematicHero() {
           className="cine-logo"
         />
         <h1 className="cine-h1">
-          {HEADLINE.split(' ').map((w, i) => (
-            <span key={i} className="reveal-line">
-              <span className="cine-word reveal-word">{w}&nbsp;</span>
+          {HEADLINE.map((line, lineIdx) => (
+            <span key={lineIdx} className="cine-h1-row">
+              {line.map((w, i) => (
+                <span key={i} className="reveal-line">
+                  <span className="cine-word reveal-word">{w}&nbsp;</span>
+                </span>
+              ))}
             </span>
           ))}
         </h1>
