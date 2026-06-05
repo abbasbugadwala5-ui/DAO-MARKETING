@@ -11,7 +11,7 @@ if (typeof window !== 'undefined') {
 const IMG = {
   process1: '/images/cine%2018.jpg',
   process2: '/images/cine%2023.jpg',
-  process3: '/images/cine%2031.jpg',
+  process3: '/images/cine%205.webp',
 };
 
 export default function WhatHappensNext() {

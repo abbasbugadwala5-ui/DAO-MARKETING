@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="dao-footer">
       <div className="df-mask-wrap">
-        <div className="df-mask-text">DAO MARKETING</div>
+        <div className="df-mask-text">DAO MARKETING LLC</div>
       </div>
 
       <div className="df-contact-grid">

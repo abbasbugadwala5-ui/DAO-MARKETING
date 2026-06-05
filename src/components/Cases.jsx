@@ -9,13 +9,21 @@ import { useGSAP } from '@/hooks/useGSAP';
 
 const cases = [
   {
-    label: 'ekster', tag: 'View case', shape: 'tall',
-    src: '/images/case-vellum.jpg',
-    fallback: 'radial-gradient(120% 100% at 70% 20%,#39312c 0,#0c0a08 70%)',
+    label: 'Sama Al Tariq',
+    tag: 'Visit website',
+    shape: 'tall',
+    href: 'https://www.samaaltariq.org',
+    external: true,
+    src: '/images/case-sama-web.webp',
+    alt: 'Sama Al Tariq construction and fit-out website by DAO Marketing',
+    fallback: 'radial-gradient(120% 100% at 70% 20%,#188B97 0,#0c1518 70%)',
   },
   {
-    label: 'Aya — Movement', tag: 'View case', shape: 'short',
+    label: 'Aya — Movement',
+    tag: 'View case',
+    shape: 'short',
     src: '/images/case-aya.jpg',
+    alt: 'Aya — Movement brand identity case',
     fallback: 'radial-gradient(120% 100% at 30% 30%,#c8112a 0,#1a0306 75%)',
   },
 ];
@@ -36,6 +44,9 @@ function CaseCard({ data }) {
   return (
     <motion.a
       ref={cardRef}
+      href={data.href}
+      target={data.external ? '_blank' : undefined}
+      rel={data.external ? 'noopener noreferrer' : undefined}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       initial={{ y: 70, opacity: 0 }}
@@ -53,13 +64,15 @@ function CaseCard({ data }) {
         className="absolute inset-0 transition-transform duration-[1000ms] ease-[var(--ease)] group-hover:scale-[1.06]"
         style={{ background: data.fallback }}
       >
-        <Image
-          src={data.src}
-          alt={data.label}
-          fill
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          style={{ objectFit: 'cover' }}
-        />
+        {data.src && (
+          <Image
+            src={data.src}
+            alt={data.alt}
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            style={{ objectFit: 'cover' }}
+          />
+        )}
       </div>
 
       <div className="absolute inset-0 opacity-0 transition-opacity duration-[550ms] group-hover:opacity-100"
