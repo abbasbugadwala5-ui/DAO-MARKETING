@@ -47,6 +47,19 @@ export default function ApproachCircle() {
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    /* Desktop keeps the original scrub: 2 lag for buttery smoothness.
+       Mobile uses scrub: 0.6 so the arc actually reaches a full rotation
+       before momentum scrolling carries the user past the section. */
+    const mm = gsap.matchMedia();
+    mm.add(
+      {
+        isDesktop: '(min-width: 901px)',
+        isMobile:  '(max-width: 900px)',
+      },
+      (context) => {
+        const { isDesktop } = context.conditions;
+        const scrubAmount = isDesktop ? 2 : 0.6;
+
     // Draw the progress arc as user scrolls — this is the line that connects dots
     gsap.to('.ring-arc', {
       strokeDashoffset: 0,
@@ -55,7 +68,7 @@ export default function ApproachCircle() {
         trigger: root.current,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 2,
+        scrub: scrubAmount,
         invalidateOnRefresh: true,
       },
     });
@@ -66,7 +79,7 @@ export default function ApproachCircle() {
       trigger: root.current,
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 2,
+      scrub: scrubAmount,
       invalidateOnRefresh: true,
       onUpdate(self) {
         if (!root.current || !tipRef.current) return;
@@ -102,6 +115,8 @@ export default function ApproachCircle() {
           .to(targets, { opacity: 1, y: 0, duration: 0.35, ease: 'power3.out' });
       },
     });
+      }
+    );
   }, { scope: root });
 
   return (

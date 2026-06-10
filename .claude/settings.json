@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -n \"budget\\\\|\\\\\\\\$\\\\\\\\|AED\\\\\\\\|dirham\\\\\\\\|USD\\\\\\\\|currency\" /Users/priya/Desktop/DAO-MARKETING/src/components/ContactFormSection.jsx)",
+      "Bash(grep -n \"@media.*900px.*{$\\\\|.approach {\" /Users/priya/Desktop/DAO-MARKETING/src/styles/globals.css)",
+      "Bash(git branch *)",
+      "Bash(mv \"cinematic 1.mp4\"     cinematic-1.mp4)",
+      "Bash(mv \"cinematic 2.mp4\"     cinematic-2.mp4)",
+      "Bash(mv \"cinematic 3.mp4\"     cinematic-3.mp4)",
+      "Bash(mv \"cinematic copy.mp4\"  cinematic-copy.mp4)",
+      "Bash(mv \"dubai aerial.mp4\"    dubai-aerial.mp4)",
+      "Bash(ffmpeg -version)",
+      "Bash(brew --version)",
+      "Bash(xargs ls -lt)",
+      "Bash(find /var/folders -name \"*.jpg\" -o -name \"*.jpeg\" -o -name \"*.png\" 2>/dev/null | head -5 *)",
+      "Read(//private/var/folders/**)",
+      "Read(//Users/priya/Downloads/**)",
+      "Read(//Users/priya/Desktop/**)",
+      "Bash(cp ~/Downloads/DSC00500.jpg /Users/priya/Desktop/DAO-MARKETING/public/images/founder-fraz.jpg)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/priya/Desktop/DAO-MARKETING/public/images/founder-fraz.jpg)",
+      "Bash(sips -Z 1400 -s formatOptions 85 founder-fraz.jpg --out founder-fraz-opt.jpg)",
+      "Bash(mv founder-fraz-opt.jpg founder-fraz.jpg)",
+      "Bash(sips -g pixelWidth -g pixelHeight founder-fraz.jpg)",
+      "Bash(cp ~/Downloads/owner.png /Users/priya/Desktop/DAO-MARKETING/public/images/founder-fraz-raw.png)",
+      "Bash(sips -Z 1800 -s format jpeg -s formatOptions 85 founder-fraz-raw.png --out founder-fraz.jpg)",
+      "Bash(cp ~/Downloads/\"meeting room.png\" /Users/priya/Desktop/DAO-MARKETING/public/images/founder-bg-raw.png)",
+      "Bash(sips -Z 2000 -s format jpeg -s formatOptions 82 founder-bg-raw.png --out founder-bg.jpg)",
+      "Bash(sips -g pixelWidth -g pixelHeight founder-bg.jpg)"
+    ]
+  }
+}
