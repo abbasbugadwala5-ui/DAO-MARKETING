@@ -76,6 +76,20 @@ const STYLES = `
   #dao-login .dao-img-side{display:none}
   #dao-login .dao-form-side{padding:44px 26px}
 }
+@media (max-width:540px){
+  #dao-login .dao-form-side{padding:32px 20px}
+  #dao-login .dao-h1{font-size:36px}
+  #dao-login .dao-sub{font-size:13px}
+  #dao-login .dao-logo{margin-bottom:24px}
+  #dao-login input{font-size:16px !important;height:46px !important}
+  #dao-login .dao-submit{height:50px;font-size:12px}
+  #dao-login .dao-toggle{margin:22px 0 18px}
+  #dao-login .dao-tagline{font-size:15px}
+}
+@media (max-width:380px){
+  #dao-login .dao-form-side{padding:28px 16px}
+  #dao-login .dao-h1{font-size:30px}
+}
 `;
 
 export default function LoginPage() {

@@ -10,9 +10,9 @@ import { FilesSummary } from '@/components/portal/ProjectVisuals';
 const EASE = [0.16, 1, 0.3, 1];
 const DISPLAY = { fontFamily: "'Bodoni Moda', Georgia, serif" };
 
-const btnGold = 'rounded-md bg-[#D4B27A] px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[#0A0908] transition-opacity hover:opacity-90 disabled:opacity-50';
-const btnGhost = 'rounded-md border border-[#D4B27A]/30 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-[#F5E9D1]/70 transition-colors hover:border-[#D4B27A] hover:text-[#D4B27A] disabled:opacity-50';
-const btnDanger = 'rounded-md border border-[#8B3A3A]/40 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-[#C97A7A] transition-colors hover:border-[#8B3A3A] hover:text-[#E08A8A] disabled:opacity-50';
+const btnGold = 'rounded-md bg-[#D4B27A] px-4 py-2.5 sm:py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[#0A0908] transition-opacity hover:opacity-90 disabled:opacity-50 min-h-[36px]';
+const btnGhost = 'rounded-md border border-[#D4B27A]/30 px-3 py-2 sm:py-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-[#F5E9D1]/70 transition-colors hover:border-[#D4B27A] hover:text-[#D4B27A] disabled:opacity-50 min-h-[34px]';
+const btnDanger = 'rounded-md border border-[#8B3A3A]/40 px-3 py-2 sm:py-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-[#C97A7A] transition-colors hover:border-[#8B3A3A] hover:text-[#E08A8A] disabled:opacity-50 min-h-[34px]';
 const labelCls = 'font-mono text-[10px] uppercase tracking-[0.2em] text-[#F5E9D1]/45';
 
 // Format bytes → human-readable
@@ -55,10 +55,10 @@ function FileRow({ file, isAdmin, onToggleVisibility, onDelete, onDownload, busy
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -4 }}
       transition={{ duration: 0.3, ease: EASE }}
-      className="flex flex-wrap items-center gap-3 rounded-lg border border-[#D4B27A]/12 bg-[#F5E9D1]/[0.02] p-4"
+      className="flex flex-wrap items-center gap-3 rounded-lg border border-[#D4B27A]/12 bg-[#F5E9D1]/[0.02] p-3 sm:p-4"
     >
       {/* File type tag */}
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-[#D4B27A]/25 bg-[#D4B27A]/8 font-mono text-[10px] uppercase tracking-wider text-[#D4B27A]">
+      <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-md border border-[#D4B27A]/25 bg-[#D4B27A]/8 font-mono text-[10px] uppercase tracking-wider text-[#D4B27A]">
         {fileTypeTag(file.file_type)}
       </div>
 
@@ -274,7 +274,7 @@ export default function FilesSection({ projectId, isAdmin }) {
   }
 
   return (
-    <section className="mt-12">
+    <section className="mt-6 sm:mt-12">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#D4B27A]">
           Files ({files.length})
