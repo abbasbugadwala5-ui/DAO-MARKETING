@@ -113,7 +113,16 @@ export default function Navbar() {
           <img src="/logo/logo-mark.svg" alt="DAO Marketing Management" className="nav-mark-logo" />
         </Link>
 
-        <Link href="/contact" onClick={go('/contact')} className="nav-cta">Start a project</Link>
+        <div className="nav-right-group">
+          <Link href="/portal/login" onClick={go('/portal/login')} className="nav-portal" aria-label="Client Portal Login">
+            <svg className="nav-portal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <rect width="18" height="11" x="3" y="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <span>Client Portal</span>
+          </Link>
+          <Link href="/contact" onClick={go('/contact')} className="nav-cta">Start a project</Link>
+        </div>
       </header>
 
       <aside
@@ -140,6 +149,13 @@ export default function Navbar() {
                 </Link>
               );
             })}
+            <Link
+              href="/portal/login"
+              className="nav-panel-link nav-panel-portal-link"
+              onClick={go('/portal/login')}
+            >
+              Client Portal →
+            </Link>
           </nav>
           <div className="nav-panel-foot">
             <div>

@@ -1,29 +1,57 @@
-export const metadata = {
-  title: 'Project · DAO Marketing Portal',
-};
+// src/app/portal/projects/[id]/page.jsx
+import { redirect, notFound } from 'next/navigation';
+import { createClient } from '@/lib/supabase/server';
+import ProjectDetailAdmin from '@/components/portal/ProjectDetailAdmin';
+import ProjectDetailClient from '@/components/portal/ProjectDetailClient';
 
-export default async function ProjectDetailPlaceholder({ params }) {
+export const dynamic = 'force-dynamic';
+
+const VALID_TABS = ['overview', 'updates', 'milestones', 'files', 'chat'];
+
+export default async function ProjectDetailPage({ params, searchParams }) {
   const { id } = await params;
-  const serifItalic = { fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic' };
-  const sans = { fontFamily: "'Schibsted Grotesk', sans-serif" };
+  const sp = await searchParams;
+  const initialTab = VALID_TABS.includes(sp?.tab) ? sp.tab : 'overview';
+  const supabase = await createClient();
 
-  return (
-    <div className="p-12">
-      <a href="/portal/dashboard" style={sans} className="inline-block text-[10px] uppercase tracking-[0.3em] text-[#D4B27A] hover:text-[#E5BB5C] mb-8">
-        ← Back to dashboard
-      </a>
-      <div style={sans} className="text-[10px] uppercase tracking-[0.3em] text-[#D4B27A]/60 mb-4">
-        Phase 3 — Project detail
-      </div>
-      <h1 style={serifItalic} className="text-5xl text-[#F5E9D1] mb-4">
-        Project detail<span className="text-[#D4B27A]">.</span>
-      </h1>
-      <p style={sans} className="text-[#F5E9D1]/60 max-w-xl">
-        Full project edit view with milestone management, updates posting, and file upload — coming in Phase 3.
-      </p>
-      <div style={sans} className="mt-8 text-[10px] uppercase tracking-[0.2em] text-[#F5E9D1]/40">
-        Project ID: {id}
-      </div>
-    </div>
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect('/portal/login');
+
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', user.id)
+    .single();
+
+  // One query works for both roles — RLS returns the row to an admin, or to the
+  // owning client only. For updates, RLS also hides any visible_to_client = false
+  // rows from clients automatically, so the client view never has to filter.
+  const { data: project } = await supabase
+    .from('projects')
+    .select(`
+      *,
+      client:profiles!projects_client_id_fkey(id, full_name, company, email, phone),
+      milestones(*),
+      updates(*, author:profiles!updates_posted_by_fkey(full_name))
+    `)
+    .eq('id', id)
+    .maybeSingle();
+
+  // Null = no access (client opened someone else's project) or doesn't exist.
+  if (!project) notFound();
+
+  const milestones = [...(project.milestones || [])].sort(
+    (a, b) => (a.order_index ?? 0) - (b.order_index ?? 0)
+  );
+  const updates = [...(project.updates || [])].sort(
+    (a, b) => new Date(b.created_at) - new Date(a.created_at)
+  );
+
+  const isAdmin = profile?.role === 'admin';
+
+  return isAdmin ? (
+    <ProjectDetailAdmin project={project} milestones={milestones} updates={updates} profile={profile} initialTab={initialTab} />
+  ) : (
+    <ProjectDetailClient project={project} milestones={milestones} updates={updates} profile={profile} initialTab={initialTab} />
   );
 }
