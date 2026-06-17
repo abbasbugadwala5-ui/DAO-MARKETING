@@ -21,6 +21,24 @@ export default function SmoothScroll({ children }) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    // Skip Lenis on touch devices — native scroll is already hardware-optimized
+    // and Lenis on top of it causes jank, lag, and broken sticky/scroll triggers.
+    const isTouchDevice =
+      typeof window !== 'undefined' &&
+      (window.matchMedia('(pointer: coarse)').matches ||
+        window.matchMedia('(max-width: 900px)').matches);
+
+    if (isTouchDevice) {
+      // Still keep ScrollTrigger working with native scroll
+      const onLoad = () => ScrollTrigger.refresh();
+      window.addEventListener('load', onLoad);
+      ScrollTrigger.refresh();
+      if (document.fonts) {
+        document.fonts.ready.then(() => ScrollTrigger.refresh());
+      }
+      return () => window.removeEventListener('load', onLoad);
+    }
+
     const lenis = new Lenis({
       lerp: 0.085,
       wheelMultiplier: 1,
@@ -65,7 +83,12 @@ export default function SmoothScroll({ children }) {
   // on route change → jump to top, re-measure ScrollTriggers
   useEffect(() => {
     const lenis = lenisRef.current;
-    if (lenis) lenis.scrollTo(0, { immediate: true });
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      // Native scroll path (touch devices)
+      window.scrollTo(0, 0);
+    }
     requestAnimationFrame(() => ScrollTrigger.refresh());
   }, [pathname]);
 

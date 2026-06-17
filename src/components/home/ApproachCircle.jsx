@@ -48,8 +48,9 @@ export default function ApproachCircle() {
     gsap.registerPlugin(ScrollTrigger);
 
     /* Desktop keeps the original scrub: 2 lag for buttery smoothness.
-       Mobile uses scrub: 0.6 so the arc actually reaches a full rotation
-       before momentum scrolling carries the user past the section. */
+       Mobile uses scrub: true (1:1 with scroll position) so the arc is
+       guaranteed to reach a full rotation by the end of the section,
+       even when momentum scrolling is fast. */
     const mm = gsap.matchMedia();
     mm.add(
       {
@@ -58,7 +59,7 @@ export default function ApproachCircle() {
       },
       (context) => {
         const { isDesktop } = context.conditions;
-        const scrubAmount = isDesktop ? 2 : 0.6;
+        const scrubAmount = isDesktop ? 2 : true;
 
     // Draw the progress arc as user scrolls — this is the line that connects dots
     gsap.to('.ring-arc', {

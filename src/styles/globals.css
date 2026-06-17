@@ -1200,18 +1200,20 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 .node.active .node-idx { color: var(--color-ink); opacity: 1; }
 
 @media (max-width: 900px) {
-  /* Reduce sticky scroll distance — 6 steps × ~60vh each = 360vh total.
-     Mobile gets breathing room so each step holds long enough to read
-     before swapping. */
+  /* Mobile: same circle as desktop, just resized for narrow viewport.
+     scrub: true in JS (vs 0.6 before) guarantees arc reaches 100% by
+     section end even with momentum scrolling. Section height stays
+     280vh = ~47vh per step, plenty of room to read each step.
+     Use only svh (stable across address-bar show/hide) — dvh changes
+     mid-scroll and breaks ScrollTrigger calculations. */
   .approach {
-    height: 360vh;
+    height: 280vh;
   }
 
   .approach-sticky {
     position: sticky;
     top: 0;
     height: 100svh;
-    height: 100dvh;
     overflow: hidden;
   }
 
@@ -2641,10 +2643,27 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 }
 .dao-nav.is-scrolled .nav-portal-icon { width: 12px; height: 12px; }
 
-/* Hide Client Portal button on mobile — accessible via overlay menu instead */
+/* Compact Login button on mobile — still visible, just smaller */
 @media (max-width: 720px) {
-  .nav-portal { display: none; }
-  .nav-right-group { gap: 0; }
+  .nav-portal {
+    padding: 8px 14px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    gap: 5px;
+  }
+  .nav-portal-icon { width: 11px; height: 11px; }
+  .nav-right-group { gap: 8px; }
+}
+@media (max-width: 480px) {
+  .nav-portal {
+    padding: 7px 11px;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    gap: 4px;
+  }
+  .nav-portal-icon { display: none; }
+  .nav-cta { padding: 7px 11px; font-size: 9.5px; letter-spacing: 0.1em; }
+  .nav-right-group { gap: 6px; }
 }
 
 /* Slide-out panel — Client Portal special styling */
@@ -5148,7 +5167,7 @@ a:hover { color: #D4B27A; }
    ============================================================ */
 @media (max-width: 900px) {
   /* No horizontal overflow ever */
-  html, body { max-width: 100vw; overflow-x: hidden; }
+  html, body { max-width: 100vw; overflow-x: clip; }
   img, video { max-width: 100%; height: auto; }
 
   /* Kill the heaviest blur filters (these alone cost ~16ms/frame on mid phones) */
