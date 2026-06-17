@@ -2655,15 +2655,27 @@ a.contact-aside-v:hover { color: var(--color-terra); }
   .nav-right-group { gap: 8px; }
 }
 @media (max-width: 480px) {
-  .nav-portal {
-    padding: 7px 11px;
-    font-size: 9.5px;
-    letter-spacing: 0.1em;
+  /* Stack vertically right-aligned: "Start a project" on top, "Login" below.
+     Both buttons identical compact size — same width, same height. */
+  .nav-right-group {
+    flex-direction: column-reverse;
+    align-items: flex-end;
     gap: 4px;
   }
+  .nav-portal,
+  .nav-cta {
+    width: 112px;
+    height: 26px;
+    padding: 0 10px;
+    font-size: 8.5px;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    box-sizing: border-box;
+    justify-content: center;
+    text-align: center;
+  }
+  .nav-portal { gap: 3px; }
   .nav-portal-icon { display: none; }
-  .nav-cta { padding: 7px 11px; font-size: 9.5px; letter-spacing: 0.1em; }
-  .nav-right-group { gap: 6px; }
 }
 
 /* Slide-out panel — Client Portal special styling */
