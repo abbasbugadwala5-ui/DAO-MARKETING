@@ -2,6 +2,42 @@ import nodemailer from 'nodemailer';
 
 export const runtime = 'nodejs';
 
+// ── Zoho CRM Web-to-Lead ────────────────────────────────────────────────
+// Public form identifiers from the Zoho "Website Contact Form" web form.
+// (These are the same tokens Zoho embeds in a public web form — not secrets.)
+const ZOHO_LEAD_URL = 'https://crm.zoho.com/crm/WebToLeadForm';
+const ZOHO_XNQSJSDP = 'cb04311586b4d53d21eca6d4ce092feb34e902bc40e2d24e90330204cc93fa1b';
+const ZOHO_XMIWTLD  = '4e9902a206a564502be1d296549f7266c13f3a20816bbafabe362d0594aa58a6a275be003d66d407cc3d99c52d70f576';
+
+// Creates a Lead in Zoho CRM. Never throws — a CRM hiccup must not break
+// the contact form or the email notification.
+async function sendToZohoLead({ name, email, company, message }) {
+  try {
+    const params = new URLSearchParams({
+      xnQsjsdp: ZOHO_XNQSJSDP,
+      xmIwtLD: ZOHO_XMIWTLD,
+      actionType: 'TGVhZHM=', // base64 for "Leads"
+      'Last Name': name,                 // Zoho requires Last Name
+      'Email': email,                    // Zoho requires Email
+      'Company': company || 'Not provided', // Zoho requires Company
+      'Description': message,
+    });
+
+    const res = await fetch(ZOHO_LEAD_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString(),
+      redirect: 'manual', // Zoho replies with a redirect to returnURL; we ignore it
+    });
+    // Zoho returns 200 or a 3xx redirect on success.
+    if (res.status >= 400) {
+      console.error('[/api/contact] Zoho lead non-OK status:', res.status);
+    }
+  } catch (zErr) {
+    console.error('[/api/contact] Zoho lead error:', zErr);
+  }
+}
+
 export async function POST(request) {
   try {
     const data = await request.json();
@@ -13,6 +49,9 @@ export async function POST(request) {
         { status: 400 }
       );
     }
+
+    // Forward the enquiry to Zoho CRM as a Lead (non-blocking, never throws).
+    await sendToZohoLead({ name, email, company, message });
 
     const host = process.env.SMTP_HOST || 'smtp.hostinger.com';
     const port = Number(process.env.SMTP_PORT || 465);
