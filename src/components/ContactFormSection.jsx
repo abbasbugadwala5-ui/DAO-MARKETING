@@ -1,14 +1,12 @@
 'use client';
 import { useState } from 'react';
 
-const servicesList = ['Strategy', 'Branding', 'Product Design', 'Web Design & Dev', 'E-commerce', 'CRO Audit', 'SEO', 'Paid Media', 'Social Media', 'Email & CRM'];
-
 export default function ContactFormSection() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(null);
   const [form, setForm] = useState({
-    name: '', email: '', company: '', service: '', message: '',
+    name: '', email: '', company: '', message: '',
   });
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
@@ -16,14 +14,13 @@ export default function ContactFormSection() {
     e.preventDefault();
     if (sending) return;
 
-    // Required fields: Name, Email, Service, Project details.
-    // Company and Budget are optional.
+    // Required fields: Name, Email, Description.
+    // Company is optional.
     const name    = form.name.trim();
     const email   = form.email.trim();
-    const service = form.service.trim();
     const message = form.message.trim();
-    if (!name || !email || !service || !message) {
-      setError('Please fill in your name, email, service and project details.');
+    if (!name || !email || !message) {
+      setError('Please fill in your name, email and description.');
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -85,14 +82,7 @@ export default function ContactFormSection() {
                 </div>
               </div>
               <div className="cv2-field">
-                <label>Service</label>
-                <select required value={form.service} onChange={set('service')}>
-                  <option value="" disabled>Select one</option>
-                  {servicesList.map((s) => <option key={s}>{s}</option>)}
-                </select>
-              </div>
-              <div className="cv2-field">
-                <label>Project details</label>
+                <label>Description</label>
                 <textarea required rows={5} value={form.message} onChange={set('message')} placeholder="A few lines about what you need…" />
               </div>
 
