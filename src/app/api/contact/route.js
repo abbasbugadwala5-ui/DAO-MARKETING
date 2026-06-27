@@ -9,8 +9,8 @@ const ZOHO_LEAD_URL = 'https://crm.zoho.com/crm/WebToLeadForm';
 const ZOHO_XNQSJSDP = 'cb04311586b4d53d21eca6d4ce092feb34e902bc40e2d24e90330204cc93fa1b';
 const ZOHO_XMIWTLD  = '4e9902a206a564502be1d296549f7266c13f3a20816bbafabe362d0594aa58a6a275be003d66d407cc3d99c52d70f576';
 
-// Creates a Lead in Zoho CRM. Never throws — a CRM hiccup must not break
-// the contact form or the email notification.
+// Creates a Lead in Zoho CRM. Never throws — returns true if Zoho accepted
+// the submission, false otherwise. A CRM hiccup must not break the form.
 async function sendToZohoLead({ name, email, company, message }) {
   try {
     const params = new URLSearchParams({
@@ -25,16 +25,21 @@ async function sendToZohoLead({ name, email, company, message }) {
 
     const res = await fetch(ZOHO_LEAD_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        // A browser-like UA helps Zoho accept the Web-to-Lead POST.
+        'User-Agent': 'Mozilla/5.0 (compatible; DAO-Website/1.0)',
+      },
       body: params.toString(),
       redirect: 'manual', // Zoho replies with a redirect to returnURL; we ignore it
     });
-    // Zoho returns 200 or a 3xx redirect on success.
-    if (res.status >= 400) {
-      console.error('[/api/contact] Zoho lead non-OK status:', res.status);
-    }
+    // Zoho returns 200 or a 3xx redirect on success; >=400 means rejected.
+    const ok = res.status < 400;
+    if (!ok) console.error('[/api/contact] Zoho lead non-OK status:', res.status);
+    return ok;
   } catch (zErr) {
     console.error('[/api/contact] Zoho lead error:', zErr);
+    return false;
   }
 }
 
@@ -50,30 +55,32 @@ export async function POST(request) {
       );
     }
 
-    // Forward the enquiry to Zoho CRM as a Lead (non-blocking, never throws).
-    await sendToZohoLead({ name, email, company, message });
+    // 1) Forward the enquiry to Zoho CRM as a Lead (never throws).
+    const zohoOk = await sendToZohoLead({ name, email, company, message });
 
-    const host = process.env.SMTP_HOST || 'smtp.hostinger.com';
-    const port = Number(process.env.SMTP_PORT || 465);
-    const user = process.env.SMTP_USER;
-    const pass = process.env.SMTP_PASS;
-    const to   = process.env.CONTACT_TO || user;
+    // 2) Send the email notification — best-effort. If email is misconfigured
+    //    or fails, we still treat the submission as successful as long as the
+    //    CRM lead was captured, so the visitor never sees a false error.
+    let emailOk = false;
+    try {
+      const host = process.env.SMTP_HOST || 'smtp.hostinger.com';
+      const port = Number(process.env.SMTP_PORT || 465);
+      const user = process.env.SMTP_USER;
+      const pass = process.env.SMTP_PASS;
+      const to   = process.env.CONTACT_TO || user;
 
-    if (!user || !pass) {
-      return Response.json(
-        { success: false, error: 'SMTP credentials not configured on the server.' },
-        { status: 500 }
-      );
-    }
+      if (!user || !pass) {
+        throw new Error('SMTP credentials not configured on the server.');
+      }
 
-    const transporter = nodemailer.createTransport({
-      host,
-      port,
-      secure: port === 465,
-      auth: { user, pass },
-    });
+      const transporter = nodemailer.createTransport({
+        host,
+        port,
+        secure: port === 465,
+        auth: { user, pass },
+      });
 
-    const safe = (s) => String(s || '').replace(/[<>]/g, '');
+      const safe = (s) => String(s || '').replace(/[<>]/g, '');
 
     const html = `
       <div style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 640px; margin: 0 auto; background: #faf2d8; padding: 28px;">
@@ -110,18 +117,30 @@ export async function POST(request) {
       `Budget: ${budget}\n\n` +
       `Project details:\n${message}`;
 
-    await transporter.sendMail({
-      from: `"DAO Marketing Website" <${user}>`,
-      to,
-      replyTo: email,
-      subject: `New enquiry — ${name}`,
-      text,
-      html,
-    });
+      await transporter.sendMail({
+        from: `"DAO Marketing Website" <${user}>`,
+        to,
+        replyTo: email,
+        subject: `New enquiry — ${name}`,
+        text,
+        html,
+      });
+      emailOk = true;
+    } catch (mailErr) {
+      console.error('[/api/contact] email error:', mailErr);
+    }
 
-    return Response.json({ success: true });
+    // Success if the lead reached Zoho OR the email was sent.
+    if (zohoOk || emailOk) {
+      return Response.json({ success: true });
+    }
+
+    return Response.json(
+      { success: false, error: 'Could not send. Please try again.' },
+      { status: 500 }
+    );
   } catch (err) {
-    console.error('[/api/contact] sendMail error:', err);
+    console.error('[/api/contact] handler error:', err);
     return Response.json(
       { success: false, error: 'Could not send. Please try again.' },
       { status: 500 }
