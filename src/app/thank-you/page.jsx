@@ -1,6 +1,6 @@
 export const metadata = {
   title: 'Thank you — DAO Marketing',
-  description: 'Your enquiry has been received. A real person will reply within one business day.',
+  description: 'Your enquiry has been received. One of our team members will reply within one business day.',
   robots: { index: false, follow: false },
   alternates: { canonical: 'https://daomarketing.com/thank-you' },
 };
@@ -28,7 +28,7 @@ export default function ThankYouPage() {
         </h1>
 
         <p className="ty-lede">
-          A real person reads every enquiry and will reply with a clear next
+          One of our team members reads every enquiry and will reply with a clear next
           step within one business day. Keep an eye on your inbox.
         </p>
 

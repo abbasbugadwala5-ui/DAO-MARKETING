@@ -81,7 +81,7 @@ export default function WhatHappensNext() {
         <div className="proc-stage proc-stage-1">
           <div className="proc-text">
             <span className="proc-eyebrow">01 · Reply</span>
-            <p>You hear back within <em>24 hours</em>. A real person from the team reads every enquiry — no auto-responder, no triage.</p>
+            <p>You hear back within <em>24 hours</em>. One of our team members reads every enquiry — no auto-responder, no triage.</p>
           </div>
           <div className="proc-photo">
             <img src={IMG.process1} alt="" />

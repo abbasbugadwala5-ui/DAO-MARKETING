@@ -280,7 +280,7 @@ const ORG_JSON_LD = {
           name: 'How do I start working with DAO Marketing?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Send a brief through the contact form on our site, or email fraz@daomarketing.com directly. A real person reads every enquiry within 24 hours — no auto-responder, no triage.',
+            text: 'Send a brief through the contact form on our site, or email fraz@daomarketing.com directly. One of our team members reads every enquiry within 24 hours — no auto-responder, no triage.',
           },
         },
         {
