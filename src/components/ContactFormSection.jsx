@@ -59,10 +59,23 @@ export default function ContactFormSection() {
         <div className="cv2-form-card">
           {sent ? (
             <div className="cv2-success">
-              <div className="cv2-success-dot" />
-              <h3 className="cv2-success-title">Thank you — message received.</h3>
+              <div className="cv2-success-seal" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <path
+                    d="M14 25l7 7 14-15"
+                    stroke="currentColor"
+                    strokeWidth="2.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3 className="cv2-success-title">
+                Thank you — message <em>received</em>.
+              </h3>
               <p className="cv2-success-note">
-                We&rsquo;ll be in touch within one business day.
+                A real person will review your enquiry and reply with a clear
+                next step within one business day.
               </p>
             </div>
           ) : (
