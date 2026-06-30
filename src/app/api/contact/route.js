@@ -22,6 +22,7 @@ async function sendToZohoLead({ name, email, phone, company, message }) {
       'Phone': phone || '',
       'Company': company || 'Not provided', // Zoho requires Company
       'Description': message,
+      'Lead Source': 'Website Enquiry',  // must exist in the Zoho Lead Source picklist
     });
 
     const res = await fetch(ZOHO_LEAD_URL, {
