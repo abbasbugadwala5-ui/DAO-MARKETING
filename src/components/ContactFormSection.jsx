@@ -6,7 +6,7 @@ export default function ContactFormSection() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(null);
   const [form, setForm] = useState({
-    name: '', email: '', company: '', message: '',
+    name: '', email: '', phone: '', company: '', message: '',
   });
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
@@ -74,7 +74,7 @@ export default function ContactFormSection() {
                 Thank you — message <em>received</em>.
               </h3>
               <p className="cv2-success-note">
-                A real person will review your enquiry and reply with a clear
+                One of our team members will review your enquiry and reply with a clear
                 next step within one business day.
               </p>
             </div>
@@ -90,9 +90,13 @@ export default function ContactFormSection() {
                   <input required type="email" value={form.email} onChange={set('email')} placeholder="jane@company.com" />
                 </div>
                 <div className="cv2-field">
-                  <label>Company <span className="cv2-optional">— optional</span></label>
-                  <input value={form.company} onChange={set('company')} placeholder="Company name" />
+                  <label>Phone <span className="cv2-optional">— optional</span></label>
+                  <input type="tel" value={form.phone} onChange={set('phone')} placeholder="+971 50 000 0000" />
                 </div>
+              </div>
+              <div className="cv2-field">
+                <label>Company <span className="cv2-optional">— optional</span></label>
+                <input value={form.company} onChange={set('company')} placeholder="Company name" />
               </div>
               <div className="cv2-field">
                 <label>Description</label>

@@ -11,7 +11,7 @@ const ZOHO_XMIWTLD  = '4e9902a206a564502be1d296549f7266c13f3a20816bbafabe362d059
 
 // Creates a Lead in Zoho CRM. Never throws — returns true if Zoho accepted
 // the submission, false otherwise. A CRM hiccup must not break the form.
-async function sendToZohoLead({ name, email, company, message }) {
+async function sendToZohoLead({ name, email, phone, company, message }) {
   try {
     const params = new URLSearchParams({
       xnQsjsdp: ZOHO_XNQSJSDP,
@@ -19,6 +19,7 @@ async function sendToZohoLead({ name, email, company, message }) {
       actionType: 'TGVhZHM=', // base64 for "Leads"
       'Last Name': name,                 // Zoho requires Last Name
       'Email': email,                    // Zoho requires Email
+      'Phone': phone || '',
       'Company': company || 'Not provided', // Zoho requires Company
       'Description': message,
     });
@@ -46,7 +47,7 @@ async function sendToZohoLead({ name, email, company, message }) {
 export async function POST(request) {
   try {
     const data = await request.json();
-    const { name, email, company, service, budget, message } = data || {};
+    const { name, email, phone, company, service, budget, message } = data || {};
 
     if (!name || !email || !message) {
       return Response.json(
@@ -56,7 +57,7 @@ export async function POST(request) {
     }
 
     // 1) Forward the enquiry to Zoho CRM as a Lead (never throws).
-    const zohoOk = await sendToZohoLead({ name, email, company, message });
+    const zohoOk = await sendToZohoLead({ name, email, phone, company, message });
 
     // 2) Send the email notification — best-effort. If email is misconfigured
     //    or fails, we still treat the submission as successful as long as the
@@ -93,6 +94,7 @@ export async function POST(request) {
         <table style="width: 100%; border-collapse: collapse; font-size: 14px; color: #1a1a1a;">
           <tr><td style="padding: 8px 0; width: 110px; color: #8E6F47;">Name</td><td>${safe(name)}</td></tr>
           <tr><td style="padding: 8px 0; color: #8E6F47;">Email</td><td><a href="mailto:${safe(email)}" style="color: #1a1a1a;">${safe(email)}</a></td></tr>
+          <tr><td style="padding: 8px 0; color: #8E6F47;">Phone</td><td>${safe(phone) || '—'}</td></tr>
           <tr><td style="padding: 8px 0; color: #8E6F47;">Company</td><td>${safe(company) || '—'}</td></tr>
           <tr><td style="padding: 8px 0; color: #8E6F47;">Service</td><td>${safe(service)}</td></tr>
           <tr><td style="padding: 8px 0; color: #8E6F47;">Budget</td><td>${safe(budget)}</td></tr>
@@ -112,6 +114,7 @@ export async function POST(request) {
       `New enquiry — DAO Marketing\n\n` +
       `Name: ${name}\n` +
       `Email: ${email}\n` +
+      `Phone: ${phone || '—'}\n` +
       `Company: ${company || '—'}\n` +
       `Service: ${service}\n` +
       `Budget: ${budget}\n\n` +
