@@ -6,7 +6,7 @@ export default function ContactFormSection() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(null);
   const [form, setForm] = useState({
-    name: '', email: '', phone: '', company: '', message: '',
+    name: '', email: '', phone: '', company: '', website: '', message: '',
   });
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
@@ -94,9 +94,15 @@ export default function ContactFormSection() {
                   <input type="tel" value={form.phone} onChange={set('phone')} placeholder="+971 50 000 0000" />
                 </div>
               </div>
-              <div className="cv2-field">
-                <label>Company <span className="cv2-optional">— optional</span></label>
-                <input value={form.company} onChange={set('company')} placeholder="Company name" />
+              <div className="cv2-field-row">
+                <div className="cv2-field">
+                  <label>Company <span className="cv2-optional">— optional</span></label>
+                  <input value={form.company} onChange={set('company')} placeholder="Company name" />
+                </div>
+                <div className="cv2-field">
+                  <label>Website <span className="cv2-optional">— optional</span></label>
+                  <input type="text" value={form.website} onChange={set('website')} placeholder="yourcompany.com" />
+                </div>
               </div>
               <div className="cv2-field">
                 <label>Description</label>

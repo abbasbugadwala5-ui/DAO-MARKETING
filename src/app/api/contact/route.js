@@ -6,12 +6,12 @@ export const runtime = 'nodejs';
 // Public form identifiers from the Zoho "Website Contact Form" web form.
 // (These are the same tokens Zoho embeds in a public web form — not secrets.)
 const ZOHO_LEAD_URL = 'https://crm.zoho.com/crm/WebToLeadForm';
-const ZOHO_XNQSJSDP = 'cb04311586b4d53d21eca6d4ce092feb34e902bc40e2d24e90330204cc93fa1b';
-const ZOHO_XMIWTLD  = '4e9902a206a564502be1d296549f7266c13f3a20816bbafabe362d0594aa58a6a275be003d66d407cc3d99c52d70f576';
+const ZOHO_XNQSJSDP = 'f1c08c82d933119571c47f2b912bc76a1ec41640fe3cc1f4e2a3d01d2b527198';
+const ZOHO_XMIWTLD  = '434a2088501fb6e074c89af27cb7171cbd4ce668b63284546872178e92c1aa6f6c82b1b4eca4257b7709d73e6446ee25';
 
 // Creates a Lead in Zoho CRM. Never throws — returns true if Zoho accepted
 // the submission, false otherwise. A CRM hiccup must not break the form.
-async function sendToZohoLead({ name, email, phone, company, message }) {
+async function sendToZohoLead({ name, email, phone, company, website, message }) {
   try {
     const params = new URLSearchParams({
       xnQsjsdp: ZOHO_XNQSJSDP,
@@ -20,9 +20,11 @@ async function sendToZohoLead({ name, email, phone, company, message }) {
       'Last Name': name,                 // Zoho requires Last Name
       'Email': email,                    // Zoho requires Email
       'Phone': phone || '',
+      'Website': website || '',
       'Company': company || 'Not provided', // Zoho requires Company
       'Description': message,
-      'Lead Source': 'Web Download',  // existing value in the Zoho Lead Source picklist
+      'Lead Source': 'Web Download',  // value from the Zoho Lead Source picklist
+      'Lead Status': 'Not Contacted', // closest "new lead" value in the picklist
     });
 
     const res = await fetch(ZOHO_LEAD_URL, {
@@ -48,7 +50,7 @@ async function sendToZohoLead({ name, email, phone, company, message }) {
 export async function POST(request) {
   try {
     const data = await request.json();
-    const { name, email, phone, company, service, budget, message } = data || {};
+    const { name, email, phone, company, website, service, budget, message } = data || {};
 
     if (!name || !email || !message) {
       return Response.json(
@@ -58,7 +60,7 @@ export async function POST(request) {
     }
 
     // 1) Forward the enquiry to Zoho CRM as a Lead (never throws).
-    const zohoOk = await sendToZohoLead({ name, email, phone, company, message });
+    const zohoOk = await sendToZohoLead({ name, email, phone, company, website, message });
 
     // 2) Send the email notification — best-effort. If email is misconfigured
     //    or fails, we still treat the submission as successful as long as the
@@ -96,6 +98,7 @@ export async function POST(request) {
           <tr><td style="padding: 8px 0; width: 110px; color: #8E6F47;">Name</td><td>${safe(name)}</td></tr>
           <tr><td style="padding: 8px 0; color: #8E6F47;">Email</td><td><a href="mailto:${safe(email)}" style="color: #1a1a1a;">${safe(email)}</a></td></tr>
           <tr><td style="padding: 8px 0; color: #8E6F47;">Phone</td><td>${safe(phone) || '—'}</td></tr>
+          <tr><td style="padding: 8px 0; color: #8E6F47;">Website</td><td>${safe(website) || '—'}</td></tr>
           <tr><td style="padding: 8px 0; color: #8E6F47;">Company</td><td>${safe(company) || '—'}</td></tr>
           <tr><td style="padding: 8px 0; color: #8E6F47;">Service</td><td>${safe(service)}</td></tr>
           <tr><td style="padding: 8px 0; color: #8E6F47;">Budget</td><td>${safe(budget)}</td></tr>
@@ -116,6 +119,7 @@ export async function POST(request) {
       `Name: ${name}\n` +
       `Email: ${email}\n` +
       `Phone: ${phone || '—'}\n` +
+      `Website: ${website || '—'}\n` +
       `Company: ${company || '—'}\n` +
       `Service: ${service}\n` +
       `Budget: ${budget}\n\n` +
