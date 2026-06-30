@@ -32,7 +32,7 @@ export default function ContactPage() {
             Let&rsquo;s start the <em>conversation</em>.
           </h1>
           <p className="cv2-mini-hero-lede c-reveal">
-            Tell us about the project — a real person reads every enquiry and
+            Tell us about the project — one of our team members reads every enquiry and
             replies with a clear next step within a day.
           </p>
         </div>
