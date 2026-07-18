@@ -69,10 +69,10 @@ export const metadata = {
   },
   icons: {
     icon: [
-      { url: '/logo/logo-mark.svg', type: 'image/svg+xml' },
+      { url: '/logo/logo-mark-icon.svg', type: 'image/svg+xml' },
     ],
-    shortcut: '/logo/logo-mark.svg',
-    apple: '/logo/logo-mark.svg',
+    shortcut: '/logo/logo-mark-icon.svg',
+    apple: '/logo/logo-mark-icon.svg',
   },
   manifest: '/manifest.json',
   verification: {
