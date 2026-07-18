@@ -10,6 +10,7 @@ const HEADLINE = [
   ['They', 'Choose', 'First'],
 ];
 const SUBHEAD  = 'A premium digital presence for Dubai brands that want to look polished and attract better clients.';
+const SUBHEAD2 = 'Brand, web, social and performance media — built end-to-end by one Dubai team.';
 
 /* Background video — plays full-bleed behind the headline.
    Drop another file in /public/videos and swap this path. */
@@ -160,6 +161,7 @@ export default function CinematicHero() {
           ))}
         </h1>
         <p className="cine-sub">{SUBHEAD}</p>
+        <p className="cine-sub cine-sub-2">{SUBHEAD2}</p>
       </div>
       <div className="cine-cue">Explore our approach<span /></div>
     </section>
