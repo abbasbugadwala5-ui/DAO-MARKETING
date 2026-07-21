@@ -18,8 +18,6 @@ const IMG = {
   story1:    '/images/cine%2014.webp',
   story2:    '/images/cine%2019.webp',
   story3:    '/images/cine%2025.webp',
-  founderBg: '/images/founder-fraz.jpg',
-  founder:   '/images/founder-fraz.jpg',
   mask:      '/images/cine%2030.jpg',
 };
 
@@ -119,44 +117,6 @@ export default function About({ showDAO = true }) {
           scrub: 1.5,
         },
       });
-
-      /* ── FOUNDER section — dramatic scroll-driven entrance ─── */
-      gsap.fromTo(
-        '.av2-founder-card',
-        { y: 140, opacity: 0, rotationX: -20, scale: 0.85 },
-        {
-          y: 0, opacity: 1, rotationX: 0, scale: 1,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: '.av2-founder',
-            start: 'top 85%',
-            end: 'top 30%',
-            scrub: 1,
-          },
-        }
-      );
-      /* Founder bg image — slow parallax scrub for an atmospheric halo */
-      gsap.to('.av2-founder-bg img', {
-        yPercent: 14,
-        scale: 1.10,
-        ease: 'none',
-        scrollTrigger: { trigger: '.av2-founder', start: 'top bottom', end: 'bottom top', scrub: 1 },
-      });
-      /* Founder quote rises into place */
-      gsap.fromTo(
-        '.av2-founder-quote',
-        { y: 60, opacity: 0 },
-        {
-          y: 0, opacity: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.av2-founder',
-            start: 'top 60%',
-            end: 'top 20%',
-            scrub: 1,
-          },
-        }
-      );
     }, root);
     return () => ctx.revert();
   }, []);
@@ -196,22 +156,6 @@ export default function About({ showDAO = true }) {
               <div className="av2-studio-label">{c.label}</div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* FOUNDER PORTRAIT */}
-      <section className="av2-founder">
-        <div className="av2-founder-bg" aria-hidden><img src={IMG.founderBg} alt="" /></div>
-        <div className="av2-founder-card a-reveal">
-          <img src={IMG.founder} alt="Fraz Saeed, Founder of DAO Marketing" />
-          <div className="av2-founder-meta">
-            <div className="av2-founder-name">Fraz Saeed</div>
-            <div className="av2-founder-role">Founder &amp; Creative Director</div>
-          </div>
-        </div>
-        <div className="av2-founder-quote a-reveal">
-          &ldquo;Every frame, every word, every pixel —<br />
-          built to make luxury feel inevitable.&rdquo;
         </div>
       </section>
 
