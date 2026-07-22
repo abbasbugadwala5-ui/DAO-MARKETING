@@ -1,10 +1,19 @@
 import '@/styles/globals.css';
+import { Schibsted_Grotesk, Playfair_Display, Bodoni_Moda, Cormorant_Garamond } from 'next/font/google';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import SmoothScroll from '@/components/SmoothScroll';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollIndicator from '@/components/ScrollIndicator';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
+
+/* Self-hosted via next/font — same typefaces as before, but no render-blocking
+   request to fonts.googleapis.com, automatic preloading, and font-display: swap. */
+const schibsted = Schibsted_Grotesk({ subsets: ['latin'], weight: ['400', '500', '600', '700', '800'], display: 'swap', variable: '--font-schibsted' });
+const playfair = Playfair_Display({ subsets: ['latin'], weight: ['500', '600', '700'], display: 'swap', variable: '--font-playfair' });
+const bodoni = Bodoni_Moda({ subsets: ['latin'], weight: ['500', '600', '700', '800', '900'], style: ['normal', 'italic'], display: 'swap', variable: '--font-bodoni' });
+const cormorant = Cormorant_Garamond({ subsets: ['latin'], weight: ['300', '400', '500', '600'], style: ['normal', 'italic'], display: 'swap', variable: '--font-cormorant' });
+const fontVars = `${schibsted.variable} ${playfair.variable} ${bodoni.variable} ${cormorant.variable}`;
 
 const SITE_URL = 'https://daomarketing.com';
 
@@ -298,14 +307,8 @@ const ORG_JSON_LD = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={fontVars}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500;1,600&family=Playfair+Display:wght@500;600;700&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSON_LD) }}

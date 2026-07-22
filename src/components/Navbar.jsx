@@ -86,6 +86,12 @@ export default function Navbar() {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     closeTimer.current = setTimeout(() => setOpen(false), 180);
   };
+  // Hover-to-open is desktop-only. On touch, a tap fires synthetic
+  // pointerenter + click; gating on pointerType keeps the click a clean toggle
+  // instead of open-then-close. Click/keyboard toggle works on every device.
+  const handlePointerEnter = (e) => { if (e.pointerType === 'mouse') handleEnter(); };
+  const handlePointerLeave = (e) => { if (e.pointerType === 'mouse') handleLeave(); };
+  const toggleMenu = () => setOpen((o) => !o);
 
   const go = (href) => (e) => {
     e.preventDefault();
@@ -98,9 +104,9 @@ export default function Navbar() {
       <header className={`dao-nav ${visible ? '' : 'is-hidden'} ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
         <button
           type="button"
-          onMouseEnter={handleEnter}
-          onMouseLeave={handleLeave}
-          onFocus={handleEnter}
+          onClick={toggleMenu}
+          onPointerEnter={handlePointerEnter}
+          onPointerLeave={handlePointerLeave}
           className="nav-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}

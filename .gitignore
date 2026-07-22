@@ -5,3 +5,7 @@
 *.log
 .env*
 !.env.local.example
+
+# Audit artifacts (screenshots/lighthouse) are large; keep only the report
+/audit/*
+!/audit/FINDINGS.md

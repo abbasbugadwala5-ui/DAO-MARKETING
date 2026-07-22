@@ -15,9 +15,9 @@
   --color-terra:   #12172A;
   --color-accent:  #12172A;
   --radius-card:   28px;
-  --font-display:  'Schibsted Grotesk', sans-serif;
-  --font-serif: 'Playfair Display', serif;
-  --font-luxe: 'Bodoni Moda', 'Bodoni 72', 'Didot', serif;
+  --font-display:  var(--font-schibsted), 'Schibsted Grotesk', sans-serif;
+  --font-serif: var(--font-playfair), 'Playfair Display', serif;
+  --font-luxe: var(--font-bodoni), 'Bodoni Moda', 'Bodoni 72', 'Didot', serif;
 }
 
 :root { --ease: cubic-bezier(.22,.61,.36,1); }
@@ -2737,7 +2737,7 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 
 .nav-panel-links { display: flex; flex-direction: column; }
 .nav-panel-link {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
   font-style: italic;
   font-size: clamp(30px, 3.6vw, 46px);
   font-weight: 400;
@@ -2833,8 +2833,8 @@ a.contact-aside-v:hover { color: var(--color-terra); }
 
 @media (max-width: 700px) {
   .dao-nav { top: 12px; left: 12px; right: 12px; gap: 8px; }
-  .nav-menu { padding: 8px 12px; font-size: 10px;  letter-spacing: 0.08em; }
-  .nav-cta  { padding: 6px 10px; font-size: 9px;   letter-spacing: 0.06em; }
+  .nav-menu { padding: 8px 12px; font-size: 10px;  letter-spacing: 0.08em; min-width: 44px; min-height: 44px; justify-content: center; }
+  .nav-cta  { padding: 6px 10px; font-size: 9px;   letter-spacing: 0.06em; min-height: 44px; }
   .nav-menu > span:last-child { display: none; }
   .nav-mark { padding: 4px 8px; }
   .nav-mark-logo { height: 80px; }
@@ -2847,7 +2847,7 @@ a.contact-aside-v:hover { color: var(--color-terra); }
   .nav-mark-logo { height: 68px; }
   .dao-nav.is-scrolled .nav-mark-logo { height: 52px; }
   .nav-cta  { padding: 5px 8px; font-size: 8.5px; letter-spacing: 0.04em; }
-  .nav-menu { padding: 7px 10px; font-size: 9.5px; letter-spacing: 0.06em; }
+  .nav-menu { padding: 7px 10px; font-size: 9.5px; letter-spacing: 0.06em; min-width: 44px; min-height: 44px; justify-content: center; }
 }
 
 /* ============================================================

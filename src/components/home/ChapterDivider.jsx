@@ -65,7 +65,7 @@ export default function ChapterDivider({
             playsInline
           />
         ) : image ? (
-          <img className="chapter-bg-media" src={image} alt="" />
+          <img loading="lazy" decoding="async" className="chapter-bg-media" src={image} alt="" />
         ) : null}
         <div className="chapter-veil" />
         <div className="chapter-grain" aria-hidden />

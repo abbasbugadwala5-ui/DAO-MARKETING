@@ -9,9 +9,9 @@ if (typeof window !== 'undefined') {
 }
 
 const IMG = {
-  process1: '/images/cine%2018.jpg',
-  process2: '/images/cine%2023.jpg',
-  process3: '/images/cine%205.webp',
+  process1: '/images/cine-18.jpg',
+  process2: '/images/cine-23.jpg',
+  process3: '/images/cine-5.webp',
 };
 
 export default function WhatHappensNext() {
@@ -84,13 +84,13 @@ export default function WhatHappensNext() {
             <p>You hear back within <em>24 hours</em>. One of our team members reads every enquiry — no auto-responder, no triage.</p>
           </div>
           <div className="proc-photo">
-            <img src={IMG.process1} alt="" />
+            <img loading="lazy" decoding="async" src={IMG.process1} alt="" />
           </div>
         </div>
 
         <div className="proc-stage proc-stage-2">
           <div className="proc-photo">
-            <img src={IMG.process2} alt="" />
+            <img loading="lazy" decoding="async" src={IMG.process2} alt="" />
           </div>
           <div className="proc-text">
             <span className="proc-eyebrow">02 · Discovery</span>
@@ -104,7 +104,7 @@ export default function WhatHappensNext() {
             <p>A <em>tailored proposal</em> with scope, milestones and pricing — usually within a week of the discovery call.</p>
           </div>
           <div className="proc-photo">
-            <img src={IMG.process3} alt="" />
+            <img loading="lazy" decoding="async" src={IMG.process3} alt="" />
           </div>
         </div>
       </section>

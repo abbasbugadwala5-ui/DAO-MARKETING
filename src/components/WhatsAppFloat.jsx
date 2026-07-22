@@ -1,7 +1,7 @@
 'use client';
 
 const WA_LINK =
-  'https://wa.me/971504425845?text=Hi%20DAO%2C%20I%27m%20interested%20in%20your%20services';
+  'https://wa.me/971504425845?text=Hi-DAO%2C-I%27m-interested-in-your-services';
 
 export default function WhatsAppFloat() {
   return (

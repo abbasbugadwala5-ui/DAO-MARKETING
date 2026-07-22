@@ -11,22 +11,22 @@ import { useGSAP } from '@/hooks/useGSAP';
    actually contain spaces on disk. */
 const VIDEO_POSTERS = {
   // Cinematic panel — 4 distinct cinematic stills
-  'cinematic-1.mp4':     '/images/cine%202.webp',
-  'cinematic-2.mp4':     '/images/cine%2011.jpg',
-  'cinematic-3.mp4':     '/images/cine%2017.webp',
-  'cinematic-copy.mp4':  '/images/cine%2022.jpg',
+  'cinematic-1.mp4':     '/images/cine-2.webp',
+  'cinematic-2.mp4':     '/images/cine-11.jpg',
+  'cinematic-3.mp4':     '/images/cine-17.webp',
+  'cinematic-copy.mp4':  '/images/cine-22.jpg',
   // Shoots panel — real BTS stills
   'shoots3-copy.mp4':    '/images/shooting1.jpg',
-  'shoots-4-copy.mp4':   '/images/shooting%202.jpg',
+  'shoots-4-copy.mp4':   '/images/shooting-2.jpg',
   // Edits panel — graded cinematic frames
-  'edits1-copy.mp4':     '/images/cine%2014.webp',
-  'edits2-copy.mp4':     '/images/cine%2019.webp',
-  'edits3-copy.mp4':     '/images/cine%2027.webp',
+  'edits1-copy.mp4':     '/images/cine-14.webp',
+  'edits2-copy.mp4':     '/images/cine-19.webp',
+  'edits3-copy.mp4':     '/images/cine-27.webp',
 };
 
 function posterFor(videoSrc) {
   const name = videoSrc.split('/').pop();
-  return VIDEO_POSTERS[name] || '/images/cine%2013.jpg';
+  return VIDEO_POSTERS[name] || '/images/cine-13.jpg';
 }
 
 /* Lazy video card — only sets `src` once the element scrolls into
@@ -102,10 +102,10 @@ const PANELS = [
     bg: '',
     tint: '#0A0908',              /* Unified cinematic black */
     cards: [
-      { src: '/images/sama%20linkedin2.webp', alt: 'Sama Al Tariq LinkedIn campaign post',     w: 315, h: 420, left: '2%',  top: '12%', rot: -2 },
-      { src: '/images/insta%20sama1.webp',    alt: 'Sama Al Tariq Instagram post creative',    w: 305, h: 402, left: '28%', top: '17%', rot:  1 },
-      { src: '/images/sama%20facebook3.webp', alt: 'Sama Al Tariq Facebook campaign creative', w: 310, h: 393, left: '53%', top: '13%', rot: -1 },
-      { src: '/images/sama%20tiktok4.webp',   alt: 'Sama Al Tariq TikTok short-form creative', w: 255, h: 453, left: '78%', top:  '9%', rot:  2 },
+      { src: '/images/sama-linkedin2.webp', alt: 'Sama Al Tariq LinkedIn campaign post',     w: 315, h: 420, left: '2%',  top: '12%', rot: -2 },
+      { src: '/images/insta-sama1.webp',    alt: 'Sama Al Tariq Instagram post creative',    w: 305, h: 402, left: '28%', top: '17%', rot:  1 },
+      { src: '/images/sama-facebook3.webp', alt: 'Sama Al Tariq Facebook campaign creative', w: 310, h: 393, left: '53%', top: '13%', rot: -1 },
+      { src: '/images/sama-tiktok4.webp',   alt: 'Sama Al Tariq TikTok short-form creative', w: 255, h: 453, left: '78%', top:  '9%', rot:  2 },
     ],
   },
   {
@@ -117,7 +117,7 @@ const PANELS = [
       { src: '/videos/shoots3-copy.mp4',  alt: 'Behind-the-scenes from a Dubai brand shoot', w: 320, h: 540, left:  '3%', top: '13%', rot: -2 },
       { src: '/images/shooting1.jpg',     alt: 'On-set photo from a cinematic brand shoot',  w: 320, h: 540, left: '28%', top:  '9%', rot:  1 },
       { src: '/videos/shoots-4-copy.mp4', alt: 'Production reel for a Dubai property brand', w: 320, h: 540, left: '53%', top: '13%', rot: -1 },
-      { src: '/images/shooting%202.jpg',  alt: 'Behind-the-scenes lighting setup on location', w: 320, h: 540, left: '78%', top:  '9%', rot:  2 },
+      { src: '/images/shooting-2.jpg',  alt: 'Behind-the-scenes lighting setup on location', w: 320, h: 540, left: '78%', top:  '9%', rot:  2 },
     ],
   },
   {
@@ -290,7 +290,7 @@ export default function WorkShowcase() {
               <div className="work-bg">
                 {isVideo(p.bg)
                   ? <LazyVideo src={p.bg} poster={posterFor(p.bg)} />
-                  : <img src={p.bg} alt="" />}
+                  : <img loading="lazy" decoding="async" src={p.bg} alt="" />}
               </div>
             )}
 
@@ -335,7 +335,7 @@ export default function WorkShowcase() {
                 >
                   {c.src && (isVideo(c.src)
                     ? <LazyVideo src={c.src} poster={posterFor(c.src)} ariaLabel={c.alt} />
-                    : <img src={c.src} alt={c.alt || ''} />)}
+                    : <img loading="lazy" decoding="async" src={c.src} alt={c.alt || ''} />)}
                   <div className="work-card-glare" aria-hidden />
                 </div>
               ))}

@@ -6,7 +6,7 @@ import { useGSAP } from '@/hooks/useGSAP';
 
 /* Set to a file in /public — e.g. '/videos/studio.mp4' or '/images/studio.jpg'.
    Leave as '' to keep the placeholder. */
-const CHAPTER_MEDIA = '/images/cine%2031.jpg';
+const CHAPTER_MEDIA = '/images/cine-31.jpg';
 const isVideo = (s) => /\.(mp4|webm|mov)$/i.test(s);
 
 export default function VideoChapter() {
@@ -61,7 +61,7 @@ export default function VideoChapter() {
         ) : isVideo(CHAPTER_MEDIA) ? (
           <video src={CHAPTER_MEDIA} autoPlay muted loop playsInline />
         ) : (
-          <img src={CHAPTER_MEDIA} alt="" />
+          <img loading="lazy" decoding="async" src={CHAPTER_MEDIA} alt="" />
         )}
       </div>
       <div className="chapter-veil" />

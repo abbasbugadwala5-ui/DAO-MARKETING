@@ -24,40 +24,40 @@ const TILES = 36; // 6-column grid
 
 const TILE_MEDIA = [
   '/images/cine1.webp',
-  '/images/cine%202.webp',
-  '/images/cine%203.webp',
-  '/images/cine%204.jpg',
-  '/images/cine%205.webp',
-  '/images/cine%206.webp',
-  '/images/cine%207.webp',
-  '/images/cine%208.jpg',
-  '/images/cine%209.jpg',
-  '/images/cine%2010.jpg',
-  '/images/cine%2011.jpg',
-  '/images/cine%2012.webp',
-  '/images/cine%2013.jpg',
-  '/images/cine%2014.webp',
-  '/images/cine%2015.jpg',
-  '/images/cine%2016.jpg',
-  '/images/cine%2017.webp',
-  '/images/cine%2018.jpg',
-  '/images/cine%2019.webp',
-  '/images/cine%2020.jpg',
-  '/images/cine%2021.jpg',
-  '/images/cine%2022.jpg',
-  '/images/cine%2023.jpg',
-  '/images/cine%2024.jpg',
-  '/images/cine%2024.webp',
-  '/images/cine%2025.webp',
-  '/images/cine%2026.jpg',
-  '/images/cine%2027.webp',
-  '/images/cine%2028.webp',
-  '/images/cine%2029.jpg',
-  '/images/cine%2030.jpg',
-  '/images/cine%2031.jpg',
-  '/images/cine%2032.jpg',
-  '/images/cine%2033.webp',
-  '/images/cine%2034.jpg',
+  '/images/cine-2.webp',
+  '/images/cine-3.webp',
+  '/images/cine-4.jpg',
+  '/images/cine-5.webp',
+  '/images/cine-6.webp',
+  '/images/cine-7.webp',
+  '/images/cine-8.jpg',
+  '/images/cine-9.jpg',
+  '/images/cine-10.jpg',
+  '/images/cine-11.jpg',
+  '/images/cine-12.webp',
+  '/images/cine-13.jpg',
+  '/images/cine-14.webp',
+  '/images/cine-15.jpg',
+  '/images/cine-16.jpg',
+  '/images/cine-17.webp',
+  '/images/cine-18.jpg',
+  '/images/cine-19.webp',
+  '/images/cine-20.jpg',
+  '/images/cine-21.jpg',
+  '/images/cine-22.jpg',
+  '/images/cine-23.jpg',
+  '/images/cine-24.jpg',
+  '/images/cine-24.webp',
+  '/images/cine-25.webp',
+  '/images/cine-26.jpg',
+  '/images/cine-27.webp',
+  '/images/cine-28.webp',
+  '/images/cine-29.jpg',
+  '/images/cine-30.jpg',
+  '/images/cine-31.jpg',
+  '/images/cine-32.jpg',
+  '/images/cine-33.webp',
+  '/images/cine-34.jpg',
 ];
 
 const isVideo = (s) => /\.(mp4|webm|mov)$/i.test(s);
@@ -109,12 +109,13 @@ export default function CinematicHero() {
         <video
           className="cine-bg-video"
           src={HERO_VIDEO}
+          poster="/images/hero-poster.jpg"
           aria-hidden="true"
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
         />
         {/* ─── Image mosaic JSX (commented out) ─────────────────────
         {Array.from({ length: TILES }).map((_, i) => {

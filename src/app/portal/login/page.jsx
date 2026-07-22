@@ -8,7 +8,7 @@ import '@/app/portal/portal.css';
 
 // Point this at any existing landscape image already in /public
 // (a wide architectural / project photo works best). One line to swap later.
-const HERO_IMAGE = '/images/cine%203.webp';
+const HERO_IMAGE = '/images/cine-3.webp';
 
 const STYLES = `
 #dao-login {

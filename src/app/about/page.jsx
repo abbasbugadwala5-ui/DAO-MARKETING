@@ -8,17 +8,17 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* Real assets — spaces URL-encoded as %20 to match filenames in /public/images */
+/* Real assets — spaces URL-encoded as - to match filenames in /public/images */
 const IMG = {
-  heroA:     '/images/cine%202.webp',
-  heroB:     '/images/cine%203.webp',
-  studio1:   '/images/cine%2011.jpg',
-  studio2:   '/images/cine%2017.webp',
-  studio3:   '/images/cine%2022.jpg',
-  story1:    '/images/cine%2014.webp',
-  story2:    '/images/cine%2019.webp',
-  story3:    '/images/cine%2025.webp',
-  mask:      '/images/cine%2030.jpg',
+  heroA:     '/images/cine-2.webp',
+  heroB:     '/images/cine-3.webp',
+  studio1:   '/images/cine-11.jpg',
+  studio2:   '/images/cine-17.webp',
+  studio3:   '/images/cine-22.jpg',
+  story1:    '/images/cine-14.webp',
+  story2:    '/images/cine-19.webp',
+  story3:    '/images/cine-25.webp',
+  mask:      '/images/cine-30.jpg',
 };
 
 const STUDIO = [
@@ -139,8 +139,8 @@ export default function About({ showDAO = true }) {
             </p>
           </div>
           <div className="av2-hero-cards a-reveal">
-            <div className="av2-hero-card"><img src={IMG.heroA} alt="" /><div className="av2-hero-card-label">Cinematic film</div></div>
-            <div className="av2-hero-card"><img src={IMG.heroB} alt="" /><div className="av2-hero-card-label">Editorial brand work</div></div>
+            <div className="av2-hero-card"><img src={IMG.heroA} alt="" decoding="async" fetchPriority="high" /><div className="av2-hero-card-label">Cinematic film</div></div>
+            <div className="av2-hero-card"><img src={IMG.heroB} alt="" decoding="async" /><div className="av2-hero-card-label">Editorial brand work</div></div>
           </div>
         </div>
       </section>
@@ -152,7 +152,7 @@ export default function About({ showDAO = true }) {
         <div className="av2-studio-grid">
           {STUDIO.map((c, i) => (
             <div key={i} className="av2-studio-card a-reveal" style={{ '--i': i }}>
-              <img src={c.src} alt="" />
+              <img src={c.src} alt="" loading="lazy" decoding="async" />
               <div className="av2-studio-label">{c.label}</div>
             </div>
           ))}
